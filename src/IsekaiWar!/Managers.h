@@ -1,7 +1,7 @@
 #pragma region Local Dependencies
 
-#include "GameManager.h"
-#include "ResourceManager.h"
+#include "Managers/GameManager.h"
+#include "Managers/ResourceManager.h"
 
 #pragma endregion
 

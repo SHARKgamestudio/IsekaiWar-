@@ -1,5 +1,5 @@
 #include "AttackManager.h"
-#include "LivingEntity.h"
+#include "../Entities/LivingEntity.h"
 
 AttackManager::AttackManager(float damage)
 {

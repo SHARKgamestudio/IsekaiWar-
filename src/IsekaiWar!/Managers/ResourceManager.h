@@ -1,7 +1,8 @@
-#include <SFML/Graphics.hpp>
+#pragma once
 
 #pragma region External Dependencies
 
+#include <SFML/Graphics.hpp>
 #include <string>
 #include <map>
 

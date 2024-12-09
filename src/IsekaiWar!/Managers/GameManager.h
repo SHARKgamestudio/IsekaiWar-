@@ -7,14 +7,16 @@
 #pragma endregion
 
 class GameManager {
+private:
 	sf::RenderWindow window;
 	sf::Clock clock;
 
 	void Update(float deltaTime);
 	void HandleEvents();
 	void Render();
-		
+
 	GameManager();
+
 public:
 	void Run();
 

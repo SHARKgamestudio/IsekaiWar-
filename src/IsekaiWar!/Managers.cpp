@@ -3,7 +3,7 @@
 Managers* Managers::Instance = nullptr;
 
 Managers::Managers() : GameManager(), ResourceManager() {
-
+	// DO STUFF AFTER OBJECT CREATION //
 }
 
 Managers* Managers::GetInstance() {
