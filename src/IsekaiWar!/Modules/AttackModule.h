@@ -1,13 +1,10 @@
 class LivingEntity;
 
-class AttackManager
-{
+class AttackModule {
 private:
 	float damage;
 
 public:
-
-	AttackManager(float damage);
-
+	AttackModule(float damage);
 	void Attack(LivingEntity& entity);
 };

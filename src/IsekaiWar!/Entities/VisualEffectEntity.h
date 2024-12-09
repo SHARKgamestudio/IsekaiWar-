@@ -9,11 +9,11 @@
 #pragma region Local Dependencies
 
 #include "../Entity.h"
-#include "../Modules/Movable.h"
+#include "../Modules/MoveModule.h"
 
 #pragma endregion
 
-class VisualEffectEntity : public Entity, public Movable {
+class VisualEffectEntity : public Entity, public MoveModule {
 public:
 	VisualEffectEntity(float x, float y, sf::Texture* texture, float speed);
 	VisualEffectEntity(sf::Vector2f pos, sf::Texture* texture, float speed);

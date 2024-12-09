@@ -1,17 +1,22 @@
 #pragma once
+
+#pragma region External Dependencies
+
 #include <SFML/Graphics.hpp>
 
-class Movable
-{
-protected:
+#pragma endregion
 
+class TravellingModule {
+protected:
 	sf::Vector2f direction;
 	sf::Vector2f normalisedDirection;
 	float speed;
+	float u;
+	float v;
 
-	Movable(sf::Vector2f direction, float speed);
+	TravellingModule(sf::Vector2f direction, float speed);
 
 	void virtual SetDirection(sf::Vector2f direction);
 	void virtual SetSpeed(float speed);
-	void virtual Move(float dt) = 0;
+	void virtual Traveling(float dt) = 0;
 };

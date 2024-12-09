@@ -1,15 +1,13 @@
 #pragma once
-class LifeManager
-{
-private:
 
+class HealthModule {
+private:
 	bool isDead;
 	float maxHP;
 	float HP;
 
 public:
-
-	LifeManager(float health);
+	HealthModule(float health);
 
 	float GetHealth();
 	float GetMaxHealth();
@@ -19,4 +17,3 @@ public:
 	void Heal(float health);
 	void UpdateMaxHealth(float newMaxHealth);
 };
-

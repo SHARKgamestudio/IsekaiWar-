@@ -3,11 +3,11 @@
 #pragma region Local Dependencies
 
 #include "../Entity.h"
-#include "../Modules/TravelingTexture.h"
+#include "../Modules/TravellingModule.h"
 
 #pragma endregion
 
-class BackgroundEntity : public Entity, public TravelingTexture {	
+class BackgroundEntity : public Entity, public TravellingModule {	
 public :
 	BackgroundEntity(float x, float y, sf::Texture* texture, float speed);
 	BackgroundEntity(sf::Vector2f pos, sf::Texture* texture, float speed);
