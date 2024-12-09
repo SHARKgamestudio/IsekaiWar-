@@ -19,8 +19,5 @@ bool HitboxModule::IsColliding(HitboxModule hitbox) {
 	sf::Vector2f difference = pos - hitbox.pos;
 	float distance = sqrtf(difference.y * difference.y + difference.x * difference.x);
 
-	if (distance < radius + hitbox.radius)
-		return true;
-
-	return false;
+	return distance < radius + hitbox.radius;
 }

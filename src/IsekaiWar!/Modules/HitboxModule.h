@@ -12,8 +12,8 @@ private:
 	float radius;
 
 public:
-	HitboxModule(sf::Vector2f pos, float radius);
 	HitboxModule(float x, float y, float radius);
+	HitboxModule(sf::Vector2f position, float radius);
 
 	bool IsColliding(HitboxModule hitbox);
 };

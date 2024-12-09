@@ -3,8 +3,7 @@
 class HealthModule {
 private:
 	bool isDead;
-	float maxHP;
-	float HP;
+	float HP, maxHP;
 
 public:
 	HealthModule(float health);

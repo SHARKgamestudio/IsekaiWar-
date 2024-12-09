@@ -10,9 +10,8 @@ class TravellingModule {
 protected:
 	sf::Vector2f direction;
 	sf::Vector2f normalisedDirection;
+	float u, v;
 	float speed;
-	float u;
-	float v;
 
 	TravellingModule(sf::Vector2f direction, float speed);
 
