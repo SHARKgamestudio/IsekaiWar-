@@ -6,8 +6,10 @@
 
 #pragma endregion
 
+class CollidableEntity;
+
 class HitboxModule {
-private:
+protected:
 	sf::Vector2f pos;
 	float radius;
 
@@ -15,5 +17,5 @@ public:
 	HitboxModule(float x, float y, float radius);
 	HitboxModule(sf::Vector2f position, float radius);
 
-	bool IsColliding(HitboxModule hitbox);
+	bool virtual IsColliding(CollidableEntity* hitbox) = 0;
 };

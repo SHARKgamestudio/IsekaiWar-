@@ -10,6 +10,6 @@ AttackModule::AttackModule(float damage) {
 	this->damage = damage;
 }
 
-void AttackModule::Attack(LivingEntity& entity) {
-	entity.TakeDamage(damage);
+void AttackModule::Attack(LivingEntity* entity) {
+	entity->TakeDamage(damage);
 }

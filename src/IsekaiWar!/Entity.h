@@ -10,6 +10,7 @@ class Entity : public sf::Transformable, public sf::Drawable {
 protected:
 	sf::Texture* texture;
 	sf::Sprite sprite;
+	bool toDestroy;
 
 public:
 	Entity(float x, float y, sf::Texture* texture);

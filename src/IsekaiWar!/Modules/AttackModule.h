@@ -8,5 +8,5 @@ private:
 
 public:
 	AttackModule(float damage);
-	void Attack(LivingEntity& entity);
+	void Attack(LivingEntity* entity);
 };
