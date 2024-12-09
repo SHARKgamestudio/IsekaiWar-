@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "SpriteBackground.h"
 
 SpriteBackground::SpriteBackground(float x, float y, sf::Texture* texture, float speed) : Entity(x, y, texture), TravelingTexture(sf::Vector2f(0, 1), speed)

@@ -13,4 +13,3 @@ public :
 	void Update(float dt);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
-
