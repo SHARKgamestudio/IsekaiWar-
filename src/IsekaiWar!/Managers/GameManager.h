@@ -6,13 +6,6 @@
 
 #pragma endregion
 
-#pragma region Local Dependencies
-
-#include "../Utils/Resources.h"
-#include "../SpriteBackground.h"
-
-#pragma endregion
-
 class GameManager {
 	sf::RenderWindow window;
 	sf::Clock clock;

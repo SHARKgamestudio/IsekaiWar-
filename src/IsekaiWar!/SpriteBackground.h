@@ -1,5 +1,5 @@
 #pragma once
-#include "Entity.h"
+#include "Entities/Entity.h"
 #include "TravelingTexture.h"
 
 class SpriteBackground : public Entity, public TravelingTexture

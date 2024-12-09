@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "TravelingTexture.h"
 #include <math.h>
 

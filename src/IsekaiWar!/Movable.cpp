@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Movable.h"
 
 Movable::Movable(sf::Vector2f direction, float speed)

@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "CollidableEntity.h"
 
 CollidableEntity::CollidableEntity(float x, float y, sf::Texture* texture, float radius) 

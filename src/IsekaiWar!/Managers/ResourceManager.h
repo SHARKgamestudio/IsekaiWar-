@@ -9,7 +9,7 @@
 
 const std::string path = "../../../src/";
 
-static class ResourceManager {
+class ResourceManager {
 private:
 	std::map<std::string, sf::Texture> textures;
 	ResourceManager();

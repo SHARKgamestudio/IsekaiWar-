@@ -1,6 +1,5 @@
-#include "GameManager.h"
+#include "Managers/Managers.h"
 
-int main()
-{
-	GameManager::GetInstance()->Run();
+int main() {
+	Managers::GetInstance()->GameManager.Run();
 }

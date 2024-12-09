@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Entity.h"
+#include "Entities/Entity.h"
 #include "Hitbox.h"
 
 class CollidableEntity : public Entity, public Hitbox

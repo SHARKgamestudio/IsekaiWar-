@@ -7,8 +7,11 @@
 
 #pragma endregion
 
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 600
+
 GameManager::GameManager() {
-	window.create(sf::VideoMode(800, 600), "IsekaiWar!");
+	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "IsekaiWar!");
 }
 
 void GameManager::Run() {

@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "LifeManager.h"
 
 LifeManager::LifeManager(float health)

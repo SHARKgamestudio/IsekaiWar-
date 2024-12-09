@@ -1,4 +1,3 @@
-
 class LivingEntity;
 
 class AttackManager

@@ -16,6 +16,7 @@ void ResourceManager::AddTexture(std::string name, std::string path) {
 }
 
 sf::Texture* ResourceManager::GetTexture(std::string name) {
-	Debug::Assert(textures.contains(name), "Error adding texture to resources.");
+	bool success = textures.contains(name);
+	Debug::Assert(success, "Error adding texture to resources.");
 	return &textures[name];
 }

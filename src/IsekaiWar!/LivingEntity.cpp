@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "LivingEntity.h"
 
 LivingEntity::LivingEntity(float x, float y, sf::Texture* texture, float radius, float health)

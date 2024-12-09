@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Bullet.h"
 
 Bullet::Bullet(float x, float y, sf::Texture* texture, float radius, float health, float attack)

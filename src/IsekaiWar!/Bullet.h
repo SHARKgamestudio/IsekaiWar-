@@ -1,4 +1,5 @@
 #pragma once
+
 #include "CollidableEntity.h"
 #include "AttackManager.h"
 

@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "VFX.h"
 
 VFX::VFX(float x, float y, sf::Texture* texture, float speed) : Entity(x, y, texture), Movable(sf::Vector2f(0, 1), speed)

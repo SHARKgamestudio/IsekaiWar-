@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Entity.h"
+#include "Entities/Entity.h"
 #include "Movable.h"
 
 class VFX : public Entity, public Movable
