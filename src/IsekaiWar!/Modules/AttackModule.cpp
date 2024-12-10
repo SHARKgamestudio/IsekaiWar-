@@ -13,3 +13,7 @@ AttackModule::AttackModule(float damage) {
 void AttackModule::Attack(LivingEntity* entity) {
 	entity->TakeDamage(damage);
 }
+
+void AttackModule::Attack(LivingEntity* entity, float deltatime) {
+	entity->TakeDamage(damage * deltatime);
+}

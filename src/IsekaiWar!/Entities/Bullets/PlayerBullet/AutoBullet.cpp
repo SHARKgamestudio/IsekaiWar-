@@ -17,5 +17,7 @@ void AutoBullet::Move(float deltaTime) {
 void AutoBullet::Update(float deltaTime, std::vector<Entity*> entities) {
 	Move(deltaTime);
 
-	if (hasCollided) toDestroy = true;
+	if (hasCollided) {
+		toDestroy = true;
+	}
 }
