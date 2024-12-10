@@ -7,6 +7,13 @@
 
 #pragma endregion
 
+#pragma region Local Dependencies
+
+#include "../Managers.h"
+#include <iostream>
+
+#pragma endregion
+
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 
@@ -28,12 +35,15 @@ void GameManager::HandleEvents() {
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed)
 			window.close();
+
+		Managers::GetInstance()->InputManager.Update(&event);
 	}
 }
 
 void GameManager::Update(float deltaTime) {
 
 	// LOGIC GOES HERE //
+	std::cout << Managers::GetInstance()->InputManager.GetAxis("Horizontal") << std::endl;
 
 }
 
