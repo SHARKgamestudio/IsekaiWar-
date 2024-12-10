@@ -26,11 +26,11 @@ protected:
 	std::vector<CollidableEntity> entities;
 	std::vector<VisualEffectEntity> visualEffects;
 
-	void virtual Update(float dt);
-	void virtual Draw(sf::RenderWindow& window);
-
 public:
 
 	void Pause();
 	void Resume();
+
+	void virtual Update(float dt);
+	void virtual Draw(sf::RenderWindow& window) override;
 };

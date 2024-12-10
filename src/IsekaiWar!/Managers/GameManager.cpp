@@ -22,6 +22,7 @@ GameManager::GameManager() {
 }
 
 void GameManager::Run() {
+	Managers::GetInstance()->SceneManager.LoadLevel("Level1");
 	while (window.isOpen()) {
 		sf::Time deltaTime = clock.restart();
 		HandleEvents();
@@ -47,8 +48,9 @@ void GameManager::HandleEvents() {
 void GameManager::Update(float deltaTime) {
 
 	// LOGIC GOES HERE //
+	Managers::GetInstance()->SceneManager.Update(deltaTime);
 	//std::cout << Managers::GetInstance()->InputManager.GetAxis("Horizontal") << std::endl;
-	std::cout << Managers::GetInstance()->InputManager.GetKey("Shoot") << std::endl;
+	//std::cout << Managers::GetInstance()->InputManager.GetKey("Shoot") << std::endl;
 
 }
 
@@ -56,6 +58,7 @@ void GameManager::Render() {
 	window.clear();
 
 	// RENDERING GOES HERE //
+	Managers::GetInstance()->SceneManager.Draw(window);
 
 	window.display();
 }

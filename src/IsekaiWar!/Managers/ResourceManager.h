@@ -8,7 +8,7 @@
 
 #pragma endregion
 
-const std::string path = "../../../src/";
+const std::string path = "../../../src/IsekaiWar!/";
 
 class ResourceManager {
 private:
