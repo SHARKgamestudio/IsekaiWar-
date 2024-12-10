@@ -84,6 +84,9 @@ void InputManager::Update(const sf::Event* event) {
 				states[i] = sf::Joystick::isButtonPressed(0, keys[i].joystick.value);
 			}
 		}
+		else {
+			states[i] = isKeyPressed ? sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keys[i].keyboard.value)) : false;
+		}
 	}
 
 	#pragma endregion
