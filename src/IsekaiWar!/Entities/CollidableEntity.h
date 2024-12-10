@@ -16,7 +16,7 @@
 class CollidableEntity : public Entity, public HitboxModule {
 public:
 	CollidableEntity(float x, float y, sf::Texture* texture, float radius);
-	CollidableEntity(sf::Vector2f pos, sf::Texture* texture, float radius);
+	CollidableEntity(sf::Vector2f position, sf::Texture* texture, float radius);
 
 	bool IsColliding(CollidableEntity* hitbox);
 };

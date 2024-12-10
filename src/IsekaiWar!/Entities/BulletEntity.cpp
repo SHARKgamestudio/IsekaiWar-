@@ -5,7 +5,7 @@ BulletEntity::BulletEntity(float x, float y, sf::Texture* texture, float radius,
 	AttackModule(attack) {
 }
 
-BulletEntity::BulletEntity(sf::Vector2f pos, sf::Texture* texture, float radius, float attack)
-	: CollidableEntity(pos, texture, radius),
+BulletEntity::BulletEntity(sf::Vector2f position, sf::Texture* texture, float radius, float attack)
+	: CollidableEntity(position, texture, radius),
 	AttackModule(attack) {
 }

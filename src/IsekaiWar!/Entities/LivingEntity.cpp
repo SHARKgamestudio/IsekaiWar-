@@ -5,7 +5,7 @@ LivingEntity::LivingEntity(float x, float y, sf::Texture* texture, float radius,
 	HealthModule(health) {
 }
 
-LivingEntity::LivingEntity(sf::Vector2f pos, sf::Texture* texture, float radius, float health)
-	: CollidableEntity(pos, texture, radius),
+LivingEntity::LivingEntity(sf::Vector2f position, sf::Texture* texture, float radius, float health)
+	: CollidableEntity(position, texture, radius),
 	HealthModule(health) {
 }

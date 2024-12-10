@@ -16,8 +16,8 @@
 class VisualEffectEntity : public Entity, public MoveModule {
 public:
 	VisualEffectEntity(float x, float y, sf::Texture* texture, float speed);
-	VisualEffectEntity(sf::Vector2f pos, sf::Texture* texture, float speed);
+	VisualEffectEntity(sf::Vector2f position, sf::Texture* texture, float speed);
 
-	void virtual Update(float dt);
-	void virtual Move(float dt);
+	void virtual Update(float deltaTime);
+	void virtual Move(float deltaTime);
 };

@@ -9,10 +9,9 @@
 
 class AutoBullet : public PlayerBullet, public MoveModule {
 	public:
-
 	AutoBullet(float x, float y, sf::Texture* texture);
-	AutoBullet(sf::Vector2f pos, sf::Texture* texture);
+	AutoBullet(sf::Vector2f position, sf::Texture* texture);
 
-	void Move(float dt);
-	void Update(float dt, std::vector<Entity*> entities) override;
+	void Move(float deltaTime);
+	void Update(float deltaTime, std::vector<Entity*> entities) override;
 };

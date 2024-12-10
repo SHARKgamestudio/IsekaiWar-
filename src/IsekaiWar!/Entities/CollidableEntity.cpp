@@ -5,13 +5,13 @@ CollidableEntity::CollidableEntity(float x, float y, sf::Texture* texture, float
 	HitboxModule(x, y, radius) {
 }
 
-CollidableEntity::CollidableEntity(sf::Vector2f pos, sf::Texture* texture, float radius)
-	: Entity(pos, texture),
-	HitboxModule(pos, radius) {
+CollidableEntity::CollidableEntity(sf::Vector2f position, sf::Texture* texture, float radius)
+	: Entity(position, texture),
+	HitboxModule(position, radius) {
 }
 
 bool CollidableEntity::IsColliding(CollidableEntity* entity) {
-	sf::Vector2f difference = pos - entity->pos;
+	sf::Vector2f difference = position - entity->position;
 	float distance = sqrtf(difference.y * difference.y + difference.x * difference.x);
 
 	return distance < radius + entity->radius;

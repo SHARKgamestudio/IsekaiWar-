@@ -6,8 +6,8 @@ BackgroundEntity::BackgroundEntity(float x, float y, sf::Texture* texture, float
 	this->texture->setRepeated(true);
 	sprite.setTextureRect(sf::IntRect(0, 0, 800, 2000));
 }
-BackgroundEntity::BackgroundEntity(sf::Vector2f pos, sf::Texture* texture, float speed)
-	: Entity(pos, texture),
+BackgroundEntity::BackgroundEntity(sf::Vector2f position, sf::Texture* texture, float speed)
+	: Entity(position, texture),
 	TravellingModule(sf::Vector2f(0, 1), speed) {
 	this->texture->setRepeated(true);
 	sprite.setTextureRect(sf::IntRect(0, 0, 800, 600));

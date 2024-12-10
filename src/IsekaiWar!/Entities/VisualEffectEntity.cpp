@@ -5,8 +5,8 @@ VisualEffectEntity::VisualEffectEntity(float x, float y, sf::Texture* texture, f
 	MoveModule(sf::Vector2f(0, 1), speed) {
 }
 
-VisualEffectEntity::VisualEffectEntity(sf::Vector2f pos, sf::Texture* texture, float speed)
-	: Entity(pos, texture),
+VisualEffectEntity::VisualEffectEntity(sf::Vector2f position, sf::Texture* texture, float speed)
+	: Entity(position, texture),
 	MoveModule(sf::Vector2f(0, 1), speed) {
 }
 

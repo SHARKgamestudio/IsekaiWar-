@@ -17,5 +17,5 @@ protected:
 
 	void virtual SetDirection(sf::Vector2f direction);
 	void virtual SetSpeed(float speed);
-	void virtual Traveling(float dt) = 0;
+	void virtual Traveling(float deltaTime) = 0;
 };

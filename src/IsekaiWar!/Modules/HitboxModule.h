@@ -10,7 +10,7 @@ class CollidableEntity;
 
 class HitboxModule {
 protected:
-	sf::Vector2f pos;
+	sf::Vector2f position;
 	float radius;
 	bool hasCollided;
 

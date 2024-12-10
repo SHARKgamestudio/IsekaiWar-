@@ -9,9 +9,8 @@
 
 class PlayerBullet : public BulletEntity {
 public:
-
 	PlayerBullet(float x, float y, sf::Texture* texture, float radius, float attack);
-	PlayerBullet(sf::Vector2f pos, sf::Texture* texture, float radius, float attack);
+	PlayerBullet(sf::Vector2f position, sf::Texture* texture, float radius, float attack);
 
-	void virtual Update(float dt, std::vector<Entity*> entities);
+	void virtual Update(float deltaTime, std::vector<Entity*> entities);
 };

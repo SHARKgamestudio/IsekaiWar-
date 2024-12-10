@@ -6,13 +6,13 @@
 
 #pragma endregion
 
-HitboxModule::HitboxModule(sf::Vector2f pos, float radius) {
-	this->radius = radius; this->pos = pos;
+HitboxModule::HitboxModule(sf::Vector2f position, float radius) {
+	this->radius = radius; this->position = position;
 	hasCollided = false;
 }
 
 HitboxModule::HitboxModule(float x, float y, float radius)
-	: pos(sf::Vector2f(x, y)) {
+	: position(sf::Vector2f(x, y)) {
 	this->radius = radius;
 	hasCollided = false;
 }
