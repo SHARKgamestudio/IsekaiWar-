@@ -4,6 +4,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+
+#pragma endregion
+
+#pragma region Local Dependencies
+
 #include "../Scene.h"
 #include "../Entities/CollidableEntity.h"
 #include "../Entities/BackgroundEntity.h"
@@ -22,7 +27,7 @@ protected:
 	std::vector<VisualEffectEntity> visualEffects;
 
 	void virtual Update(float dt);
-	void virtual Draw(sf::RenderTarget& target, sf::RenderStates states);
+	void virtual Draw(sf::RenderWindow& window);
 
 public:
 

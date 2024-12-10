@@ -16,20 +16,20 @@ void LevelScene::Update(float dt) {
 	}
 }
 
-void LevelScene::Draw(sf::RenderTarget& target, sf::RenderStates states) {
+void LevelScene::Draw(sf::RenderWindow& window) {
 	for (BackgroundEntity& background : backgrounds) {
-		background.draw(target, states);
+		window.draw(background);
 	}
 
 	for (CollidableEntity& entity : entities) {
-		entity.draw(target, states);
+		window.draw(entity);
 	}
 
 	for (VisualEffectEntity& visualEffect : visualEffects) {
-		visualEffect.draw(target, states);
+		window.draw(visualEffect);
 	}
 
-	//player.draw(target, states);
+	//window.draw(player);
 }
 
 void LevelScene::Pause() {

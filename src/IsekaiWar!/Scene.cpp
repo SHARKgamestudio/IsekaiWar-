@@ -2,4 +2,4 @@
 
 void Scene::Update(float dt) {}
 void Scene::Load() {}
-void Scene::Draw(sf::RenderTarget& target, sf::RenderStates states) {}
+void Scene::Draw(sf::RenderWindow& window) {}

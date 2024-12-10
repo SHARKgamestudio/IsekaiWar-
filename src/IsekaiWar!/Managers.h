@@ -3,6 +3,7 @@
 #include "Managers/GameManager.h"
 #include "Managers/InputManager.h"
 #include "Managers/ResourceManager.h"
+#include "Managers/SceneManager.h"
 
 #pragma endregion
 
@@ -15,6 +16,7 @@ public:
 	GameManager GameManager;
 	InputManager InputManager;
 	ResourceManager ResourceManager;
+	SceneManager SceneManager;
 
 	static Managers* GetInstance();
 };
