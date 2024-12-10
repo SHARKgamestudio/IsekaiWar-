@@ -12,6 +12,7 @@ class HitboxModule {
 protected:
 	sf::Vector2f pos;
 	float radius;
+	bool hasCollided;
 
 public:
 	HitboxModule(float x, float y, float radius);

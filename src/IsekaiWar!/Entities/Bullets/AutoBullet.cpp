@@ -13,4 +13,8 @@ void AutoBullet::Move(float dt) {
 
 void AutoBullet::Update(float dt, std::vector<Entity*> entities) {
 	Move(dt);
+
+	if (hasCollided) {
+		toDestroy = true;
+	}
 }
