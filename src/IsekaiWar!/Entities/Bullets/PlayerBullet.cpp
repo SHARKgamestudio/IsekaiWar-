@@ -10,6 +10,8 @@ PlayerBullet::PlayerBullet(sf::Vector2f position, sf::Texture* texture, float ra
 }
 
 void PlayerBullet::Update(float deltaTime, std::vector<Entity*> entities) {
+	entitiesHit.clear();
+
 	for (auto& entity : entities) {
 
 		LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entity);
@@ -17,7 +19,7 @@ void PlayerBullet::Update(float deltaTime, std::vector<Entity*> entities) {
 		if (castEntity == nullptr) continue;
 		if (!IsColliding(castEntity)) continue;
 
-		Attack(castEntity);
+		entitiesHit.push_back(castEntity);
 		hasCollided = true;
 	}
 }

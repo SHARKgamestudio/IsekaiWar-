@@ -13,7 +13,7 @@ public :
 	BackgroundEntity(sf::Vector2f position, sf::Texture* texture, float speed);
 
 	void Traveling(float deltaTime);
-	void Update(float deltaTime);
+	void Update(float deltaTime) override;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

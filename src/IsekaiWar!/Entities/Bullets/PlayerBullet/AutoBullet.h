@@ -2,8 +2,8 @@
 
 #pragma region Local Dependencies
 
-#include "PlayerBullet.h"
-#include "../../Modules/MoveModule.h"
+#include "../PlayerBullet.h"
+#include "../../../Modules/MoveModule.h"
 
 #pragma endregion
 
