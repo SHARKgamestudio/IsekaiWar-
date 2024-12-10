@@ -37,13 +37,18 @@ void GameManager::HandleEvents() {
 			window.close();
 
 		Managers::GetInstance()->InputManager.Update(&event);
+
+		if (event.type == sf::Event::JoystickButtonPressed) {
+			//std::cout << event.joystickButton.button << std::endl;
+		}
 	}
 }
 
 void GameManager::Update(float deltaTime) {
 
 	// LOGIC GOES HERE //
-	std::cout << Managers::GetInstance()->InputManager.GetAxis("Vertical") << std::endl;
+	//std::cout << Managers::GetInstance()->InputManager.GetAxis("Horizontal") << std::endl;
+	std::cout << Managers::GetInstance()->InputManager.GetKey("Shoot") << std::endl;
 
 }
 

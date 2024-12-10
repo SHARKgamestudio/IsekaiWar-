@@ -77,7 +77,12 @@ void InputManager::Update(const sf::Event* event) {
 
 	for (int i = 0; i < keys.size(); i++) {
 		if (joystickConnected) {
-
+			if (keys[i].joystick.type == Axis) {
+				states[i] = isJoystickAxis ? GetJoystickValue(keys[i].joystick.value) : false;
+			}
+			else {
+				states[i] = sf::Joystick::isButtonPressed(0, keys[i].joystick.value);
+			}
 		}
 	}
 
@@ -89,4 +94,16 @@ void InputManager::Update(const sf::Event* event) {
 
 float InputManager::GetAxis(std::string name) {
 	return name == "Horizontal" ? Maths::Round(values[0], 4) : (name == "Vertical" ? Maths::Round(values[1], 4) : 0);
+}
+
+bool InputManager::GetKeyDown(std::string name) {
+	return false;
+}
+
+bool InputManager::GetKey(std::string name) {
+	return name == "Shoot" ? states[0] : false;
+}
+
+bool InputManager::GetKeyUp(std::string name) {
+	return false;
 }
