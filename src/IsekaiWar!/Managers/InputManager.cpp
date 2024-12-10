@@ -41,50 +41,52 @@ void InputManager::Update(const sf::Event* event) {
 	bool isKeyPressed = event->type == sf::Event::KeyPressed;
 	bool isKeyReleased = event->type == sf::Event::KeyReleased;
 
-	if (joystickConnected) {
-		if (move_left.joystick.type == Axis || move_right.joystick.type == Axis) {
-			horizontal = isJoystickAxis ? GetJoystickValue(move_left.joystick.value) : 0;
+	#pragma region Update Axes
+
+	for (int i = 0; i < axes.size(); i+=2) {
+		if (joystickConnected) {
+			if (axes[i].joystick.type == Axis || axes[i + 1].joystick.type == Axis) {
+				values[i / 2] = isJoystickAxis ? GetJoystickValue(axes[i].joystick.value) : 0.0f;
+			}
+			else {
+				int button = event->joystickButton.button;
+
+				int negative = axes[i].joystick.value;
+				int positive = axes[i + 1].joystick.value;
+
+				values[i / 2] = isJoystickButton ?
+					(button == negative ? -1.0f : (button == positive ? 1.0f : 0.0f))
+					: 0.0f;
+			}
 		}
 		else {
-			int button = event->joystickButton.button;
+			int keycode = event->key.code;
 
-			int left = move_left.joystick.value;
-			int right = move_right.joystick.value;
+			int left = axes[i].keyboard.value;
+			int right = axes[i + 1].keyboard.value;
 
-			horizontal = isJoystickButton ?
-				(button == left ? -1 : (button == right ? 1 : 0))
-			: 0;
-		}
-
-		if (move_down.joystick.type == Axis || move_up.joystick.type == Axis) {
-			horizontal = isJoystickAxis ? GetJoystickValue(move_left.joystick.value) : 0;
-		}
-		else {
-			int button = event->joystickButton.button;
-
-			int left = move_left.joystick.value;
-			int right = move_right.joystick.value;
-
-			horizontal = isJoystickButton ?
-				(button == left ? -1 : (button == right ? 1 : 0))
-				: 0;
+			values[i / 2] = isKeyPressed ?
+				(keycode == left ? -1 : (keycode == right ? 1.0f : 0.0f))
+				: (isKeyReleased ? 0.0f : values[i / 2]);
 		}
 	}
-	else {
-		int keycode = event->key.code;
 
-		int left = move_left.keyboard.value;
-		int right = move_right.keyboard.value;
+	#pragma endregion
 
-		horizontal = isKeyPressed ?
-			(keycode == left ? -1 : (keycode == right ? 1 : 0))
-		: (isKeyReleased ? 0 : horizontal);
+	#pragma region Update Keys
+
+	for (int i = 0; i < keys.size(); i++) {
+		if (joystickConnected) {
+
+		}
 	}
+
+	#pragma endregion
 
 	if (event->type == sf::Event::JoystickDisconnected)
 		joystickConnected = false;
 }
 
 float InputManager::GetAxis(std::string name) {
-	return name == "Horizontal" ? Maths::Round(horizontal, 4) : (name == "Vertical" ? vertical : 0);
+	return name == "Horizontal" ? Maths::Round(values[0], 4) : (name == "Vertical" ? Maths::Round(values[1], 4) : 0);
 }

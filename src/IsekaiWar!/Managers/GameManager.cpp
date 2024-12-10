@@ -43,7 +43,7 @@ void GameManager::HandleEvents() {
 void GameManager::Update(float deltaTime) {
 
 	// LOGIC GOES HERE //
-	std::cout << Managers::GetInstance()->InputManager.GetAxis("Horizontal") << std::endl;
+	std::cout << Managers::GetInstance()->InputManager.GetAxis("Vertical") << std::endl;
 
 }
 

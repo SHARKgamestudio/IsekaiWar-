@@ -28,7 +28,7 @@ struct Action {
 	Action(Key keyboard, Key joystick);
 };
 
-static class JoystickButton {
+class JoystickButton {
 public:
 	enum {
 		A = 0,
@@ -46,15 +46,26 @@ public:
 
 class InputManager {
 private:
-	Action move_left = { Key(sf::Keyboard::Q, Keycode), Key(sf::Joystick::Axis::X, Axis) };
-	Action move_right = { Key(sf::Keyboard::D, Keycode), Key(sf::Joystick::Axis::X, Axis) };
-	float horizontal = 0.0f;
+	std::vector<Action> axes {
+		{ Key(sf::Keyboard::Q, Keycode), Key(sf::Joystick::Axis::X, Axis) },
+		{ Key(sf::Keyboard::D, Keycode), Key(sf::Joystick::Axis::X, Axis) },
+		{ Key(sf::Keyboard::Z, Keycode), Key(sf::Joystick::Axis::Y, Axis) },
+		{ Key(sf::Keyboard::S, Keycode), Key(sf::Joystick::Axis::Y, Axis) }
+	};
+	std::vector<float> values{
+		0,
+		0
+	};
 
-	Action move_up = { Key(sf::Keyboard::Z, Keycode), Key(sf::Joystick::Axis::Y, Axis) };
-	Action move_down = { Key(sf::Keyboard::S, Keycode), Key(sf::Joystick::Axis::Y, Axis) };
-	float vertical = 0.0f;
 
-	Action shoot_auto = { Key(sf::Keyboard::Space, Keycode), Key(JoystickButton::X, Keycode) };
+	std::vector<Action> keys{
+		{ Key(sf::Keyboard::Space, Keycode), Key(JoystickButton::X, Keycode) }
+	};
+	std::vector<bool> states {
+		false,
+		false
+	};
+
 
 	bool joystickConnected = false;
 
@@ -64,7 +75,7 @@ public:
 
 	float GetAxis(std::string name);
 
-	bool GetKeyDown();
-	bool GetKey();
-	bool GetKeyUp();
+	bool GetKeyDown(std::string name);
+	bool GetKey(std::string name);
+	bool GetKeyUp(std::string name);
 };
