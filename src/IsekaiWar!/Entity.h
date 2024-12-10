@@ -17,4 +17,5 @@ public:
 	Entity(sf::Vector2f position, sf::Texture* texture);
 	
 	void virtual Update(float deltaTime) = 0;
+	void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 };
