@@ -5,13 +5,13 @@
 #include "../../../Managers.h"
 
 #pragma endregion
-SpecialBullet::SpecialBullet(float x, float y, float w, float h, sf::Texture* texture)
-	: PlayerBullet(x, y, w, h, texture, 10.f, 2.f),
+SpecialBullet::SpecialBullet(float x, float y, float w, float h)
+	: PlayerBullet(x, y, w, h, Managers::GetInstance()->ResourceManager.GetTexture("fireball"), 10.f, 2.f),
 	MoveModule(sf::Vector2f(0.f, -1.f), 20.f) {
 }
 
-SpecialBullet::SpecialBullet(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture)
-	: PlayerBullet(position, scale, texture, 10.f, 2.f),
+SpecialBullet::SpecialBullet(sf::Vector2f position, sf::Vector2f scale)
+	: PlayerBullet(position, scale, Managers::GetInstance()->ResourceManager.GetTexture("fireball"), 10.f, 2.f),
 	MoveModule(sf::Vector2f(0.f, -1.f), 20.f) {
 }
 
