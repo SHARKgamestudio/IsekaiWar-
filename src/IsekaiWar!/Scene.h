@@ -13,6 +13,6 @@ public:
 
 	void virtual Load();
 	void virtual Update(float dt);
-	void virtual Draw(sf::RenderTarget& target, sf::RenderStates states);
+	void virtual Draw(sf::RenderWindow& window);
 };
 

@@ -1,12 +1,12 @@
 #include "VisualEffectEntity.h"
 
-VisualEffectEntity::VisualEffectEntity(float x, float y, sf::Texture* texture, float speed)
-	: Entity(x, y, texture),
+VisualEffectEntity::VisualEffectEntity(float x, float y, float w, float h, sf::Texture* texture, float speed)
+	: Entity(x, y, w, h, texture),
 	MoveModule(sf::Vector2f(0, 1), speed) {
 }
 
-VisualEffectEntity::VisualEffectEntity(sf::Vector2f position, sf::Texture* texture, float speed)
-	: Entity(position, texture),
+VisualEffectEntity::VisualEffectEntity(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, float speed)
+	: Entity(position, scale, texture),
 	MoveModule(sf::Vector2f(0, 1), speed) {
 }
 

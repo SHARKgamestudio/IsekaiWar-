@@ -1,23 +1,33 @@
-#include "SpecialBullet.h"
+#pragma region Local Dependencies
 
-SpecialBullet::SpecialBullet(float x, float y, sf::Texture* texture)
-	: PlayerBullet(x, y, texture, 10.f, 2.f),
+#include "SpecialBullet.h"
+#include "../../LivingEntity.h"
+#include "../../../Managers.h"
+
+#pragma endregion
+SpecialBullet::SpecialBullet(float x, float y, float w, float h, sf::Texture* texture)
+	: PlayerBullet(x, y, w, h, texture, 10.f, 2.f),
 	MoveModule(sf::Vector2f(0.f, -1.f), 20.f) {
 }
 
-SpecialBullet::SpecialBullet(sf::Vector2f position, sf::Texture* texture)
-	: PlayerBullet(position, texture, 10.f, 2.f),
+SpecialBullet::SpecialBullet(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture)
+	: PlayerBullet(position, scale, texture, 10.f, 2.f),
 	MoveModule(sf::Vector2f(0.f, -1.f), 20.f) {
 }
 
 void SpecialBullet::Move(float deltaTime) {
-	sprite.move(normalisedDirection);
+	sprite.move(normalisedDirection * deltaTime * speed);
 }
 
-void SpecialBullet::Update(float deltaTime, std::vector<Entity*> entities) {
+void SpecialBullet::Update(float deltaTime) {
 	Move(deltaTime);
 
-	for (LivingEntity*& entityHit : entitiesHit) {
-		Attack(entityHit, deltaTime);
+	for (CollidableEntity* entityHit : entitiesHit) {
+		if (LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entityHit)) {
+			Attack(castEntity, deltaTime);
+		}
+		else {
+			toDisable = true;
+		}
 	}
 }

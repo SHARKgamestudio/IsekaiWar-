@@ -14,8 +14,8 @@ protected:
 	bool toDestroy;
 
 public:
-	Entity(float x, float y, sf::Texture* texture);
-	Entity(sf::Vector2f position, sf::Texture* texture);
+	Entity(float x, float y, float w, float h, sf::Texture* texture);
+	Entity(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture);
 	
 	void virtual Update(float deltaTime);
 	void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const;

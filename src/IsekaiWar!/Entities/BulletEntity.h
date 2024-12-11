@@ -9,6 +9,6 @@
 
 class BulletEntity : public CollidableEntity, public AttackModule {
 public:
-	BulletEntity(float x, float y, sf::Texture* texture, float radius, float attack);
-	BulletEntity(sf::Vector2f position, sf::Texture* texture, float radius, float attack);
+	BulletEntity(float x, float y, float w, float h, sf::Texture* texture, float radius, float attack);
+	BulletEntity(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, float radius, float attack);
 };

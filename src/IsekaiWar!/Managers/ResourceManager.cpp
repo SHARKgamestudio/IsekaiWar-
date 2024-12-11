@@ -7,7 +7,20 @@
 #pragma endregion
 
 ResourceManager::ResourceManager() {
-	textures = std::map<std::string, sf::Texture>();
+	std::vector<std::string> nameAsset = {
+		"water",
+		"fireball"
+	};
+	std::vector<std::string> nameFile = {
+		"water.jpg",
+		"fireball.png"
+	};
+	sf::Texture texture;
+	for (int i = 0; i < nameAsset.size(); i++)
+	{
+		texture.loadFromFile(path + nameFile[i]);
+		textures[nameAsset[i]] = texture;
+	}
 }
 
 void ResourceManager::AddTexture(std::string name, std::string path) {

@@ -1,12 +1,12 @@
 #include "CollidableEntity.h"
 
-CollidableEntity::CollidableEntity(float x, float y, sf::Texture* texture, float radius) 
-	: Entity(x, y, texture), 
+CollidableEntity::CollidableEntity(float x, float y, float w, float h, sf::Texture* texture, float radius)
+	: Entity(x, y, w, h, texture), 
 	HitboxModule(x, y, radius) {
 }
 
-CollidableEntity::CollidableEntity(sf::Vector2f position, sf::Texture* texture, float radius)
-	: Entity(position, texture),
+CollidableEntity::CollidableEntity(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, float radius)
+	: Entity(position, scale, texture),
 	HitboxModule(position, radius) {
 }
 

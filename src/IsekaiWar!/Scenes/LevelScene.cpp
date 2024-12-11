@@ -1,35 +1,40 @@
-#include "LevelScene.h"
+#pragma region External Dependencies
 
+#include "LevelScene.h"
+#include "../Entities/Bullets/PlayerBullet/SpecialBullet.h"
+
+#pragma endregion
 void LevelScene::Update(float dt) {
 	//player.Update(dt);
 
-	for (auto& background : backgrounds) {
-		background.Update(dt);
+	for (BackgroundEntity* background : backgrounds) {
+		background->Update(dt);
 	}
 
-	for (auto& entity : entities) {
-		entity.Update(dt);
+	for (CollidableEntity* entity : entities) {
+		entity->Update(dt);
 	}
-
-	for (auto& visualEffect : visualEffects) {
-		visualEffect.Update(dt);
+	/*
+	for (VisualEffectEntity* visualEffect : visualEffects) {
+		visualEffect->Update(dt);
 	}
+	*/
 }
 
-void LevelScene::Draw(sf::RenderTarget& target, sf::RenderStates states) {
-	for (BackgroundEntity& background : backgrounds) {
-		background.draw(target, states);
+void LevelScene::Draw(sf::RenderWindow& window) {
+	for (BackgroundEntity* background : backgrounds) {
+		window.draw(*background);
 	}
 
-	for (CollidableEntity& entity : entities) {
-		entity.draw(target, states);
+	for (CollidableEntity* entity : entities) {
+		window.draw(*entity);
 	}
-
-	for (VisualEffectEntity& visualEffect : visualEffects) {
-		visualEffect.draw(target, states);
+	/*
+	for (VisualEffectEntity* visualEffect : visualEffects) {
+		window.draw(*visualEffect);
 	}
-
-	//player.draw(target, states);
+	*/
+	//window.draw(player);
 }
 
 void LevelScene::Pause() {
@@ -38,4 +43,8 @@ void LevelScene::Pause() {
 
 void LevelScene::Resume() {
 	clock.Resume();
+}
+
+std::vector<CollidableEntity*>* LevelScene::GetEntities() {
+	return &entities;
 }

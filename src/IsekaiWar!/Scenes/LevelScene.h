@@ -4,6 +4,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+
+#pragma endregion
+
+#pragma region Local Dependencies
+
 #include "../Scene.h"
 #include "../Entities/CollidableEntity.h"
 #include "../Entities/BackgroundEntity.h"
@@ -17,15 +22,16 @@ protected:
 
 	Clock clock;
 	//Player player;
-	std::vector<BackgroundEntity> backgrounds;
-	std::vector<CollidableEntity> entities;
-	std::vector<VisualEffectEntity> visualEffects;
-
-	void virtual Update(float dt);
-	void virtual Draw(sf::RenderTarget& target, sf::RenderStates states);
+	std::vector<BackgroundEntity*> backgrounds;
+	std::vector<CollidableEntity*> entities;
+	std::vector<VisualEffectEntity*> visualEffects;
 
 public:
 
 	void Pause();
 	void Resume();
+
+	std::vector<CollidableEntity*>* GetEntities();
+	void virtual Update(float dt);
+	void virtual Draw(sf::RenderWindow& window) override;
 };
