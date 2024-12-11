@@ -1,16 +1,9 @@
 #include "BackgroundEntity.h"
 
-BackgroundEntity::BackgroundEntity(float x, float y, sf::Texture* texture, float speed)
-	: Entity(x, y, texture),
-	TravellingModule(sf::Vector2f(0, 1), speed) {
+BackgroundEntity::BackgroundEntity(sf::Texture* texture)
+	: Entity(0.f, 0.f, 800.f, 600.f, texture),
+	TravellingModule(sf::Vector2f(0, 1), 20.f) {
 	this->texture->setRepeated(true);
-	sprite.setTextureRect(sf::IntRect(0, 0, 800, 2000));
-}
-BackgroundEntity::BackgroundEntity(sf::Vector2f position, sf::Texture* texture, float speed)
-	: Entity(position, texture),
-	TravellingModule(sf::Vector2f(0, 1), speed) {
-	this->texture->setRepeated(true);
-	sprite.setTextureRect(sf::IntRect(0, 0, 800, 600));
 }
 
 void BackgroundEntity::Traveling(float deltaTime) {

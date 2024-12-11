@@ -9,8 +9,8 @@
 
 class BackgroundEntity : public Entity, public TravellingModule {	
 public :
-	BackgroundEntity(float x, float y, sf::Texture* texture, float speed);
-	BackgroundEntity(sf::Vector2f position, sf::Texture* texture, float speed);
+
+	BackgroundEntity(sf::Texture* texture);
 
 	void Traveling(float deltaTime);
 	void Update(float deltaTime) override;

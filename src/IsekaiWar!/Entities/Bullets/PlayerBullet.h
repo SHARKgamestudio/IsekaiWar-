@@ -19,8 +19,8 @@ protected:
 	std::vector<LivingEntity*> entitiesHit;
 
 public:
-	PlayerBullet(float x, float y, sf::Texture* texture, float radius, float attack);
-	PlayerBullet(sf::Vector2f position, sf::Texture* texture, float radius, float attack);
+	PlayerBullet(float x, float y, float w, float h, sf::Texture* texture, float radius, float attack);
+	PlayerBullet(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, float radius, float attack);
 
-	void virtual Update(float deltaTime, std::vector<Entity*> entities);
+	void virtual Update(float deltaTime);
 };

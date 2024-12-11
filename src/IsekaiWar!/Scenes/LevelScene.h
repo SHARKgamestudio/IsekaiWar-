@@ -22,15 +22,16 @@ protected:
 
 	Clock clock;
 	//Player player;
-	std::vector<BackgroundEntity> backgrounds;
-	std::vector<CollidableEntity> entities;
-	std::vector<VisualEffectEntity> visualEffects;
+	std::vector<BackgroundEntity*> backgrounds;
+	std::vector<CollidableEntity*> entities;
+	std::vector<VisualEffectEntity*> visualEffects;
 
 public:
 
 	void Pause();
 	void Resume();
 
+	std::vector<CollidableEntity*>* GetEntities();
 	void virtual Update(float dt);
 	void virtual Draw(sf::RenderWindow& window) override;
 };

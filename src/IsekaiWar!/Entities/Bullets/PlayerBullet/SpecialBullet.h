@@ -10,9 +10,9 @@
 class SpecialBullet : public PlayerBullet, public MoveModule {
 	public:
 
-	SpecialBullet(float x, float y, sf::Texture* texture);
-	SpecialBullet(sf::Vector2f position, sf::Texture* texture);
+	SpecialBullet(float x, float y, float w, float h, sf::Texture* texture);
+	SpecialBullet(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture);
 
 	void Move(float deltaTime);
-	void Update(float deltaTime, std::vector<Entity*> entities) override;
+	void Update(float deltaTime) override;
 };
