@@ -34,6 +34,8 @@ float InputManager::GetJoystickValue(int axis) {
 void InputManager::Update(const sf::Event* event) {
 	if (event->type == sf::Event::JoystickConnected || sf::Joystick::isConnected(0))
 		joystickConnected = true;
+	if (event->type == sf::Event::JoystickDisconnected)
+		joystickConnected = false;
 
 	bool isJoystickAxis = event->type == sf::Event::JoystickMoved;
 	bool isJoystickButton = event->type == sf::Event::JoystickButtonPressed;
@@ -63,30 +65,27 @@ void InputManager::Update(const sf::Event* event) {
 	for (int i = 0; i < keys.size(); i++) {
 		if (joystickConnected) {
 			if (sf::Joystick::isButtonPressed(0, keys[i].button)) {
-				if (!keys[i].hold) {
-					keys[i].state = Pressed;
-					keys[i].hold = true;
-				}
-				else {
-					keys[i].state = Hold;
-				}
-			} else if (keys[i].hold) {
-				keys[i].state = Released;
+				keys[i].state = keys[i].hold ? Hold : Pressed;
+				keys[i].hold = true;
+			} else {
+				keys[i].state = keys[i].hold ? Released : None;
 				keys[i].hold = false;
-			}
-			else {
-				keys[i].state = None;
 			}
 		}
 		else {
-			keys[i].state = sf::Keyboard::isKeyPressed(keys[i].key) ? Pressed : None;
+			if (sf::Keyboard::isKeyPressed(keys[i].key)) {
+				keys[i].state = keys[i].hold ? Hold : Pressed;
+				keys[i].hold = true;
+			}
+			else {
+				keys[i].state = keys[i].hold ? Released : None;
+				keys[i].hold = false;
+			}
 		}
 	}
 
 	#pragma endregion
 
-	if (event->type == sf::Event::JoystickDisconnected)
-		joystickConnected = false;
 }
 
 float InputManager::GetAxis(std::string name) {
