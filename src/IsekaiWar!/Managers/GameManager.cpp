@@ -32,23 +32,24 @@ void GameManager::Run() {
 
 void GameManager::HandleEvents() {
 	sf::Event event;
+	Managers::GetInstance()->InputManager.Update(&event);
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed)
 			window.close();
 
-		Managers::GetInstance()->InputManager.Update(&event);
-
-		if (event.type == sf::Event::JoystickButtonPressed) {
-			//std::cout << event.joystickButton.button << std::endl;
-		}
 	}
 }
 
 void GameManager::Update(float deltaTime) {
 
 	// LOGIC GOES HERE //
-	//std::cout << Managers::GetInstance()->InputManager.GetAxis("Horizontal") << std::endl;
-	std::cout << Managers::GetInstance()->InputManager.GetKey("Shoot") << std::endl;
+	//std::cout << Managers::GetInstance()->InputManager.GetAxis("Vertical") << std::endl;
+	if (Managers::GetInstance()->InputManager.GetKeyDown("Shoot")) {
+		std::cout << "Pressed" << std::endl;
+	}
+	if (Managers::GetInstance()->InputManager.GetKeyUp("Shoot")) {
+		std::cout << "Released" << std::endl;
+	}
 
 }
 
