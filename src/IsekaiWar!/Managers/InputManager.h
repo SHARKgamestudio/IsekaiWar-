@@ -55,12 +55,18 @@ private:
 
 	bool joystickConnected = false;
 
-	float GetJoystickValue(int axis);
+
+	float GetRawAxis(std::string name);
+	State GetRawKey(std::string name);
+
+	float GetJoystickValue(sf::Joystick::Axis axis);
+	bool GetKeyValue(sf::Keyboard::Key key);
 public:
-	void Update(const sf::Event* event);
+	void UpdateInputs();
+	void UpdateEvents(sf::Event* event);
 
 	float GetAxis(std::string name);
-
+	
 	bool GetKeyDown(std::string name);
 	bool GetKey(std::string name);
 	bool GetKeyUp(std::string name);

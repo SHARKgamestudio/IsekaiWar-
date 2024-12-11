@@ -32,8 +32,8 @@ void GameManager::Run() {
 
 void GameManager::HandleEvents() {
 	sf::Event event;
-	Managers::GetInstance()->InputManager.Update(&event);
 	while (window.pollEvent(event)) {
+		Managers::GetInstance()->InputManager.UpdateEvents(&event);
 		if (event.type == sf::Event::Closed)
 			window.close();
 	}
@@ -41,7 +41,7 @@ void GameManager::HandleEvents() {
 
 void GameManager::Update(float deltaTime) {
 
-	// LOGIC GOES HERE //
+	Managers::GetInstance()->InputManager.UpdateInputs();
 
 	std::cout << Managers::GetInstance()->InputManager.GetAxis("Vertical") << std::endl;
 
