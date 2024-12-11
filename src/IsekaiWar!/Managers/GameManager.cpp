@@ -42,14 +42,15 @@ void GameManager::HandleEvents() {
 void GameManager::Update(float deltaTime) {
 
 	// LOGIC GOES HERE //
-	//std::cout << Managers::GetInstance()->InputManager.GetAxis("Vertical") << std::endl;
+
+	std::cout << Managers::GetInstance()->InputManager.GetAxis("Vertical") << std::endl;
+
 	if (Managers::GetInstance()->InputManager.GetKeyDown("Shoot")) {
 		std::cout << "Pressed" << std::endl;
 	}
 	if (Managers::GetInstance()->InputManager.GetKeyUp("Shoot")) {
 		std::cout << "Released" << std::endl;
 	}
-
 }
 
 void GameManager::Render() {
