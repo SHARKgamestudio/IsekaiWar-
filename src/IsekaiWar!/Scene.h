@@ -15,4 +15,3 @@ public:
 	void virtual Update(float dt);
 	void virtual Draw(sf::RenderWindow& window);
 };
-

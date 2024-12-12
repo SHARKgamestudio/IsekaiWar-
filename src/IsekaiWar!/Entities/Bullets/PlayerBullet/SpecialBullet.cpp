@@ -1,10 +1,12 @@
+#include "SpecialBullet.h"
+
 #pragma region Local Dependencies
 
-#include "SpecialBullet.h"
 #include "../../LivingEntity.h"
 #include "../../../Managers.h"
 
 #pragma endregion
+
 SpecialBullet::SpecialBullet(float x, float y, int columns, int rows)
 	: PlayerBullet(x, y, Managers::GetInstance()->ResourceManager->GetTexture("fireball"), columns, rows, 50.f, 2.f),
 	MoveModule(sf::Vector2f(0.f, -1.f), 20.f) 

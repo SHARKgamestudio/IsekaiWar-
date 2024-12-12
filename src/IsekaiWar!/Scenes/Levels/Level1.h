@@ -9,6 +9,5 @@
 
 class Level1 : public LevelScene {
 public:
-
 	void Load();
 };

@@ -1,9 +1,11 @@
+#include "LevelScene.h"
+
 #pragma region External Dependencies
 
-#include "LevelScene.h"
 #include "../Entities/Bullets/PlayerBullet/SpecialBullet.h"
 
 #pragma endregion
+
 void LevelScene::Update(float dt) {
 	//player.Update(dt);
 

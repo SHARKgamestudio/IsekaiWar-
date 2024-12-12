@@ -1,9 +1,13 @@
+#include "SceneManager.h"
+
+#pragma region External Dependencies
 
 #include <iostream>
 
+#pragma endregion
+
 #pragma region Local Dependencies
 
-#include "SceneManager.h"
 #include "../Scenes/Levels/Level1.h"
 
 #pragma endregion

@@ -1,3 +1,7 @@
+#pragma once
+
+#pragma region Local Dependencies
+
 #include "Managers/GameManager.h"
 #include "Managers/InputManager.h"
 #include "Managers/ResourceManager.h"

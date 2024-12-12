@@ -1,6 +1,11 @@
 #include "PlayerBullet.h"
+
+#pragma region Local Dependencies
+
 #include "../LivingEntity.h"
 #include "../../Managers.h"
+
+#pragma endregion
 
 PlayerBullet::PlayerBullet(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack)
 	: BulletEntity(x, y, texture, columns, rows, radius, attack) {

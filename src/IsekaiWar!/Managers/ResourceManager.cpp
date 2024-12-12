@@ -16,8 +16,7 @@ ResourceManager::ResourceManager() {
 		"fireball.png"
 	};
 	sf::Texture texture;
-	for (int i = 0; i < nameAsset.size(); i++)
-	{
+	for (int i = 0; i < nameAsset.size(); i++) {
 		texture.loadFromFile(path + nameFile[i]);
 		textures[nameAsset[i]] = texture;
 	}
