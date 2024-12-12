@@ -48,3 +48,7 @@ void LevelScene::Resume() {
 std::vector<CollidableEntity*>* LevelScene::GetEntities() {
 	return &entities;
 }
+
+void LevelScene::SpawnBullet(BulletEntity* bullet) {
+	bullets.push_back(bullet);
+}

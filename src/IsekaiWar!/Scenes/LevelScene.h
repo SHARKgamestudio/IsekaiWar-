@@ -13,6 +13,7 @@
 #include "../Entities/CollidableEntity.h"
 #include "../Entities/BackgroundEntity.h"
 #include "../Entities/VisualEffectEntity.h"
+#include "../Entities/BulletEntity.h"
 #include "../Utils/Clock.h"
 
 #pragma endregion
@@ -22,9 +23,10 @@ protected:
 
 	Clock clock;
 	//Player player;
-	std::vector<BackgroundEntity*> backgrounds;
-	std::vector<CollidableEntity*> entities;
-	std::vector<VisualEffectEntity*> visualEffects;
+	std::vector<BackgroundEntity*> backgrounds; //mettre en const à terme
+	std::vector<CollidableEntity*> entities; //mettre en const à terme
+	std::vector<VisualEffectEntity*> visualEffects; //mettre en const à terme
+	std::vector<BulletEntity*> bullets;
 
 public:
 
@@ -34,4 +36,5 @@ public:
 	std::vector<CollidableEntity*>* GetEntities();
 	void virtual Update(float dt);
 	void virtual Draw(sf::RenderWindow& window) override;
+	void virtual SpawnBullet(BulletEntity* bullet);
 };
