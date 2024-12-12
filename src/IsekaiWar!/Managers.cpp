@@ -2,8 +2,15 @@
 
 Managers* Managers::Instance = nullptr;
 
-Managers::Managers() : GameManager(), InputManager(), ResourceManager(), SceneManager() {
+Managers::Managers() {
 	// DO STUFF AFTER OBJECT CREATION //
+	if (Instance == nullptr) {
+		Instance = this;
+	}
+	this->GameManager = new ::GameManager();
+	this->InputManager = new ::InputManager();
+	this->ResourceManager = new ::ResourceManager();
+	this->SceneManager = new ::SceneManager();
 }
 
 Managers* Managers::GetInstance() {

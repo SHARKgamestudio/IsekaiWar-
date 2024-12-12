@@ -1,5 +1,3 @@
-#pragma region Local Dependencies
-
 #include "Managers/GameManager.h"
 #include "Managers/InputManager.h"
 #include "Managers/ResourceManager.h"
@@ -13,10 +11,10 @@ private:
 public:
 	Managers();
 
-	GameManager GameManager;
-	InputManager InputManager;
-	ResourceManager ResourceManager;
-	SceneManager SceneManager;
+	GameManager* GameManager;
+	InputManager* InputManager;
+	ResourceManager* ResourceManager;
+	SceneManager* SceneManager;
 
 	static Managers* GetInstance();
 };

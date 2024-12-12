@@ -1,5 +1,5 @@
 #include "Managers.h"
 
 int main() {
-	Managers::GetInstance()->GameManager.Run();
+	Managers::GetInstance()->GameManager->Run();
 }

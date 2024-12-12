@@ -22,7 +22,7 @@ GameManager::GameManager() {
 }
 
 void GameManager::Run() {
-	Managers::GetInstance()->SceneManager.LoadLevel("Level1");
+	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
 	while (window.isOpen()) {
 		sf::Time deltaTime = clock.restart();
 		HandleEvents();
@@ -34,7 +34,7 @@ void GameManager::Run() {
 void GameManager::HandleEvents() {
 	sf::Event event;
 	while (window.pollEvent(event)) {
-		Managers::GetInstance()->InputManager.UpdateEvents(&event);
+		Managers::GetInstance()->InputManager->UpdateEvents(&event);
 		if (event.type == sf::Event::Closed)
 			window.close();
 	}
@@ -42,16 +42,16 @@ void GameManager::HandleEvents() {
 
 void GameManager::Update(float deltaTime) {
 
-	Managers::GetInstance()->SceneManager.Update(deltaTime);
+	Managers::GetInstance()->SceneManager->Update(deltaTime);
 
-	Managers::GetInstance()->InputManager.UpdateInputs();
+	Managers::GetInstance()->InputManager->UpdateInputs();
 
-	std::cout << Managers::GetInstance()->InputManager.GetAxis("Vertical") << std::endl;
+	std::cout << Managers::GetInstance()->InputManager->GetAxis("Vertical") << std::endl;
 
-	if (Managers::GetInstance()->InputManager.GetKeyDown("Shoot")) {
+	if (Managers::GetInstance()->InputManager->GetKeyDown("Shoot")) {
 		std::cout << "Pressed" << std::endl;
 	}
-	if (Managers::GetInstance()->InputManager.GetKeyUp("Shoot")) {
+	if (Managers::GetInstance()->InputManager->GetKeyUp("Shoot")) {
 		std::cout << "Released" << std::endl;
 	}
 }
@@ -60,7 +60,7 @@ void GameManager::Render() {
 	window.clear();
 
 	// RENDERING GOES HERE //
-	Managers::GetInstance()->SceneManager.Draw(window);
+	Managers::GetInstance()->SceneManager->Draw(window);
 
 	window.display();
 }

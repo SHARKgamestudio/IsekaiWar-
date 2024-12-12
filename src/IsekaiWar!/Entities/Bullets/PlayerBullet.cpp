@@ -13,7 +13,7 @@ PlayerBullet::PlayerBullet(sf::Vector2f position, sf::Vector2f scale, sf::Textur
 void PlayerBullet::Update(float deltaTime) {
 	entitiesHit.clear();
 
-	std::vector<CollidableEntity*>* entities = Managers::GetInstance()->SceneManager.currentLevel->GetEntities();
+	std::vector<CollidableEntity*>* entities = Managers::GetInstance()->SceneManager->currentLevel->GetEntities();
 
 	for (CollidableEntity* entity : *entities) {
 
