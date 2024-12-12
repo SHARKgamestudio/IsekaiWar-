@@ -33,7 +33,6 @@ float InputManager::GetRawAxis(std::string name) {
 	for (int i = 0; i < axes.size(); i++) {
 		if (axes[i].name == name) {
 			return axes[i].value;
-			break;
 		}
 	}
 	return 0;
@@ -43,7 +42,6 @@ State InputManager::GetRawKey(std::string name) {
 	for (int i = 0; i < keys.size(); i++) {
 		if (keys[i].name == name) {
 			return keys[i].state;
-			break;
 		}
 	}
 	return None;
