@@ -1,12 +1,12 @@
 #include "CharacterEntity.h"
 
-CharacterEntity::CharacterEntity(float x, float y, float w, float h, sf::Texture* texture, float radius, float health)
-	: LivingEntity(x, y, w, h, texture, radius, health),
+CharacterEntity::CharacterEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float health)
+	: LivingEntity(x, y, texture, columns, rows, radius, health),
 	MoveModule(sf::Vector2f(0, 0), 0) {
 }
 
-CharacterEntity::CharacterEntity(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, float radius, float health)
-	: LivingEntity(position, scale, texture, radius, health),
+CharacterEntity::CharacterEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float health)
+	: LivingEntity(position, texture, split, radius, health),
 	MoveModule(sf::Vector2f(0, 0), 0) {
 }
 

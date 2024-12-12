@@ -7,14 +7,15 @@
 
 #pragma endregion
 
-Player::Player(float x, float y, float w, float h, sf::Texture* texture, float radius, float health)
-	: CharacterEntity(x, y, w, h, texture, radius, health) {
-	this->sprite.setOrigin(w / 2, h / 2);
+Player::Player(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float health)
+	: CharacterEntity(x, y, texture, columns, rows, radius, health) {
+	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
 }
 
-Player::Player(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, float radius, float health)
-	: CharacterEntity(position, scale, texture, radius, health) {
+Player::Player(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, sf::Vector2i split, float radius, float health)
+	: CharacterEntity(position, texture, split, radius, health) {
+	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
 }
 
@@ -33,5 +34,5 @@ void Player::Update(float deltaTime) {
 	angle += horizontal ? test * deltaTime * 60 : 0;
 
 	this->move(direction * deltaTime);
-	this->sprite.setRotation(angle);
+	this->spritesheet.setRotation(angle);
 }

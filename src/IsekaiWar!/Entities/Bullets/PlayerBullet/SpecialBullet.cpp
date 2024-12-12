@@ -5,23 +5,23 @@
 #include "../../../Managers.h"
 
 #pragma endregion
-SpecialBullet::SpecialBullet(float x, float y)
-	: PlayerBullet(x, y, 300.f, 300.f, Managers::GetInstance()->ResourceManager->GetTexture("fireball"), 50.f, 2.f),
+SpecialBullet::SpecialBullet(float x, float y, int columns, int rows)
+	: PlayerBullet(x, y, Managers::GetInstance()->ResourceManager->GetTexture("fireball"), columns, rows, 50.f, 2.f),
 	MoveModule(sf::Vector2f(0.f, -1.f), 20.f) 
 {
-	sprite.setOrigin(300.f / 2, 300.f / 2);
-	sprite.setRotation(-90);
+	spritesheet.setOrigin(300.f / 2, 300.f / 2);
+	spritesheet.setRotation(-90);
 }
 
-SpecialBullet::SpecialBullet(sf::Vector2f position)
-	: PlayerBullet(position, sf::Vector2f(300.f, 300.f), Managers::GetInstance()->ResourceManager->GetTexture("fireball"), 10.f, 2.f),
+SpecialBullet::SpecialBullet(sf::Vector2f position, sf::Vector2i split)
+	: PlayerBullet(position, Managers::GetInstance()->ResourceManager->GetTexture("fireball"), split, 10.f, 2.f),
 	MoveModule(sf::Vector2f(0.f, -1.f), 20.f) {
-	sprite.setOrigin(300.f / 2, 300.f / 2);
-	sprite.setRotation(-90);
+	spritesheet.setOrigin(300.f / 2, 300.f / 2);
+	spritesheet.setRotation(-90);
 }
 
 void SpecialBullet::Move(float deltaTime) {
-	sprite.move(normalisedDirection * deltaTime * speed);
+	spritesheet.move(normalisedDirection * deltaTime * speed);
 	hitboxApparence.move(normalisedDirection* deltaTime* speed);
 }
 
@@ -40,6 +40,6 @@ void SpecialBullet::Update(float deltaTime) {
 
 void SpecialBullet::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	states.transform.combine(getTransform());
-	target.draw(sprite, states);
+	target.draw(spritesheet, states);
 	target.draw(hitboxApparence, states);
 }

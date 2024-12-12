@@ -2,12 +2,12 @@
 #include "../LivingEntity.h"
 #include "../../Managers.h"
 
-PlayerBullet::PlayerBullet(float x, float y, float w, float h, sf::Texture* texture, float radius, float attack)
-	: BulletEntity(x, y, w, h, texture, radius, attack) {
+PlayerBullet::PlayerBullet(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack)
+	: BulletEntity(x, y, texture, columns, rows, radius, attack) {
 }
 
-PlayerBullet::PlayerBullet(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, float radius, float attack)
-	: BulletEntity(position, scale, texture, radius, attack) {
+PlayerBullet::PlayerBullet(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float attack)
+	: BulletEntity(position, texture, split, radius, attack) {
 }
 
 void PlayerBullet::Update(float deltaTime) {

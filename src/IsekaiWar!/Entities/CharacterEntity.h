@@ -1,14 +1,16 @@
 #pragma once
 
 #pragma region Local Dependencies
-	#include "LivingEntity.h"
-	#include "../Modules/MoveModule.h"
+
+#include "LivingEntity.h"
+#include "../Modules/MoveModule.h"
+
 #pragma endregion
 
 class CharacterEntity : public LivingEntity, public MoveModule {
 public:
-	CharacterEntity(float x, float y, float w, float h, sf::Texture* texture, float radius, float health);
-	CharacterEntity(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, float radius, float health);
+	CharacterEntity(float x, float y, sf::Texture* texture, int columns = 1, int rows = 1, float radius = 8, float health = 1);
+	CharacterEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split = sf::Vector2i(1, 1), float radius = 8, float health = 1);
 	virtual void Update(float deltaTime) = 0;
 	
 	void Move(float deltaTime);

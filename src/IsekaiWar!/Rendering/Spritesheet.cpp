@@ -6,8 +6,21 @@
 
 #pragma endregion
 
-SpriteSheet::SpriteSheet(sf::Texture* texture, int columns, int rows) {
+Spritesheet::Spritesheet() {
 	this->current = 0;
+	this->hres = 0; this->vres = 0;
+	this->columns = 0; this->rows = 0;
+
+	this->sprite.setTextureRect(sf::IntRect(0, 0, 0, 0));
+	this->sprite.setOrigin(0, 0);
+}
+
+Spritesheet::Spritesheet(sf::Texture* texture, int columns, int rows) {
+	this->current = 0;
+	this->SetTexture(texture, columns, rows);
+}
+
+void Spritesheet::SetTexture(sf::Texture* texture, int columns, int rows) {
 	this->columns = columns; this->rows = rows;
 
 	this->sprite.setTexture(*texture);
@@ -16,17 +29,20 @@ SpriteSheet::SpriteSheet(sf::Texture* texture, int columns, int rows) {
 	this->vres = texture->getSize().y / this->rows;
 
 	this->sprite.setTextureRect(sf::IntRect(0, 0, this->hres, this->vres));
-	this->sprite.setOrigin(hres / 2.0f, vres / 2.0f);
 }
 
-void SpriteSheet::UpdateViewport() {
+void Spritesheet::SetTextureRect(sf::IntRect rect) {
+	this->sprite.setTextureRect(rect);
+}
+
+void Spritesheet::UpdateViewport() {
 	int x = current % columns;
 	int y = current / columns;
 
 	this->sprite.setTextureRect(sf::IntRect(x * hres, y * vres, hres, vres));
 }
 
-void SpriteSheet::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void Spritesheet::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	states.transform.combine(this->getTransform());
 	target.draw(this->sprite, states);
 }
