@@ -26,6 +26,6 @@ void Entity::Update(float dt) {
 }
 
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-
+	states.transform.combine(getTransform());
 	target.draw(sprite, states);
 }
