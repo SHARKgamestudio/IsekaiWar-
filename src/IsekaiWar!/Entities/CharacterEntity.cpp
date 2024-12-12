@@ -9,3 +9,7 @@ CharacterEntity::CharacterEntity(sf::Vector2f position, sf::Vector2f scale, sf::
 	: LivingEntity(position, scale, texture, radius, health),
 	MoveModule(sf::Vector2f(0, 0), 0) {
 }
+
+void CharacterEntity::Move(float deltaTime) {
+	// Move the entity //
+}
