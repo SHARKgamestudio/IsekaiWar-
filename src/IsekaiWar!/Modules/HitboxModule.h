@@ -11,6 +11,7 @@ class CollidableEntity;
 class HitboxModule {
 protected:
 	sf::Vector2f position;
+	sf::CircleShape hitboxApparence;
 	float radius;
 	bool hasCollided;
 

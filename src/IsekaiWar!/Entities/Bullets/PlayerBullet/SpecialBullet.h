@@ -9,10 +9,11 @@
 
 class SpecialBullet : public PlayerBullet, public MoveModule {
 	public:
+		SpecialBullet(float x, float y);
+		SpecialBullet(sf::Vector2f position);
 
-	SpecialBullet(float x, float y, float w, float h);
-	SpecialBullet(sf::Vector2f position, sf::Vector2f scale);
+		void Move(float deltaTime);
+		void Update(float deltaTime) override;
 
-	void Move(float deltaTime);
-	void Update(float deltaTime) override;
+		void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
