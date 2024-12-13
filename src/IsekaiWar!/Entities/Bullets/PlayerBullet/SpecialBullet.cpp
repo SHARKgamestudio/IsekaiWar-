@@ -12,6 +12,7 @@ SpecialBullet::SpecialBullet(float x, float y, int columns, int rows)
 	MoveModule(sf::Vector2f(0.f, -1.f), 20.f) 
 {
 	spritesheet.setOrigin(300.f / 2, 300.f / 2);
+	spritesheet.SetTextureRect(sf::IntRect(sf::Vector2(0, 0), sf::Vector2(300, 300)));
 	spritesheet.setRotation(-90);
 }
 

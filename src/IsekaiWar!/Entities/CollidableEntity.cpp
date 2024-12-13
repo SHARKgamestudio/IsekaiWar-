@@ -13,10 +13,11 @@ CollidableEntity::CollidableEntity(sf::Vector2f position, sf::Texture* texture, 
 
 void CollidableEntity::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	Entity::draw(target, states);
+	states.transform.combine(getTransform());
 
 	if (statut && 0b01) {
 		std::cout << "vzibzphtrzivtpi";
-		target.draw(hitboxApparence);
+		target.draw(hitboxApparence, states);
 	}
 
 	if (statut && 0b10) {

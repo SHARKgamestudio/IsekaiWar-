@@ -10,6 +10,7 @@
 HitboxModule::HitboxModule(sf::Vector2f position, float radius, char statut) {
 	this->position = position;
 	this->radius = radius;
+	this->statut = statut;
 	hasCollided = false;
 
 	hitboxApparence.setOrigin(radius, radius);
@@ -23,6 +24,7 @@ HitboxModule::HitboxModule(sf::Vector2f position, float radius, char statut) {
 HitboxModule::HitboxModule(float x, float y, float radius, char statut) {
 	this->position = sf::Vector2f(x, y);
 	this->radius = radius;
+	this->statut = statut;
 	hasCollided = false;
 
 	hitboxApparence.setOrigin(radius, radius);
