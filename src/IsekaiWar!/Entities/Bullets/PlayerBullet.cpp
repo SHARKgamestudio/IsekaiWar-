@@ -25,9 +25,9 @@ void PlayerBullet::Update(float deltaTime) {
 		LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entity);
 
 		if (castEntity == nullptr) continue;
-		if (!IsColliding(castEntity)) continue;
+		if (!hitbox->IsColliding(castEntity)) continue;
 
 		entitiesHit.push_back(castEntity);
-		hasCollided = true;
+		hitbox->hasCollided = true;
 	}
 }

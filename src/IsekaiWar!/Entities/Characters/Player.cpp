@@ -9,19 +9,19 @@
 #pragma endregion
 
 Player::Player(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float health)
-	: CharacterEntity(x, y, texture, columns, rows, radius, health) {
+	: CharacterEntity(x, y, texture, columns, rows, radius, health),
+	ShootModule(sf::Vector2f(0, -1)) {
 	this->spritesheet.setOrigin(256/2, 256/2);
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
 
 	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 2) });
 	this->animator->Play("idle");
-
-	this->shoot = new ShootModule(new SpecialBullet(0, 0), sf::Vector2f(0, -1));
 }
 
 Player::Player(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, sf::Vector2i split, float radius, float health)
-	: CharacterEntity(position, texture, split, radius, health) {
+	: CharacterEntity(position, texture, split, radius, health),
+	ShootModule(sf::Vector2f(0, -1)) {
 	this->spritesheet.setOrigin(256 / 2, 256 / 2);
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
@@ -44,8 +44,8 @@ void Player::Update(float deltaTime) {
 
 	animator->Update(deltaTime);
 
-	if (this->inputs->GetKeyDown("")) {
-		shoot->Shoot();
+	if (this->inputs->GetKeyDown("Shoot")) {
+		Shoot(new SpecialBullet(this->getPosition()));
 	}
 
 	this->move(direction * deltaTime);

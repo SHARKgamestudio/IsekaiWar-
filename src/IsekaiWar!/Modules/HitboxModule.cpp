@@ -1,52 +1,38 @@
 #include "HitboxModule.h"
 #include "../Entities/CollidableEntity.h"
+#include "../Entities/CollidableEntity.h"
 
 #pragma region External Dependencies
 
-#include <math.h>
+#include <cmath>
 
 #pragma endregion
 
-HitboxModule::HitboxModule(sf::Vector2f position, float radius, char statut) {
-	this->position = position;
+HitboxModule::HitboxModule(CollidableEntity* entity, float radius, char statut) {
+	this->entity = entity;
 	this->radius = radius;
 	this->statut = statut;
 	hasCollided = false;
 
-	hitboxApparence.setOrigin(radius, radius);
-	hitboxApparence.setPosition(position);
-	hitboxApparence.setRadius(radius);
-	hitboxApparence.setOutlineThickness(4.f);
-	hitboxApparence.setFillColor(sf::Color(0, 0, 0, 0));
-	hitboxApparence.setOutlineColor(sf::Color(100, 250, 50));
+	apparence.setOrigin(radius, radius);
+	apparence.setRadius(radius);
+	apparence.setOutlineThickness(4.f);
+	apparence.setFillColor(sf::Color(0, 0, 0, 0));
+	apparence.setOutlineColor(sf::Color(100, 250, 50));
 }
 
-HitboxModule::HitboxModule(float x, float y, float radius, char statut) {
-	this->position = sf::Vector2f(x, y);
-	this->radius = radius;
-	this->statut = statut;
-	hasCollided = false;
-
-	hitboxApparence.setOrigin(radius, radius);
-	hitboxApparence.setPosition(x, y);
-	hitboxApparence.setRadius(radius);
-	hitboxApparence.setOutlineThickness(4.f);
-	hitboxApparence.setFillColor(sf::Color(0, 0, 0, 0));
-	hitboxApparence.setOutlineColor(sf::Color(100, 250, 50));
-}
-
-bool HitboxModule::IsColliding(CollidableEntity* entity) {
+bool HitboxModule::IsColliding(CollidableEntity* otherEntity) {
 
 	sf::Vertex line[] =
 	{
-		sf::Vertex(sf::Vector2f(position)),
-		sf::Vertex(sf::Vector2f(entity->position))
+		sf::Vertex(sf::Vector2f(entity->getPosition())),
+		sf::Vertex(sf::Vector2f(otherEntity->getPosition()))
 	};
 
 	checkCollisions.push_back(line);
 
-	sf::Vector2f difference = position - entity->position;
+	sf::Vector2f difference = entity->getPosition() - otherEntity->getPosition();
 	float distance = sqrtf(difference.y * difference.y + difference.x * difference.x);
 
-	return distance < radius + entity->radius;
+	return distance < radius + entity->hitbox->radius;
 }

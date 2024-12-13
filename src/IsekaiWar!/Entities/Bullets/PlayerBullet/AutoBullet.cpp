@@ -17,7 +17,7 @@ void AutoBullet::Move(float deltaTime) {
 void AutoBullet::Update(float deltaTime, std::vector<CollidableEntity*> entities) {
 	Move(deltaTime);
 
-	if (hasCollided) {
+	if (hitbox->hasCollided) {
 		toDisable = true;
 	}
 }

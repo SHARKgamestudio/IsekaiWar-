@@ -1,13 +1,13 @@
 #include "Entity.h"
 
 Entity::Entity(float x, float y, sf::Texture* texture, int columns, int rows) : spritesheet(texture, columns, rows) {
-	spritesheet.setPosition(x, y);
+	setPosition(x, y);
 	toDisable = false;
 	toDestroy = false;
 }
 
 Entity::Entity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split) : spritesheet(texture, split.x, split.y) {
-	spritesheet.setPosition(position);
+	setPosition(position);
 	toDisable = false;
 	toDestroy = false;
 }

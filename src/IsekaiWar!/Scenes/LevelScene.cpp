@@ -21,6 +21,9 @@ void LevelScene::Update(float dt) {
 		visualEffect->Update(dt);
 	}
 	*/
+	for (BulletEntity* bullet : bullets) {
+		bullet->Update(dt);
+	}
 }
 
 void LevelScene::Draw(sf::RenderWindow& window) {
@@ -36,6 +39,9 @@ void LevelScene::Draw(sf::RenderWindow& window) {
 		window.draw(*visualEffect);
 	}
 	*/
+	for (BulletEntity* bullet : bullets) {
+		window.draw(*bullet);
+	}
 	window.draw(*player);
 }
 

@@ -10,10 +10,9 @@
 
 class InputManager;
 
-class Player : public CharacterEntity {
+class Player : public CharacterEntity, public ShootModule {
 private:
 	Animator* animator;
-	ShootModule* shoot;
 	float angle;
 	InputManager* inputs;
 public:
