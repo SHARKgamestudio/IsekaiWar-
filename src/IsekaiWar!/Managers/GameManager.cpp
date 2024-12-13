@@ -46,8 +46,6 @@ void GameManager::Update(float deltaTime) {
 
 	Managers::GetInstance()->InputManager->UpdateInputs();
 
-	std::cout << Managers::GetInstance()->InputManager->GetAxis("Vertical") << std::endl;
-
 	if (Managers::GetInstance()->InputManager->GetKeyDown("Shoot")) {
 		std::cout << "Pressed" << std::endl;
 	}

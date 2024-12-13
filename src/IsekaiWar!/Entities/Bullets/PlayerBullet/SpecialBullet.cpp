@@ -36,6 +36,8 @@ void SpecialBullet::Move(float deltaTime) {
 }
 
 void SpecialBullet::Update(float deltaTime) {
+	PlayerBullet::Update(deltaTime);
+
 	Move(deltaTime);
 
 	animator.Update(deltaTime);

@@ -22,8 +22,7 @@ HitboxModule::HitboxModule(CollidableEntity* entity, float radius, char statut) 
 }
 
 bool HitboxModule::IsColliding(CollidableEntity* otherEntity) {
-
-	sf::Vertex line[] =
+	sf::Vertex* line = new sf::Vertex[2]
 	{
 		sf::Vertex(sf::Vector2f(entity->getPosition())),
 		sf::Vertex(sf::Vector2f(otherEntity->getPosition()))

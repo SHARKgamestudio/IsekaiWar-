@@ -18,15 +18,14 @@ PlayerBullet::PlayerBullet(sf::Vector2f position, sf::Texture* texture, sf::Vect
 void PlayerBullet::Update(float deltaTime) {
 	entitiesHit.clear();
 
-	std::vector<CollidableEntity*>* entities = Managers::GetInstance()->SceneManager->currentLevel->GetEntities();
+	std::vector<CollidableEntity*> entities = *(Managers::GetInstance()->SceneManager->currentLevel->GetEntities());
 
-	for (CollidableEntity* entity : *entities) {
-
+	for (CollidableEntity* entity : entities) {
+		
 		LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entity);
 
 		if (castEntity == nullptr) continue;
 		if (!hitbox->IsColliding(castEntity)) continue;
-
 		entitiesHit.push_back(castEntity);
 		hitbox->hasCollided = true;
 	}

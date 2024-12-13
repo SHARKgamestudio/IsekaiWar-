@@ -12,7 +12,8 @@ void Level1::Load() {
 	clock.Start();
 
 	backgrounds.push_back(new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("water")));
-	entities.push_back(new SpecialBullet(150.f, 300.f));
+
 	entities.push_back(new EnemyEntity(800/2, 150, Managers::GetInstance()->ResourceManager->GetTexture("fireball"), 6, 1, 8, 1));
+
 	player = new Player(800/2, 600/2, Managers::GetInstance()->ResourceManager->GetTexture("player"), 5, 4, 32.f, 100.f);
 }
