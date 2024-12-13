@@ -15,7 +15,7 @@ Player::Player(float x, float y, sf::Texture* texture, int columns, int rows, fl
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
 
-	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 2) });
+	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 3) });
 	this->animator->Play("idle");
 }
 
@@ -25,7 +25,7 @@ Player::Player(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, 
 	this->spritesheet.setOrigin(256 / 2, 256 / 2);
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
-	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 2) });
+	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 3) });
 	this->animator->Play("idle");
 }
 
@@ -39,8 +39,19 @@ void Player::Update(float deltaTime) {
 
 	sf::Vector2f direction = inputs * magnitude;
 
-	/*float test = (inputs.x * (-std::sqrt(angle / 25) + 1));
-	angle += horizontal ? test * deltaTime * 60 : 0;*/
+	float positive = (inputs.x * std::pow(angle / 25 - 1, 2));
+	float negative = (inputs.x * std::pow(angle / 25 + 1, 2));
+
+	if (horizontal > 0) {
+		angle += positive * deltaTime * 90;
+	}
+	else if (horizontal < 0) {
+		angle += negative * deltaTime * 90;
+	}
+	else {
+		if (angle > 0) { angle += (-std::pow(angle / 25, 0.5f)) * deltaTime * 512; }
+		else if (angle < 0) { angle += (std::pow(-angle / 25, 0.5f)) * deltaTime * 512; }
+	}
 
 	animator->Update(deltaTime);
 
