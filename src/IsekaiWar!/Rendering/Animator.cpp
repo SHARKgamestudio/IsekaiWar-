@@ -33,7 +33,7 @@ Animator::~Animator() {
 
 void Animator::Update(float deltaTime) {
 
-	Animation* animation = blendtree ? Find(blendtrees[currentBlendTree]->GetCurrent()) : animations[currentAnimation];
+	Animation* animation = animations[currentAnimation];
 
 	if (animation != nullptr) {
 		if (last != animation) {

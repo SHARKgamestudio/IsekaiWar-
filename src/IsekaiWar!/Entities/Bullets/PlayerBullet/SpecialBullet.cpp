@@ -9,18 +9,24 @@
 
 SpecialBullet::SpecialBullet(float x, float y, int columns, int rows)
 	: PlayerBullet(x, y, Managers::GetInstance()->ResourceManager->GetTexture("fireball"), columns, rows, 50.f, 2.f),
-	MoveModule(sf::Vector2f(0.f, -1.f), 20.f) 
+	MoveModule(sf::Vector2f(0.f, -1.f), 20.f) ,
+	animator(&spritesheet, { new Animation("forward", 0, 5, 2) })
 {
 	spritesheet.setOrigin(300.f / 2, 300.f / 2);
-	spritesheet.SetTextureRect(sf::IntRect(sf::Vector2(0, 0), sf::Vector2(300, 300)));
 	spritesheet.setRotation(-90);
+
+	animator.Play("forward");
 }
 
 SpecialBullet::SpecialBullet(sf::Vector2f position, sf::Vector2i split)
 	: PlayerBullet(position, Managers::GetInstance()->ResourceManager->GetTexture("fireball"), split, 10.f, 2.f),
-	MoveModule(sf::Vector2f(0.f, -1.f), 20.f) {
+	MoveModule(sf::Vector2f(0.f, -1.f), 20.f),
+	animator(&spritesheet, { new Animation("forward", 0, 5) })
+{
 	spritesheet.setOrigin(300.f / 2, 300.f / 2);
 	spritesheet.setRotation(-90);
+
+	animator.Play("forward");
 }
 
 void SpecialBullet::Move(float deltaTime) {
@@ -29,6 +35,8 @@ void SpecialBullet::Move(float deltaTime) {
 
 void SpecialBullet::Update(float deltaTime) {
 	Move(deltaTime);
+
+	animator.Update(deltaTime);
 
 	for (CollidableEntity* entityHit : entitiesHit) {
 		if (LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entityHit)) {
