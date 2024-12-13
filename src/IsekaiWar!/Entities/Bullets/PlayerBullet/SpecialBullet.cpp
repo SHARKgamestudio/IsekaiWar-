@@ -23,8 +23,7 @@ SpecialBullet::SpecialBullet(sf::Vector2f position, sf::Vector2i split)
 }
 
 void SpecialBullet::Move(float deltaTime) {
-	spritesheet.move(normalisedDirection * deltaTime * speed);
-	hitboxApparence.move(normalisedDirection* deltaTime* speed);
+	this->move(normalisedDirection * deltaTime * speed);
 }
 
 void SpecialBullet::Update(float deltaTime) {
@@ -38,10 +37,4 @@ void SpecialBullet::Update(float deltaTime) {
 			toDisable = true;
 		}
 	}
-}
-
-void SpecialBullet::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-	states.transform.combine(getTransform());
-	target.draw(spritesheet, states);
-	target.draw(hitboxApparence, states);
 }

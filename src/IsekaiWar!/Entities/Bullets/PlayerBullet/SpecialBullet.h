@@ -14,6 +14,4 @@ class SpecialBullet : public PlayerBullet, public MoveModule {
 
 		void Move(float deltaTime);
 		void Update(float deltaTime) override;
-
-		void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
