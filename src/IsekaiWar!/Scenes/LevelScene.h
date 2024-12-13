@@ -15,6 +15,7 @@
 #include "../Entities/VisualEffectEntity.h"
 #include "../Entities/BulletEntity.h"
 #include "../Utils/Clock.h"
+#include "../Entities/Characters/Player.h"
 
 #pragma endregion
 
@@ -22,7 +23,7 @@ class LevelScene : public Scene {
 protected:
 
 	Clock clock;
-	//Player player;
+	Player* player;
 	std::vector<BackgroundEntity*> backgrounds; //mettre en const à terme
 	std::vector<CollidableEntity*> entities; //mettre en const à terme
 	std::vector<VisualEffectEntity*> visualEffects; //mettre en const à terme

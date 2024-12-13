@@ -9,11 +9,13 @@
 ResourceManager::ResourceManager() {
 	std::vector<std::string> nameAsset = {
 		"water",
-		"fireball"
+		"fireball",
+		"player"
 	};
 	std::vector<std::string> nameFile = {
 		"water.jpg",
-		"fireball.png"
+		"fireball.png",
+		"player.png"
 	};
 	sf::Texture texture;
 	for (int i = 0; i < nameAsset.size(); i++) {

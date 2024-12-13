@@ -7,7 +7,7 @@
 #pragma endregion
 
 void LevelScene::Update(float dt) {
-	//player.Update(dt);
+	player->Update(dt);
 
 	for (BackgroundEntity* background : backgrounds) {
 		background->Update(dt);
@@ -36,7 +36,7 @@ void LevelScene::Draw(sf::RenderWindow& window) {
 		window.draw(*visualEffect);
 	}
 	*/
-	//window.draw(player);
+	window.draw(*player);
 }
 
 void LevelScene::Pause() {

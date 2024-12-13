@@ -3,6 +3,8 @@
 #pragma region Local Dependencies
 
 #include "../CharacterEntity.h"
+#include "../../Rendering/Animator.h"
+#include "../../Modules/ShootModule.h"
 
 #pragma endregion
 
@@ -10,6 +12,8 @@ class InputManager;
 
 class Player : public CharacterEntity {
 private:
+	Animator* animator;
+	ShootModule* shoot;
 	float angle;
 	InputManager* inputs;
 public:

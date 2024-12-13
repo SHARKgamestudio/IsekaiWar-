@@ -12,4 +12,5 @@ void Level1::Load() {
 
 	backgrounds.push_back(new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("water")));
 	entities.push_back(new SpecialBullet(150.f, 300.f));
+	player = new Player(800/2, 600/2, Managers::GetInstance()->ResourceManager->GetTexture("player"), 5, 4, 32.f, 100.f);
 }
