@@ -1,14 +1,14 @@
-#include "Player.h"
+#include "PlayerEntity.h"
 
 #pragma region Local Dependencies
 
 #include "../../Managers.h"
 #include "../../Utils/Maths.h"
-#include "../Bullets/PlayerBullet/SpecialBullet.h"
+#include "../Bullets/PlayerBullets/SpecialBullet.h"
 
 #pragma endregion
 
-Player::Player(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float health)
+PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float health)
 	: CharacterEntity(x, y, texture, columns, rows, radius, health),
 	ShootModule(sf::Vector2f(0, -1)) {
 	this->spritesheet.setOrigin(256/2, 256/2);
@@ -19,7 +19,7 @@ Player::Player(float x, float y, sf::Texture* texture, int columns, int rows, fl
 	this->animator->Play("idle");
 }
 
-Player::Player(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, sf::Vector2i split, float radius, float health)
+PlayerEntity::PlayerEntity(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, sf::Vector2i split, float radius, float health)
 	: CharacterEntity(position, texture, split, radius, health),
 	ShootModule(sf::Vector2f(0, -1)) {
 	this->spritesheet.setOrigin(256 / 2, 256 / 2);
@@ -29,18 +29,18 @@ Player::Player(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, 
 	this->animator->Play("idle");
 }
 
-void Player::Update(float deltaTime) {
+void PlayerEntity::Update(float deltaTime) {
 	float horizontal = inputs->GetAxis("Horizontal");
 	float vertical = inputs->GetAxis("Vertical");
 
 	sf::Vector2f inputs(horizontal, vertical);
 
-	float magnitude = Maths::Clamp(sqrt(pow(inputs.x, 2) + pow(inputs.y, 2)), 0, 1) * 512;
+	float magnitude = Maths::Clamp((float)sqrt(pow(inputs.x, 2) + pow(inputs.y, 2)), 0, 1) * 512;
 
 	sf::Vector2f direction = inputs * magnitude;
 
-	float positive = (inputs.x * std::pow(angle / 25 - 1, 2));
-	float negative = (inputs.x * std::pow(angle / 25 + 1, 2));
+	float positive = (inputs.x * (float)std::pow(angle / 25 - 1, 2));
+	float negative = (inputs.x * (float)std::pow(angle / 25 + 1, 2));
 
 	if (horizontal > 0) {
 		angle += positive * deltaTime * 90;

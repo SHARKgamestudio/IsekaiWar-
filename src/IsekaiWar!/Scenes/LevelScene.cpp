@@ -2,7 +2,7 @@
 
 #pragma region External Dependencies
 
-#include "../Entities/Bullets/PlayerBullet/SpecialBullet.h"
+#include "../Entities/Bullets/PlayerBullets/SpecialBullet.h"
 
 #pragma endregion
 
