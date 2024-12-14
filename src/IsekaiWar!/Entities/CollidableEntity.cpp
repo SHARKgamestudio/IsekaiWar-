@@ -21,7 +21,8 @@ void CollidableEntity::draw(sf::RenderTarget& target, sf::RenderStates states) c
 	}
 
 	if (hitbox->statut & 0b01) {
-		for (const sf::Vertex* line : hitbox->checkCollisions) {
+		for (const sf::Vertex* line : hitbox->lines) {
+			hitbox->UpdateLines();
 			target.draw(line, 2, sf::Lines);
 		}
 	}

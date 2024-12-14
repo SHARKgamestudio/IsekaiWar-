@@ -9,3 +9,9 @@ BulletEntity::BulletEntity(sf::Vector2f position, sf::Texture* texture, sf::Vect
 	: CollidableEntity(position, texture, split, radius),
 	AttackModule(attack) {
 }
+
+void BulletEntity::Update(float deltaTime) {
+	Entity::Update(deltaTime);
+
+	hitbox->CheckCollisions();
+}

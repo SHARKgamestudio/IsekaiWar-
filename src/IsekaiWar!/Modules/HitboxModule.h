@@ -13,8 +13,10 @@ class HitboxModule {
 public:
 
 	CollidableEntity* entity;
+	std::vector<CollidableEntity*> collisionsToCheck;
+	std::vector<CollidableEntity*> entitiesHit;
 	sf::CircleShape apparence;
-	std::vector<const sf::Vertex*> checkCollisions;
+	std::vector<sf::Vertex*> lines;
 	float radius;
 	bool hasCollided;
 
@@ -22,5 +24,8 @@ public:
 
 	HitboxModule(CollidableEntity* entity, float radius, char statut);
 
-	bool virtual IsColliding(CollidableEntity* hitbox);
+	void AddToCheck(CollidableEntity* otherEntity);
+	void RemoveToCheck(CollidableEntity* otherEntity);
+	void UpdateLines();
+	void virtual CheckCollisions();
 };

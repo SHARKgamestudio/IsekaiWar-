@@ -1,10 +1,10 @@
 #include "HitboxModule.h"
 #include "../Entities/CollidableEntity.h"
-#include "../Entities/CollidableEntity.h"
 
 #pragma region External Dependencies
 
 #include <cmath>
+#include <algorithm>
 
 #pragma endregion
 
@@ -21,17 +21,51 @@ HitboxModule::HitboxModule(CollidableEntity* entity, float radius, char statut) 
 	apparence.setOutlineColor(sf::Color(100, 250, 50));
 }
 
-bool HitboxModule::IsColliding(CollidableEntity* otherEntity) {
-	sf::Vertex* line = new sf::Vertex[2]
-	{
-		sf::Vertex(sf::Vector2f(entity->getPosition())),
-		sf::Vertex(sf::Vector2f(otherEntity->getPosition()))
-	};
+void HitboxModule::AddToCheck(CollidableEntity* otherEntity) {
 
-	checkCollisions.push_back(line);
+	if (statut & 0b01) {
+		sf::Vertex* line = new sf::Vertex[2]
+		{
+			sf::Vertex(sf::Vector2f(entity->getPosition()), sf::Color(100, 250, 50)),
+			sf::Vertex(sf::Vector2f(otherEntity->getPosition()), sf::Color(100, 250, 50))
+		};
 
-	sf::Vector2f difference = entity->getPosition() - otherEntity->getPosition();
-	float distance = sqrtf(difference.y * difference.y + difference.x * difference.x);
+		lines.push_back(line);
+	}
 
-	return distance < radius + entity->hitbox->radius;
+	collisionsToCheck.push_back(otherEntity);
+}
+
+void HitboxModule::UpdateLines() {
+	for (sf::Vertex* line : lines) {
+		line[0].position = entity->getPosition();
+	}
+}
+
+void HitboxModule::RemoveToCheck(CollidableEntity* otherEntity) {
+	auto it = std::find(collisionsToCheck.begin(), collisionsToCheck.end(), otherEntity);
+
+	if (it != collisionsToCheck.end()) {
+		int index = std::distance(collisionsToCheck.begin(), it);
+
+		collisionsToCheck.erase(it);
+
+		if (statut & 0b01) {
+			lines.erase(lines.begin() + index);
+		}
+	}
+}
+
+void HitboxModule::CheckCollisions() {
+	entitiesHit.clear();
+
+	for (CollidableEntity* otherEntity : collisionsToCheck) {
+
+		sf::Vector2f difference = entity->getPosition() - otherEntity->getPosition();
+		float distance = sqrtf(difference.y * difference.y + difference.x * difference.x);
+
+		if (distance < radius + entity->hitbox->radius) {
+			entitiesHit.push_back(otherEntity);
+		}
+	}
 }

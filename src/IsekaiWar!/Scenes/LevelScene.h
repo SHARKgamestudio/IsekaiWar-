@@ -37,5 +37,11 @@ public:
 	std::vector<CollidableEntity*>* GetEntities();
 	void virtual Update(float dt);
 	void virtual Draw(sf::RenderWindow& window) override;
+
 	void virtual SpawnBullet(BulletEntity* bullet);
+	void virtual DespawnBullet(BulletEntity* bullet);
+
+	void virtual SpawnEntity(CollidableEntity* entity);
+	void virtual DespawnEntity(CollidableEntity* entity);
+
 };

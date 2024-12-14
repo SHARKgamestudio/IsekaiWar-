@@ -58,5 +58,33 @@ std::vector<CollidableEntity*>* LevelScene::GetEntities() {
 }
 
 void LevelScene::SpawnBullet(BulletEntity* bullet) {
+	for (CollidableEntity* entity : entities) {
+		bullet->hitbox->AddToCheck(entity);
+	}
+
 	bullets.push_back(bullet);
+}
+
+void LevelScene::DespawnBullet(BulletEntity* bullet) {
+	for (CollidableEntity* entity : entities) {
+		bullet->hitbox->RemoveToCheck(entity);
+	}
+
+	bullets.push_back(bullet);
+}
+
+void LevelScene::SpawnEntity(CollidableEntity* entity) {
+	for (BulletEntity* bullet : bullets) {
+		bullet->hitbox->AddToCheck(entity);
+	}
+
+	entities.push_back(entity);
+}
+
+void LevelScene::DespawnEntity(CollidableEntity* entity) {
+	for (BulletEntity* bullet : bullets) {
+		bullet->hitbox->RemoveToCheck(entity);
+	}
+
+	entities.push_back(entity);
 }

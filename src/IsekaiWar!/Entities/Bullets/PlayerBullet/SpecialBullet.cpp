@@ -36,18 +36,15 @@ void SpecialBullet::Move(float deltaTime) {
 }
 
 void SpecialBullet::Update(float deltaTime) {
-	PlayerBullet::Update(deltaTime);
+	BulletEntity::Update(deltaTime);
 
 	Move(deltaTime);
 
 	animator.Update(deltaTime);
 
-	for (CollidableEntity* entityHit : entitiesHit) {
+	for (CollidableEntity* entityHit : hitbox->entitiesHit) {
 		if (LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entityHit)) {
 			Attack(castEntity, deltaTime);
-		}
-		else {
-			toDisable = true;
 		}
 	}
 }
