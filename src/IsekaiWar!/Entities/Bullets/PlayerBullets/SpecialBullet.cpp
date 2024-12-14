@@ -8,8 +8,8 @@
 #pragma endregion
 
 SpecialBullet::SpecialBullet(float x, float y, int columns, int rows)
-	: PlayerBullet(x, y, Managers::GetInstance()->ResourceManager->GetTexture("fireball"), columns, rows, 50.f, 2.f),
-	MoveModule(sf::Vector2f(0.f, -1.f), 70.f) ,
+	: PlayerBullet(x, y, Managers::GetInstance()->ResourceManager->GetTexture("fireball"), columns, rows, 10.f, 2.f),
+	MoveModule(sf::Vector2f(0.f, -1.f), 700.f) ,
 	animator(&spritesheet, { new Animation("forward", 0, 5, 2) })
 {
 	spritesheet.setScale(0.8f, 0.8f);
@@ -22,7 +22,7 @@ SpecialBullet::SpecialBullet(float x, float y, int columns, int rows)
 SpecialBullet::SpecialBullet(sf::Vector2f position, sf::Vector2i split)
 	: PlayerBullet(position, Managers::GetInstance()->ResourceManager->GetTexture("fireball"), split, 10.f, 2.f),
 	MoveModule(sf::Vector2f(0.f, -1.f), 700.f),
-	animator(&spritesheet, { new Animation("forward", 0, 5) })
+	animator(&spritesheet, { new Animation("forward", 0, 5, 2) })
 {
 	spritesheet.setScale(0.8f, 0.8f);
 	spritesheet.setOrigin(300.f / 2, 300.f / 2);

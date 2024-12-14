@@ -1,6 +1,5 @@
 #include "HitboxModule.h"
 #include "../Entities/CollidableEntity.h"
-#include <iostream>
 
 #pragma region External Dependencies
 
@@ -67,7 +66,6 @@ void HitboxModule::CheckCollisions() {
 
 		if (distance < radius + entity->hitbox->radius) {
 			entitiesHit.push_back(otherEntity);
-			std::cout << "collision";
 		}
 	}
 }

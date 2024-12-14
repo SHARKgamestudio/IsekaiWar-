@@ -5,12 +5,14 @@
 #include "../../Managers.h"
 #include "../../Utils/Maths.h"
 #include "../Bullets/PlayerBullets/SpecialBullet.h"
+#include "../Bullets/PlayerBullets/AutoBullet.h"
 
 #pragma endregion
 
 PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float health)
 	: CharacterEntity(x, y, texture, columns, rows, radius, health),
 	ShootModule(sf::Vector2f(0, -1)) {
+
 	this->spritesheet.setOrigin(256/2, 256/2);
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
@@ -55,7 +57,11 @@ void PlayerEntity::Update(float deltaTime) {
 
 	animator->Update(deltaTime);
 
-	if (this->inputs->GetKeyDown("Shoot")) {
+	if (this->inputs->GetKey("Auto")) {
+		(new AutoBullet(this->getPosition()))->Spawn();
+	}
+
+	if (this->inputs->GetKeyDown("Special")) {
 		(new SpecialBullet(this->getPosition()))->Spawn();
 	}
 

@@ -10,11 +10,13 @@ ResourceManager::ResourceManager() {
 	std::vector<std::string> nameAsset = {
 		"water",
 		"fireball",
+		"waterball",
 		"player"
 	};
 	std::vector<std::string> nameFile = {
 		"water.jpg",
 		"fireball.png",
+		"waterball.png",
 		"player.png"
 	};
 	sf::Texture texture;

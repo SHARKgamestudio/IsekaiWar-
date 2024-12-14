@@ -5,6 +5,7 @@
 #include "../CharacterEntity.h"
 #include "../../Rendering/Animator.h"
 #include "../../Modules/ShootModule.h"
+#include "../../Utils/Clock.h"
 
 #pragma endregion
 
@@ -12,6 +13,10 @@ class InputManager;
 
 class PlayerEntity : public CharacterEntity, public ShootModule {
 private:
+	Clock clockAuto;
+	Clock clockSpecial;
+	Clock clockUlt;
+
 	Animator* animator;
 	float angle;
 	InputManager* inputs;
