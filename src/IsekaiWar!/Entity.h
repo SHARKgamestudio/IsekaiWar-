@@ -17,6 +17,8 @@ public:
 	Entity(float x, float y, sf::Texture* texture, int columns = 1, int rows = 1);
 	Entity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split = sf::Vector2i(1, 1));
 	
+	void virtual Die();
+	void virtual Despawn() = 0;
 	void virtual Update(float deltaTime);
 	void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

@@ -56,7 +56,7 @@ void PlayerEntity::Update(float deltaTime) {
 	animator->Update(deltaTime);
 
 	if (this->inputs->GetKeyDown("Shoot")) {
-		Shoot(new SpecialBullet(this->getPosition()));
+		(new SpecialBullet(this->getPosition()))->Spawn();
 	}
 
 	this->move(direction * deltaTime);

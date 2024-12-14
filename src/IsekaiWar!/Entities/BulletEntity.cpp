@@ -1,4 +1,5 @@
 #include "BulletEntity.h"
+#include "../Managers.h"
 
 BulletEntity::BulletEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack)
 	: CollidableEntity(x, y, texture, columns, rows, radius),
@@ -14,4 +15,8 @@ void BulletEntity::Update(float deltaTime) {
 	Entity::Update(deltaTime);
 
 	hitbox->CheckCollisions();
+}
+
+void BulletEntity::Despawn() {
+	Managers::GetInstance()->SceneManager->currentLevel->DespawnBullet(this);
 }

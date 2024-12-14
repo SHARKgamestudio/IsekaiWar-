@@ -16,4 +16,5 @@ public :
 	void Update(float deltaTime) override;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	void Despawn();
 };

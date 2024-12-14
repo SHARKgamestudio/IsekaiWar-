@@ -57,7 +57,7 @@ std::vector<CollidableEntity*>* LevelScene::GetEntities() {
 	return &entities;
 }
 
-void LevelScene::SpawnBullet(BulletEntity* bullet) {
+void LevelScene::SpawnPlayerBullet(BulletEntity* bullet) {
 	for (CollidableEntity* entity : entities) {
 		bullet->hitbox->AddToCheck(entity);
 	}
@@ -65,12 +65,20 @@ void LevelScene::SpawnBullet(BulletEntity* bullet) {
 	bullets.push_back(bullet);
 }
 
-void LevelScene::DespawnBullet(BulletEntity* bullet) {
-	for (CollidableEntity* entity : entities) {
-		bullet->hitbox->RemoveToCheck(entity);
-	}
+void LevelScene::SpawnEnnemyBullet(BulletEntity* bullet) {
+	bullet->hitbox->AddToCheck(player);
 
 	bullets.push_back(bullet);
+}
+
+void LevelScene::DespawnBullet(BulletEntity* bullet) {
+	auto it = std::find(bullets.begin(), bullets.end(), bullet);
+
+	if (it != bullets.end()) {
+		int index = std::distance(bullets.begin(), it);
+
+		bullets.erase(it);
+	}
 }
 
 void LevelScene::SpawnEntity(CollidableEntity* entity) {
@@ -82,9 +90,25 @@ void LevelScene::SpawnEntity(CollidableEntity* entity) {
 }
 
 void LevelScene::DespawnEntity(CollidableEntity* entity) {
-	for (BulletEntity* bullet : bullets) {
-		bullet->hitbox->RemoveToCheck(entity);
-	}
+	auto it = std::find(entities.begin(), entities.end(), entity);
 
-	entities.push_back(entity);
+	if (it != entities.end()) {
+		int index = std::distance(entities.begin(), it);
+
+		entities.erase(it);
+	}
+}
+
+void LevelScene::SpawnBackground(BackgroundEntity* background) {
+	backgrounds.push_back(background);
+}
+
+void LevelScene::DespawnBackground(BackgroundEntity* background) {
+	auto it = std::find(backgrounds.begin(), backgrounds.end(), background);
+
+	if (it != backgrounds.end()) {
+		int index = std::distance(backgrounds.begin(), it);
+
+		backgrounds.erase(it);
+	}
 }

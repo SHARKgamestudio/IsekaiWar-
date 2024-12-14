@@ -1,4 +1,5 @@
 #include "BackgroundEntity.h"
+#include "../Managers.h"
 
 BackgroundEntity::BackgroundEntity(sf::Texture* texture)
 	: Entity(0.f, 0.f, texture, 1, 1),
@@ -21,4 +22,8 @@ void BackgroundEntity::Update(float deltaTime) {
 void BackgroundEntity::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	states.transform.combine(this->getTransform());
 	target.draw(spritesheet, states);
+}
+
+void BackgroundEntity::Despawn() {
+	Managers::GetInstance()->SceneManager->currentLevel->DespawnBackground(this);
 }

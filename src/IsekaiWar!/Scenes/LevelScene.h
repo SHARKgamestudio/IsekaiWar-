@@ -38,10 +38,14 @@ public:
 	void virtual Update(float dt);
 	void virtual Draw(sf::RenderWindow& window) override;
 
-	void virtual SpawnBullet(BulletEntity* bullet);
+	void virtual SpawnPlayerBullet(BulletEntity* bullet);
+	void virtual SpawnEnnemyBullet(BulletEntity* bullet);
 	void virtual DespawnBullet(BulletEntity* bullet);
 
 	void virtual SpawnEntity(CollidableEntity* entity);
 	void virtual DespawnEntity(CollidableEntity* entity);
+
+	void virtual SpawnBackground(BackgroundEntity* background);
+	void virtual DespawnBackground(BackgroundEntity* background);
 
 };

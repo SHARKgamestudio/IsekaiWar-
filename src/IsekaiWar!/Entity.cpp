@@ -12,9 +12,22 @@ Entity::Entity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split) 
 	toDestroy = false;
 }
 
+void Entity::Die() {
+	toDisable = true;
+}
+
 void Entity::Update(float deltaTime) {
+	if (toDestroy) {
+		Despawn();
+	}
+
 	if (toDisable) {
 		toDestroy = true;
+	}
+
+	sf::Vector2f pos = getPosition();
+	if (-10 > pos.x || pos.x > 810 || -10 > pos.y || pos.y > 610) {
+		toDisable = true;
 	}
 }
 
