@@ -42,16 +42,9 @@ void GameManager::HandleEvents() {
 
 void GameManager::Update(float deltaTime) {
 
+	// LOGIC GOES HERE //
 	Managers::GetInstance()->SceneManager->Update(deltaTime);
-
 	Managers::GetInstance()->InputManager->UpdateInputs();
-
-	if (Managers::GetInstance()->InputManager->GetKeyDown("Shoot")) {
-		std::cout << "Pressed" << std::endl;
-	}
-	if (Managers::GetInstance()->InputManager->GetKeyUp("Shoot")) {
-		std::cout << "Released" << std::endl;
-	}
 }
 
 void GameManager::Render() {
