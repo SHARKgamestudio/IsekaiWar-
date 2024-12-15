@@ -57,6 +57,6 @@ void StandardFighter::Update(float deltaTime) {
 		
 		setPosition(sf::Vector2f(spawn.x + x - (256/2), spawn.y + y - (256 / 2)));
 
-		shoot->Shoot(new StandardBullet(getPosition(), Managers::GetInstance()->ResourceManager.GetTexture("player"), sf::Vector2i(1, 1)));
+		//shoot->Shoot(new StandardBullet(getPosition(), Managers::GetInstance()->ResourceManager.GetTexture("player"), sf::Vector2i(1, 1)));
 	}
 }

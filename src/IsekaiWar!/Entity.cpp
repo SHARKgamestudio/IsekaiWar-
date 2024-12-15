@@ -16,19 +16,12 @@ void Entity::Die() {
 	toDisable = true;
 }
 
+bool Entity::ToDestroy() {
+	return toDestroy;
+}
+
 void Entity::Update(float deltaTime) {
-	if (toDestroy) {
-		Despawn();
-	}
-
-	if (toDisable) {
-		toDestroy = true;
-	}
-
-	sf::Vector2f pos = getPosition();
-	if (-10 > pos.x || pos.x > 810 || -10 > pos.y || pos.y > 610) {
-		toDisable = true;
-	}
+	toDestroy = toDisable ? true : false;
 }
 
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const {

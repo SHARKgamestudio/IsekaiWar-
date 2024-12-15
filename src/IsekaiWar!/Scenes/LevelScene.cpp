@@ -7,6 +7,7 @@
 #pragma endregion
 
 void LevelScene::Update(float dt) {
+	// PARCOURS D'UPDATES
 	player->Update(dt);
 
 	for (BackgroundEntity* background : backgrounds) {
@@ -15,6 +16,10 @@ void LevelScene::Update(float dt) {
 
 	for (CollidableEntity* entity : entities) {
 		entity->Update(dt);
+
+		if (entity->ToDestroy()) {
+			entitiesToDestroy.push_back(entity);
+		}
 	}
 	/*
 	for (VisualEffectEntity* visualEffect : visualEffects) {
@@ -23,6 +28,20 @@ void LevelScene::Update(float dt) {
 	*/
 	for (BulletEntity* bullet : bullets) {
 		bullet->Update(dt);
+
+		if (bullet->ToDestroy()) {
+			bulletsToDestroy.push_back(bullet);
+		}
+	}
+
+
+	// PARCOURS DE DESPAWN
+	for (CollidableEntity* entity : entitiesToDestroy) {
+		DespawnEntity(entity);
+	}
+
+	for (BulletEntity* bullet : bulletsToDestroy) {
+		DespawnBullet(bullet);
 	}
 }
 
