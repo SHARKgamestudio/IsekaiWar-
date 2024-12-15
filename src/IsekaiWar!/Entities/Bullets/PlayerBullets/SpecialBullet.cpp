@@ -33,7 +33,7 @@ SpecialBullet::SpecialBullet(sf::Vector2f position, sf::Vector2i split)
 
 void SpecialBullet::Move(float deltaTime) {
 	this->move(normalisedDirection * deltaTime * speed);
-}
+}	
 
 void SpecialBullet::Update(float deltaTime) {
 	BulletEntity::Update(deltaTime);
@@ -42,7 +42,7 @@ void SpecialBullet::Update(float deltaTime) {
 
 	animator.Update(deltaTime);
 
-	for (CollidableEntity* entityHit : hitbox->entitiesHit) {
+	for (CollidableEntity* entityHit : entitiesHit) {
 		if (LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entityHit)) {
 			Attack(castEntity, deltaTime);
 		}

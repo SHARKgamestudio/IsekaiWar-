@@ -76,16 +76,20 @@ std::vector<CollidableEntity*>* LevelScene::GetEntities() {
 	return &entities;
 }
 
+PlayerEntity* LevelScene::GetPlayer() {
+	return player;
+}
+
 void LevelScene::SpawnPlayerBullet(BulletEntity* bullet) {
 	for (CollidableEntity* entity : entities) {
-		bullet->hitbox->AddToCheck(entity);
+		bullet->AddToCheck(entity);
 	}
 
 	bullets.push_back(bullet);
 }
 
 void LevelScene::SpawnEnnemyBullet(BulletEntity* bullet) {
-	bullet->hitbox->AddToCheck(player);
+	bullet->AddToCheck(player);
 
 	bullets.push_back(bullet);
 }
@@ -102,7 +106,7 @@ void LevelScene::DespawnBullet(BulletEntity* bullet) {
 
 void LevelScene::SpawnEntity(CollidableEntity* entity) {
 	for (BulletEntity* bullet : bullets) {
-		bullet->hitbox->AddToCheck(entity);
+		bullet->AddToCheck(entity);
 	}
 
 	entities.push_back(entity);
@@ -115,6 +119,10 @@ void LevelScene::DespawnEntity(CollidableEntity* entity) {
 		int index = std::distance(entities.begin(), it);
 
 		entities.erase(it);
+	}
+
+	for (BulletEntity* bullet : bullets) {
+		bullet->RemoveToCheck(entity);
 	}
 }
 

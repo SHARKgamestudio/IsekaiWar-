@@ -31,10 +31,11 @@ StandardFighter::StandardFighter(sf::Vector2f position, float radius, float heal
 }
 
 void StandardFighter::Update(float deltaTime) {
+	EnemyEntity::Update(deltaTime);
 
 	animator->Update(deltaTime);
 
-	if (GetHealth() <= 0) { Managers::GetInstance()->SceneManager->currentLevel->DespawnEntity(this); }
+	if (GetHealth() <= 0) Die();
 
 	if (!spawned) {
 		if (getPosition().y < spawn.y) {

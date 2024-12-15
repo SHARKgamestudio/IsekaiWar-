@@ -12,9 +12,9 @@ BulletEntity::BulletEntity(sf::Vector2f position, sf::Texture* texture, sf::Vect
 }
 
 void BulletEntity::Update(float deltaTime) {
-	Entity::Update(deltaTime);
+	CollidableEntity::Update(deltaTime);
 
-	hitbox->CheckCollisions();
+	CheckCollisions();
 
 	sf::Vector2f pos = getPosition();
 	if (-10 > pos.x || pos.x > 810 || -10 > pos.y || pos.y > 610) {

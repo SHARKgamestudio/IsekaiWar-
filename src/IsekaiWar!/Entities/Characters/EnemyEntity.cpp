@@ -9,5 +9,5 @@ EnemyEntity::EnemyEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector
 }
 
 void EnemyEntity::Update(float deltaTime) {
-	// LOGIC GOES HERE //
+	CollidableEntity::Update(deltaTime);
 }

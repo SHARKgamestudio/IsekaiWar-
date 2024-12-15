@@ -65,7 +65,7 @@ void HitboxModule::CheckCollisions() {
 		sf::Vector2f difference = entity->getPosition() - otherEntity->getPosition();
 		float distance = sqrtf(difference.y * difference.y + difference.x * difference.x);
 
-		if (distance < radius + entity->hitbox->radius) {
+		if (distance < radius + otherEntity->radius) {
 			entitiesHit.push_back(otherEntity);
 		}
 	}

@@ -38,6 +38,7 @@ public:
 	void Resume();
 
 	std::vector<CollidableEntity*>* GetEntities();
+	PlayerEntity* GetPlayer();
 	void virtual Update(float dt);
 	void virtual Draw(sf::RenderWindow& window) override;
 

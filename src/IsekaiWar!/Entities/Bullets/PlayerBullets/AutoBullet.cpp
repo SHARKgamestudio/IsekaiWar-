@@ -44,7 +44,7 @@ void AutoBullet::Update(float deltaTime) {
 
 	animator.Update(deltaTime);
 
-	for (CollidableEntity* entityHit : hitbox->entitiesHit) {
+	for (CollidableEntity* entityHit : entitiesHit) {
 
 		LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entityHit);
 
