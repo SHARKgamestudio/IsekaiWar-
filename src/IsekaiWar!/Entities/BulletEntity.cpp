@@ -15,8 +15,9 @@ void BulletEntity::Update(float deltaTime) {
 	Entity::Update(deltaTime);
 
 	hitbox->CheckCollisions();
-}
 
-void BulletEntity::Despawn() {
-	Managers::GetInstance()->SceneManager->currentLevel->DespawnBullet(this);
+	sf::Vector2f pos = getPosition();
+	if (-10 > pos.x || pos.x > 810 || -10 > pos.y || pos.y > 610) {
+		toDisable = true;
+	}
 }

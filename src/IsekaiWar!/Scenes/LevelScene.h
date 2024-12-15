@@ -29,6 +29,9 @@ protected:
 	std::vector<VisualEffectEntity*> visualEffects; //mettre en const à terme
 	std::vector<BulletEntity*> bullets;
 
+	std::vector<CollidableEntity*> entitiesToDestroy;
+	std::vector<BulletEntity*> bulletsToDestroy;
+
 public:
 
 	void Pause();
