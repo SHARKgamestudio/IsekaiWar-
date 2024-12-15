@@ -18,6 +18,6 @@ void BulletEntity::Update(float deltaTime) {
 
 	sf::Vector2f pos = getPosition();
 	if (-10 > pos.x || pos.x > 810 || -10 > pos.y || pos.y > 610) {
-		toDisable = true;
+		Die();
 	}
 }
