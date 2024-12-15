@@ -1,11 +1,5 @@
 #pragma once
 
-#pragma region Extrenal Dependencies
-
-#include <vector>
-
-#pragma endregion
-
 #pragma region Local Dependencies
 
 #include "../BulletEntity.h"

@@ -32,6 +32,8 @@ PlayerEntity::PlayerEntity(sf::Vector2f position, sf::Texture* texture, sf::Vect
 }
 
 void PlayerEntity::Update(float deltaTime) {
+	CharacterEntity::Update(deltaTime);
+
 	float horizontal = inputs->GetAxis("Horizontal");
 	float vertical = inputs->GetAxis("Vertical");
 

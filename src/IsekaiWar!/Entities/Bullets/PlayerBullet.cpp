@@ -2,7 +2,6 @@
 
 #pragma region Local Dependencies
 
-#include "../LivingEntity.h"
 #include "../../Managers.h"
 
 #pragma endregion
@@ -18,4 +17,3 @@ PlayerBullet::PlayerBullet(sf::Vector2f position, sf::Texture* texture, sf::Vect
 void PlayerBullet::Spawn() {
 	Managers::GetInstance()->SceneManager->currentLevel->SpawnPlayerBullet(this);
 }
-

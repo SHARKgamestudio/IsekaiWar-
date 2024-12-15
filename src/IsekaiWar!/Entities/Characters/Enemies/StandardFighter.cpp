@@ -2,7 +2,7 @@
 
 #include "../../../Managers.h"
 #include "../../Bullets/EnemyBullets/StandardBullet.h"
-#include "../../../Managers.h"
+#include "../../../Managers/ResourceManager.h"
 
 StandardFighter::StandardFighter(float x, float y, float radius, float health)
 	: EnemyEntity(x, -256, Managers::GetInstance()->ResourceManager->GetTexture("enemy"), 5, 4, radius, health) {
@@ -31,10 +31,13 @@ StandardFighter::StandardFighter(sf::Vector2f position, float radius, float heal
 }
 
 void StandardFighter::Update(float deltaTime) {
+	CharacterEntity::Update(deltaTime);
+
+	std::cout << "StandardFighter::Update" << std::endl;
 
 	animator->Update(deltaTime);
 
-	if (GetHealth() <= 0) { Managers::GetInstance()->SceneManager->currentLevel->DespawnEntity(this); }
+	//if (GetHealth() <= 0) { toDisable = true; }
 
 	if (!spawned) {
 		if (getPosition().y < spawn.y) {
@@ -57,6 +60,6 @@ void StandardFighter::Update(float deltaTime) {
 		
 		setPosition(sf::Vector2f(spawn.x + x - (256/2), spawn.y + y - (256 / 2)));
 
-		shoot->Shoot(new StandardBullet(getPosition(), Managers::GetInstance()->ResourceManager.GetTexture("player"), sf::Vector2i(1, 1)));
+		//(new StandardBullet(this->getPosition()))->Spawn();
 	}
 }

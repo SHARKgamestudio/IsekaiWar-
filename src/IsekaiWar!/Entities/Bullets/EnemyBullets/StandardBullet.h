@@ -9,9 +9,9 @@
 
 class StandardBullet : public EnemyBullet, public MoveModule {
 public:
-	StandardBullet(float x, float y, sf::Texture* texture, int columns = 1, int rows = 1);
-	StandardBullet(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split = sf::Vector2i(1, 1));
+	StandardBullet(float x, float y);
+	StandardBullet(sf::Vector2f position);
 
 	void Move(float deltaTime);
-	void virtual Update(float deltaTime, std::vector<CollidableEntity*> entities);
+	void Update(float deltaTime);
 };
