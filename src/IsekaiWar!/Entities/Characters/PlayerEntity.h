@@ -22,7 +22,7 @@ private:
 	InputManager* inputs;
 public:
 	PlayerEntity(float x, float y, sf::Texture* texture, int columns = 1, int rows = 1, float radius = 8, float health = 1);
-	PlayerEntity(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, sf::Vector2i split = sf::Vector2i(1, 1), float radius = 8, float health = 1);
+	PlayerEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split = sf::Vector2i(1, 1), float radius = 8, float health = 1);
 
 	void Update(float deltaTime);
 };

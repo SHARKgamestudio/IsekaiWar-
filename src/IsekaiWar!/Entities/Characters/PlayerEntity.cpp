@@ -21,7 +21,7 @@ PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, 
 	this->animator->Play("idle");
 }
 
-PlayerEntity::PlayerEntity(sf::Vector2f position, sf::Vector2f scale, sf::Texture* texture, sf::Vector2i split, float radius, float health)
+PlayerEntity::PlayerEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float health)
 	: CharacterEntity(position, texture, split, radius, health),
 	ShootModule(sf::Vector2f(0, -1)) {
 	this->spritesheet.setOrigin(256 / 2, 256 / 2);

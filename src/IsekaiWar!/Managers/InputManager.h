@@ -51,8 +51,8 @@ private:
 	
 	std::vector<Key> keys{
 		Key("Auto", sf::Keyboard::X, 0),
-		Key("Special", sf::Keyboard::Space, 0),
-		Key("Ult", sf::Keyboard::C, 0)
+		Key("Special", sf::Keyboard::Space, 2),
+		Key("Ult", sf::Keyboard::C, 2)
 	};
 
 	bool joystickConnected = false;

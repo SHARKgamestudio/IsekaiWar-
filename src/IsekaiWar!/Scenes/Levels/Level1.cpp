@@ -1,10 +1,11 @@
+#include "Level1.h"
+
 #pragma region External Dependencies
 
-#include "Level1.h"
 #include "../../Managers.h"
 #include "../../Entities/BackgroundEntity.h"
 #include "../../Entities/Bullets/PlayerBullets/SpecialBullet.h"
-#include "../../Entities/Characters/EnemyEntity.h"
+#include "../../Entities/Characters/Enemies/StandardFighter.h"
 
 #pragma endregion
 
@@ -16,7 +17,8 @@ void Level1::Load() {
 	};
 
 	std::vector<CollidableEntity*> newEntities = {
-		new EnemyEntity(800 / 2, 150, Managers::GetInstance()->ResourceManager->GetTexture("fireball"), 6, 1, 8, 1)
+		new StandardFighter(196, 125, 20, 3),
+		new StandardFighter(640, 300, 20, 3)
 	};
 
 	std::vector<VisualEffectEntity*> newVisualEffects;
