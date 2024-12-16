@@ -21,6 +21,8 @@
 
 class LevelScene : public Scene {
 protected:
+	Clock clock;
+
 	PlayerEntity* player;
 	std::vector<BackgroundEntity*> backgrounds; //mettre en const à terme
 	std::vector<EnemyEntity*> ennemies; //mettre en const à terme
@@ -34,6 +36,9 @@ protected:
 public:
 	std::vector<CollidableEntity*>* GetEntities();
 	PlayerEntity* GetPlayer();
+
+	void virtual Load();
+
 	void virtual Update(float dt);
 	void virtual Draw(sf::RenderWindow& window) override;
 

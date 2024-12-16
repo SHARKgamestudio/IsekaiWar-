@@ -31,7 +31,7 @@ void Level1::Load() {
 	}
 
 	for (EnemyEntity* ennemy : newEnnemies) {
-		SpawnEnnemy(ennemy);
+		SpawnEnnemy(ennemy, 0);
 	}
 
 	player = new PlayerEntity(800/2, 600/2, Managers::GetInstance()->ResourceManager->GetTexture("player"), 5, 4, 32.f, 100.f);
