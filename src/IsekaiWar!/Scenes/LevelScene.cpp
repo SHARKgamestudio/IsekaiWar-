@@ -81,7 +81,7 @@ PlayerEntity* LevelScene::GetPlayer() {
 }
 
 void LevelScene::Load() {
-	clock.Start();
+
 }
 
 void LevelScene::SpawnPlayerBullet(BulletEntity* bullet) {
@@ -108,7 +108,7 @@ void LevelScene::DespawnBullet(BulletEntity* bullet) {
 	}
 }
 
-void LevelScene::SpawnEnnemy(EnemyEntity* ennemy, float time) {
+void LevelScene::SpawnEnnemy(EnemyEntity* ennemy) {
 	for (BulletEntity* bullet : bullets) {
 		bullet->AddToCheck(ennemy);
 	}

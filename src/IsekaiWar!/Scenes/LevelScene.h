@@ -21,8 +21,6 @@
 
 class LevelScene : public Scene {
 protected:
-	Clock clock;
-
 	PlayerEntity* player;
 	std::vector<BackgroundEntity*> backgrounds; //mettre en const à terme
 	std::vector<EnemyEntity*> ennemies; //mettre en const à terme
@@ -46,7 +44,7 @@ public:
 	void virtual SpawnEnnemyBullet(BulletEntity* bullet);
 	void virtual DespawnBullet(BulletEntity* bullet);
 
-	void virtual SpawnEnnemy(EnemyEntity* ennemy, float time);
+	void virtual SpawnEnnemy(EnemyEntity* ennemy);
 	void virtual DespawnEnnemy(EnemyEntity* ennemy);
 
 	void virtual SpawnEntity(CollidableEntity* entity);
