@@ -5,8 +5,8 @@
 #include "../../../Managers.h"
 #include "../../../Utils/Maths.h"
 
-# define CIRCLE_RADIUS 256
-# define START_DISTANCE 25
+#define CIRCLE_RADIUS 256
+#define START_DISTANCE 25
 
 StandardFighter::StandardFighter(float x, float y)
 	: EnemyEntity(x, -256, Managers::GetInstance()->ResourceManager->GetTexture("enemy"), 5, 4, 64, 2) {

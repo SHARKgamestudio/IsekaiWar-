@@ -6,38 +6,45 @@
 
 #pragma endregion
 
-void LevelScene::Update(float dt) {
+void LevelScene::Update(float deltaTime) {
 	// PARCOURS D'UPDATES
-	player->Update(dt);
+	player->Update(deltaTime);
 
 	for (BackgroundEntity* background : backgrounds) {
-		background->Update(dt);
+		background->Update(deltaTime);
 	}
 
 	for (CollidableEntity* entity : entities) {
-		entity->Update(dt);
+		entity->Update(deltaTime);
 
 		if (entity->ToDestroy()) {
 			entitiesToDestroy.push_back(entity);
 		}
 	}
-	/*
-	for (VisualEffectEntity* visualEffect : visualEffects) {
-		visualEffect->Update(dt);
+
+	for (EnemyEntity* ennemy : ennemies) {
+		ennemy->Update(deltaTime);
+
+		if (ennemy->ToDestroy()) {
+			ennemiesToDestroy.push_back(ennemy);
+		}
 	}
-	*/
+
 	for (BulletEntity* bullet : bullets) {
-		bullet->Update(dt);
+		bullet->Update(deltaTime);
 
 		if (bullet->ToDestroy()) {
 			bulletsToDestroy.push_back(bullet);
 		}
 	}
 
-
 	// PARCOURS DE DESPAWN
 	for (CollidableEntity* entity : entitiesToDestroy) {
 		DespawnEntity(entity);
+	}
+
+	for (EnemyEntity* ennemy : ennemiesToDestroy) {
+		DespawnEnnemy(ennemy);
 	}
 
 	for (BulletEntity* bullet : bulletsToDestroy) {
@@ -53,14 +60,15 @@ void LevelScene::Draw(sf::RenderWindow& window) {
 	for (CollidableEntity* entity : entities) {
 		window.draw(*entity);
 	}
-	/*
-	for (VisualEffectEntity* visualEffect : visualEffects) {
-		window.draw(*visualEffect);
+
+	for (EnemyEntity* ennemy : ennemies) {
+		window.draw(*ennemy);
 	}
-	*/
+
 	for (BulletEntity* bullet : bullets) {
 		window.draw(*bullet);
 	}
+
 	window.draw(*player);
 }
 
@@ -73,8 +81,8 @@ PlayerEntity* LevelScene::GetPlayer() {
 }
 
 void LevelScene::SpawnPlayerBullet(BulletEntity* bullet) {
-	for (CollidableEntity* entity : entities) {
-		bullet->AddToCheck(entity);
+	for (EnemyEntity* ennemy : ennemies) {
+		bullet->AddToCheck(ennemy);
 	}
 
 	bullets.push_back(bullet);
@@ -93,6 +101,28 @@ void LevelScene::DespawnBullet(BulletEntity* bullet) {
 		int index = std::distance(bullets.begin(), it);
 
 		bullets.erase(it);
+	}
+}
+
+void LevelScene::SpawnEnnemy(EnemyEntity* ennemy, float time) {
+	for (BulletEntity* bullet : bullets) {
+		bullet->AddToCheck(ennemy);
+	}
+
+	ennemies.push_back(ennemy);
+}
+
+void LevelScene::DespawnEnnemy(EnemyEntity* ennemy) {
+	auto it = std::find(ennemies.begin(), ennemies.end(), ennemy);
+
+	if (it != ennemies.end()) {
+		int index = std::distance(ennemies.begin(), it);
+
+		ennemies.erase(it);
+	}
+
+	for (BulletEntity* bullet : bullets) {
+		bullet->RemoveToCheck(ennemy);
 	}
 }
 
