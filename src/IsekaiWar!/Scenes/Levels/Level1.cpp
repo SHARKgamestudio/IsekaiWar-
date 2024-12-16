@@ -6,10 +6,13 @@
 #include "../../Entities/BackgroundEntity.h"
 #include "../../Entities/Bullets/PlayerBullets/SpecialBullet.h"
 #include "../../Entities/Characters/Enemies/StandardFighter.h"
+#include "../../Utils/Clock.h"
 
 #pragma endregion
 
 void Level1::Load() {
+
+	Clock clock(true);
 
 	std::vector<BackgroundEntity*> newBackgrounds = {
 		new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("water"))
@@ -31,7 +34,7 @@ void Level1::Load() {
 	}
 
 	for (EnemyEntity* ennemy : newEnnemies) {
-		SpawnEnnemy(ennemy, 0);
+		SpawnEnnemy(ennemy);
 	}
 
 	player = new PlayerEntity(800/2, 600/2, Managers::GetInstance()->ResourceManager->GetTexture("player"), 5, 4, 32.f, 100.f);
