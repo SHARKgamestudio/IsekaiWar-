@@ -14,7 +14,6 @@ StandardFighter::StandardFighter(float x, float y)
 	this->time = 0;
 	this->spawned = false;
 	this->spawn = sf::Vector2f(x, y);
-	this->shoot = new ShootModule(sf::Vector2f(0, 1));
 	this->spritesheet.setOrigin(256 / 2, 256 / 2);
 	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 3) });
 	this->animator->Play("idle");
@@ -26,7 +25,6 @@ StandardFighter::StandardFighter(sf::Vector2f position)
 	this->time = 0;
 	this->spawned = false;
 	this->spawn = position;
-	this->shoot = new ShootModule(sf::Vector2f(0, 1));
 	this->spritesheet.setOrigin(256 / 2, 256 / 2);
 	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 3) });
 	this->animator->Play("idle");

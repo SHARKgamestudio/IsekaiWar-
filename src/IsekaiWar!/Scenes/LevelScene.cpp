@@ -3,11 +3,11 @@
 #pragma region External Dependencies
 
 #include "../Entities/Bullets/PlayerBullets/SpecialBullet.h"
+#include "../Utils/Clock.h"
 
 #pragma endregion
 
 void LevelScene::Update(float deltaTime) {
-	// PARCOURS D'UPDATES
 	player->Update(deltaTime);
 
 	for (BackgroundEntity* background : backgrounds) {
@@ -78,6 +78,10 @@ std::vector<CollidableEntity*>* LevelScene::GetEntities() {
 
 PlayerEntity* LevelScene::GetPlayer() {
 	return player;
+}
+
+void LevelScene::Load() {
+	clock.Start();
 }
 
 void LevelScene::SpawnPlayerBullet(BulletEntity* bullet) {
