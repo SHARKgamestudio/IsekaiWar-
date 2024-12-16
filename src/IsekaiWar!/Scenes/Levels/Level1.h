@@ -3,8 +3,12 @@
 #pragma region External Dependencies
 
 #include <SFML/Graphics.hpp>
-#include "../LevelScene.h"
 
+#pragma endregion
+
+#pragma region Local Dependencies
+
+#include "../LevelScene.h"
 
 #pragma endregion
 

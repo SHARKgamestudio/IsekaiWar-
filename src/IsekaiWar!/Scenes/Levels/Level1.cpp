@@ -2,12 +2,17 @@
 
 #pragma region External Dependencies
 
+#include <iostream>
+
+#pragma endregion
+
+#pragma region Local Dependencies
+
 #include "../../Managers.h"
 #include "../../Entities/BackgroundEntity.h"
 #include "../../Entities/Bullets/PlayerBullets/SpecialBullet.h"
 #include "../../Entities/Characters/Enemies/StandardFighter.h"
 #include "../../Utils/Clock.h"
-#include <iostream>
 
 #pragma endregion
 
@@ -47,7 +52,6 @@ void Level1::Update(float deltaTime) {
 	float time = clock->GetTime();
 
 	for (int i = 0; i < ennemiesPool.size(); i++) {
-		std::cout << time << std::endl;
 		if (time >= float(ennemiesPool[i]->birth)) {
 			SpawnEnnemy(ennemiesPool[i]);
 			ennemiesPool.erase(ennemiesPool.begin() + i);

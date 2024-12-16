@@ -7,6 +7,7 @@
 #include "../Bullets/PlayerBullets/AutoBullet.h"
 #include "../Bullets/PlayerBullets/SpecialBullet.h"
 #include "../Bullets/PlayerBullets/UltimeBullet.h"
+#include <iostream>
 
 #pragma endregion
 
@@ -41,6 +42,8 @@ PlayerEntity::PlayerEntity(sf::Vector2f position, sf::Texture* texture, sf::Vect
 }
 
 void PlayerEntity::Update(float deltaTime) {
+
+	std::cout << "Health : " << GetHealth() << std::endl;
 
 	canAuto = clockAuto.Update(deltaTime) ? true : canAuto;
 	canSpecial = clockSpecial.Update(deltaTime) ? true : canSpecial;
