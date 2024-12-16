@@ -14,8 +14,6 @@
 
 #pragma endregion
 
-
-
 namespace fs = std::filesystem;
 
 std::string OS::GetExecutablePath() {
