@@ -14,7 +14,6 @@
 #include "../Entities/BackgroundEntity.h"
 #include "../Entities/VisualEffectEntity.h"
 #include "../Entities/BulletEntity.h"
-#include "../Utils/Clock.h"
 #include "../Entities/Characters/PlayerEntity.h"
 
 #pragma endregion
@@ -22,7 +21,6 @@
 class LevelScene : public Scene {
 protected:
 
-	Clock clock;
 	PlayerEntity* player;
 	std::vector<BackgroundEntity*> backgrounds; //mettre en const à terme
 	std::vector<CollidableEntity*> entities; //mettre en const à terme
@@ -33,9 +31,6 @@ protected:
 	std::vector<BulletEntity*> bulletsToDestroy;
 
 public:
-
-	void Pause();
-	void Resume();
 
 	std::vector<CollidableEntity*>* GetEntities();
 	PlayerEntity* GetPlayer();

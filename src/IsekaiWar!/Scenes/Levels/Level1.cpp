@@ -10,7 +10,6 @@
 #pragma endregion
 
 void Level1::Load() {
-	clock.Start();
 
 	std::vector<BackgroundEntity*> newBackgrounds = {
 		new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("water"))

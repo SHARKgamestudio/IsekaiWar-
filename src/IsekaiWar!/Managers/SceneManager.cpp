@@ -19,14 +19,12 @@ SceneManager::SceneManager() {
 }
 
 void SceneManager::Pause() {
-	currentLevel->Pause();
 	currentScene = mainMenu["pause"];
 	currentScene->Load();
 }
 
 void SceneManager::Resume() {
 	currentScene = currentLevel;
-	currentLevel->Resume();
 }
 
 void SceneManager::BackToMainMenu() {

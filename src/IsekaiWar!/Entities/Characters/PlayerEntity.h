@@ -5,18 +5,21 @@
 #include "../CharacterEntity.h"
 #include "../../Rendering/Animator.h"
 #include "../../Modules/ShootModule.h"
-#include "../../Utils/Clock.h"
+#include "../../Utils/IntervalClock.h"
 
 #pragma endregion
 
 class InputManager;
 class UltimeBullet;
 
-class PlayerEntity : public CharacterEntity, public ShootModule {
+class PlayerEntity : public CharacterEntity {
 private:
-	Clock clockAuto;
-	Clock clockSpecial;
-	Clock clockUlt;
+	IntervalClock clockAuto;
+	IntervalClock clockSpecial;
+	IntervalClock clockUltime;
+	bool canAuto;
+	bool canSpecial;
+	bool canUltime;
 
 	UltimeBullet* ultimeBullet;
 

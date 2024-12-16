@@ -56,7 +56,6 @@ void AutoBullet::Update(float deltaTime) {
 			return;
 		}
 
-		std::cout << "collision" << std::endl;
 		Attack(castEntity, deltaTime);
 		toDisable = true;
 		return;
