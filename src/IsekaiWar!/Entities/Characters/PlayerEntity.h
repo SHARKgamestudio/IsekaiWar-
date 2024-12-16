@@ -5,7 +5,6 @@
 #include "../CharacterEntity.h"
 #include "../../Rendering/Animator.h"
 #include "../../Modules/ShootModule.h"
-#include "../../Utils/IntervalClock.h"
 
 #pragma endregion
 
@@ -14,9 +13,6 @@ class UltimeBullet;
 
 class PlayerEntity : public CharacterEntity, public ShootModule {
 private:
-	IntervalClock clockAuto;
-	IntervalClock clockSpecial;
-	IntervalClock clockUltime;
 
 	Animator* animator;
 	float angle;

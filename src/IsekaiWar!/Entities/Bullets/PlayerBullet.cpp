@@ -6,6 +6,8 @@
 
 #pragma endregion
 
+#include <iostream>
+
 #define DIRECTION_X  0.f
 #define DIRECTION_Y -1.f
 

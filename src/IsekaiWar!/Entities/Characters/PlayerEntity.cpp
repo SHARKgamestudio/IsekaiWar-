@@ -13,10 +13,7 @@
 
 PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float health)
 	: CharacterEntity(x, y, texture, columns, rows, radius, health),
-	ShootModule(this),
-	clockAuto(IntervalClock(0.2f)),
-	clockSpecial(IntervalClock(1.f)),
-	clockUltime(IntervalClock(1.f)) 
+	ShootModule(this)
 {
 	this->spritesheet.setOrigin(256/2, 256/2);
 	this->angle = 0;
@@ -28,10 +25,7 @@ PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, 
 
 PlayerEntity::PlayerEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float health)
 	: CharacterEntity(position, texture, split, radius, health),
-	ShootModule(this),
-	clockAuto(IntervalClock(0.2f)),
-	clockSpecial(IntervalClock(1.f)),
-	clockUltime(IntervalClock(1.f)) 
+	ShootModule(this)
 {
 	this->spritesheet.setOrigin(256 / 2, 256 / 2);
 	this->angle = 0;
@@ -42,12 +36,10 @@ PlayerEntity::PlayerEntity(sf::Vector2f position, sf::Texture* texture, sf::Vect
 }
 
 void PlayerEntity::Update(float deltaTime) {
-
-	std::cout << "Health : " << GetHealth() << std::endl;
-
-	canAuto = clockAuto.Update(deltaTime) ? true : canAuto;
-	canSpecial = clockSpecial.Update(deltaTime) ? true : canSpecial;
-	canUltime = clockUltime.Update(deltaTime) ? true : canUltime;
+	CharacterEntity::Update(deltaTime);
+	ShootModule::Update(deltaTime);
+	
+	//std::cout << "Health : " << GetHealth() << std::endl;
 
 	float horizontal = inputs->GetAxis("Horizontal");
 	float vertical = inputs->GetAxis("Vertical");
@@ -77,16 +69,19 @@ void PlayerEntity::Update(float deltaTime) {
 	if (this->inputs->GetKey("Auto") && canAuto) {
 		ShootAuto();
 		canAuto = false;
+		clockAuto.Restart();
 	}
 
 	if (this->inputs->GetKeyDown("Special") && canSpecial) {
 		ShootSpecial();
 		canSpecial = false;
+		clockSpecial.Restart();
 	}
 
 	if (this->inputs->GetKeyDown("Ult") && canUltime) {
 		StartUltime();
 		canUltime = false;
+		clockUltime.Restart();
 	}
 	if (this->inputs->GetKeyUp("Ult") && ultimeBullet != nullptr) {
 		StopUltime();
