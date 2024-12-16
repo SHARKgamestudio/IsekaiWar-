@@ -44,4 +44,9 @@ void Level1::Update(float deltaTime) {
 			ennemiesPool.erase(ennemiesPool.begin() + i);
 		}
 	}
+
+	if (ennemies.size() == 0) {
+		clock->Resume();
+	}
+	else { clock->Pause(); }
 }
