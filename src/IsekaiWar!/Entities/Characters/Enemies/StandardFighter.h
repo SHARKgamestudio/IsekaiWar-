@@ -11,8 +11,8 @@ private:
 
 	Animator* animator;
 public:
-	StandardFighter(float x, float y);
-	StandardFighter(sf::Vector2f position);
+	StandardFighter(float x, float y, float birth = 0);
+	StandardFighter(sf::Vector2f position, float birth = 0);
 
 	void Update(float deltaTime) override;
 };

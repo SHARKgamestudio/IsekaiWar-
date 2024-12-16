@@ -8,8 +8,8 @@
 #define CIRCLE_RADIUS 256
 #define START_DISTANCE 25
 
-StandardFighter::StandardFighter(float x, float y)
-	: EnemyEntity(x, -256, Managers::GetInstance()->ResourceManager->GetTexture("enemy"), 5, 4, 64, 2) {
+StandardFighter::StandardFighter(float x, float y, float birth)
+	: EnemyEntity(x, -256, Managers::GetInstance()->ResourceManager->GetTexture("enemy"), birth, 5, 4, 64, 2) {
 	
 	this->time = 0;
 	this->spawned = false;
@@ -19,8 +19,8 @@ StandardFighter::StandardFighter(float x, float y)
 	this->animator->Play("idle");
 }
 
-StandardFighter::StandardFighter(sf::Vector2f position)
-	: EnemyEntity(sf::Vector2f(position.x, -256), Managers::GetInstance()->ResourceManager->GetTexture("enemy"), sf::Vector2i(5, 4), 64, 2) {
+StandardFighter::StandardFighter(sf::Vector2f position, float birth)
+	: EnemyEntity(sf::Vector2f(position.x, -256), Managers::GetInstance()->ResourceManager->GetTexture("enemy"), birth, sf::Vector2i(5, 4), 64, 2) {
 	
 	this->time = 0;
 	this->spawned = false;
