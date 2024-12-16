@@ -9,13 +9,13 @@
 
 AutoBullet::AutoBullet(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack, float speed, float speedAnimation)
 	: PlayerBullet(x, y, texture, columns, rows, radius, attack, speed),
-	animator(&spritesheet, { new Animation("forward", 0, columns * rows, speedAnimation) }) {
+	animator(&spritesheet, { new Animation("forward", 0, (columns * rows) - 1, speedAnimation) }) {
 	animator.Play("forward");
 }
 
 AutoBullet::AutoBullet(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float attack, float speed, float speedAnimation)
 	: PlayerBullet(position, texture, split, radius, attack, speed),
-	animator(&spritesheet, { new Animation("forward", 0, split.x * split.y, speedAnimation) }) {
+	animator(&spritesheet, { new Animation("forward", 0, (split.x * split.y) - 1, speedAnimation) }) {
 	animator.Play("forward");
 }
 

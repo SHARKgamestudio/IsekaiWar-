@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../Utils/IntervalClock.h"
 
 enum StateAuto {
 	Neutral,
@@ -13,6 +14,11 @@ class UltimeBullet;
 
 class ShootModule {
 protected:
+
+	IntervalClock clockAuto;
+	IntervalClock clockSpecial;
+	IntervalClock clockUltime;
+
 	PlayerEntity* player;
 	UltimeBullet* ultimeBullet;
 	int currentBullet;
@@ -28,4 +34,6 @@ public:
 	void ShootSpecial();
 	void StartUltime();
 	void StopUltime();
+
+	void Update(float deltaTime);
 };

@@ -5,6 +5,8 @@
 #include "../Entities/Bullets/PlayerBullets/SpecialBullet.h"
 #include "../Utils/Clock.h"
 
+#include <iostream>
+
 #pragma endregion
 
 void LevelScene::Update(float deltaTime) {
@@ -88,7 +90,6 @@ void LevelScene::SpawnPlayerBullet(BulletEntity* bullet) {
 	for (EnemyEntity* ennemy : ennemies) {
 		bullet->AddToCheck(ennemy);
 	}
-
 	bullets.push_back(bullet);
 }
 

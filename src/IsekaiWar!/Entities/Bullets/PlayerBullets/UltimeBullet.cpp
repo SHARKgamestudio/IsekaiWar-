@@ -9,7 +9,7 @@
 
 #pragma endregion
 
-#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("fireball")
+#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("fireAuto")
 #define COLUMNS 6
 #define ROWS 1
 #define RADIUS 30.f
