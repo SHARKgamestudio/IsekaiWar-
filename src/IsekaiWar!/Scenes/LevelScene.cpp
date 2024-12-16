@@ -7,6 +7,7 @@
 #pragma endregion
 
 void LevelScene::Update(float dt) {
+	// PARCOURS D'UPDATES
 	player->Update(dt);
 
 	for (BackgroundEntity* background : backgrounds) {
@@ -15,6 +16,10 @@ void LevelScene::Update(float dt) {
 
 	for (CollidableEntity* entity : entities) {
 		entity->Update(dt);
+
+		if (entity->ToDestroy()) {
+			entitiesToDestroy.push_back(entity);
+		}
 	}
 	/*
 	for (VisualEffectEntity* visualEffect : visualEffects) {
@@ -23,6 +28,20 @@ void LevelScene::Update(float dt) {
 	*/
 	for (BulletEntity* bullet : bullets) {
 		bullet->Update(dt);
+
+		if (bullet->ToDestroy()) {
+			bulletsToDestroy.push_back(bullet);
+		}
+	}
+
+
+	// PARCOURS DE DESPAWN
+	for (CollidableEntity* entity : entitiesToDestroy) {
+		DespawnEntity(entity);
+	}
+
+	for (BulletEntity* bullet : bulletsToDestroy) {
+		DespawnBullet(bullet);
 	}
 }
 
@@ -57,16 +76,20 @@ std::vector<CollidableEntity*>* LevelScene::GetEntities() {
 	return &entities;
 }
 
+PlayerEntity* LevelScene::GetPlayer() {
+	return player;
+}
+
 void LevelScene::SpawnPlayerBullet(BulletEntity* bullet) {
 	for (CollidableEntity* entity : entities) {
-		bullet->hitbox->AddToCheck(entity);
+		bullet->AddToCheck(entity);
 	}
 
 	bullets.push_back(bullet);
 }
 
 void LevelScene::SpawnEnnemyBullet(BulletEntity* bullet) {
-	bullet->hitbox->AddToCheck(player);
+	bullet->AddToCheck(player);
 
 	bullets.push_back(bullet);
 }
@@ -83,7 +106,7 @@ void LevelScene::DespawnBullet(BulletEntity* bullet) {
 
 void LevelScene::SpawnEntity(CollidableEntity* entity) {
 	for (BulletEntity* bullet : bullets) {
-		bullet->hitbox->AddToCheck(entity);
+		bullet->AddToCheck(entity);
 	}
 
 	entities.push_back(entity);
@@ -96,6 +119,10 @@ void LevelScene::DespawnEntity(CollidableEntity* entity) {
 		int index = std::distance(entities.begin(), it);
 
 		entities.erase(it);
+	}
+
+	for (BulletEntity* bullet : bullets) {
+		bullet->RemoveToCheck(entity);
 	}
 }
 

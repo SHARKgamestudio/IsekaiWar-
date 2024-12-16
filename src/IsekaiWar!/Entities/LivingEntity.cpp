@@ -10,7 +10,3 @@ LivingEntity::LivingEntity(sf::Vector2f position, sf::Texture* texture, sf::Vect
 	: CollidableEntity(position, texture, split, radius),
 	HealthModule(health) {
 }
-
-void LivingEntity::Despawn() {
-	Managers::GetInstance()->SceneManager->currentLevel->DespawnEntity(this);
-}

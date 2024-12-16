@@ -10,12 +10,15 @@
 #pragma endregion
 
 class InputManager;
+class UltimeBullet;
 
 class PlayerEntity : public CharacterEntity, public ShootModule {
 private:
 	Clock clockAuto;
 	Clock clockSpecial;
 	Clock clockUlt;
+
+	UltimeBullet* ultimeBullet;
 
 	Animator* animator;
 	float angle;

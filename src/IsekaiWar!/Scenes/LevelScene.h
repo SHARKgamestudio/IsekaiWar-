@@ -29,12 +29,16 @@ protected:
 	std::vector<VisualEffectEntity*> visualEffects; //mettre en const à terme
 	std::vector<BulletEntity*> bullets;
 
+	std::vector<CollidableEntity*> entitiesToDestroy;
+	std::vector<BulletEntity*> bulletsToDestroy;
+
 public:
 
 	void Pause();
 	void Resume();
 
 	std::vector<CollidableEntity*>* GetEntities();
+	PlayerEntity* GetPlayer();
 	void virtual Update(float dt);
 	void virtual Draw(sf::RenderWindow& window) override;
 

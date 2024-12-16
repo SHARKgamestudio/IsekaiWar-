@@ -14,5 +14,5 @@ public:
 	StandardFighter(float x, float y, float radius = 8, float health = 1);
 	StandardFighter(sf::Vector2f position, float radius = 8, float health = 1);
 
-	void Update(float deltaTime);
+	void Update(float deltaTime) override;
 };

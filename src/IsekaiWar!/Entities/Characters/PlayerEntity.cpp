@@ -4,8 +4,9 @@
 
 #include "../../Managers.h"
 #include "../../Utils/Maths.h"
-#include "../Bullets/PlayerBullets/SpecialBullet.h"
 #include "../Bullets/PlayerBullets/AutoBullet.h"
+#include "../Bullets/PlayerBullets/SpecialBullet.h"
+#include "../Bullets/PlayerBullets/UltimeBullet.h"
 
 #pragma endregion
 
@@ -65,6 +66,13 @@ void PlayerEntity::Update(float deltaTime) {
 
 	if (this->inputs->GetKeyDown("Special")) {
 		(new SpecialBullet(this->getPosition()))->Spawn();
+	}
+
+	if (this->inputs->GetKeyDown("Ult")) {
+		(ultimeBullet = new UltimeBullet(this->getPosition()))->Spawn();
+	}
+	if (this->inputs->GetKeyUp("Ult")) {
+		ultimeBullet->Die();
 	}
 
 	this->move(direction * deltaTime);

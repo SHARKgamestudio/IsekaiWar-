@@ -37,8 +37,9 @@ void HitboxModule::AddToCheck(CollidableEntity* otherEntity) {
 }
 
 void HitboxModule::UpdateLines() {
-	for (sf::Vertex* line : lines) {
-		line[0].position = entity->getPosition();
+	for (int i = 0; i < lines.size(); i++) {
+		lines[i][0].position = entity->getPosition();
+		lines[i][1].position = collisionsToCheck[i]->getPosition();
 	}
 }
 
@@ -64,7 +65,7 @@ void HitboxModule::CheckCollisions() {
 		sf::Vector2f difference = entity->getPosition() - otherEntity->getPosition();
 		float distance = sqrtf(difference.y * difference.y + difference.x * difference.x);
 
-		if (distance < radius + entity->hitbox->radius) {
+		if (distance < radius + otherEntity->radius) {
 			entitiesHit.push_back(otherEntity);
 		}
 	}

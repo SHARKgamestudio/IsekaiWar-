@@ -11,7 +11,6 @@ class CollidableEntity;
 
 class HitboxModule {
 public:
-
 	CollidableEntity* entity;
 	std::vector<CollidableEntity*> collisionsToCheck;
 	std::vector<CollidableEntity*> entitiesHit;
@@ -26,6 +25,6 @@ public:
 
 	void AddToCheck(CollidableEntity* otherEntity);
 	void RemoveToCheck(CollidableEntity* otherEntity);
-	void UpdateLines();
+	void virtual UpdateLines();
 	void virtual CheckCollisions();
 };
