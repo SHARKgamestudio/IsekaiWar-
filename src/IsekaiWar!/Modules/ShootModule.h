@@ -1,14 +1,24 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-class BulletEntity;
+enum StateAuto {
+	Neutral,
+	Fire,
+	Water,
+	FireAndWater,
+};
+
+class PlayerEntity;
 
 class ShootModule {
 protected:
-	sf::Vector2f directionShoot;
+	PlayerEntity* player;
+	int currentBullet;
 
 public:
-	ShootModule(sf::Vector2f directionShoot);
+	ShootModule();
 
-	void virtual Shoot(BulletEntity* bullet);
+	void ShootAuto();
+	void ShootSpecial();
+	void ShootUltime();
 };

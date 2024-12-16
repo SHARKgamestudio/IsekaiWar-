@@ -2,26 +2,38 @@
 
 #pragma region Local Dependencies
 
-#include "../Entities/BulletEntity.h"
-#include "../Entities/Bullets/PlayerBullet.h"
-
-#include "../Managers.h"
+#include "../Entities/Characters/PlayerEntity.h"
+#include "../Entities/Bullets/PlayerBullets/AutoBullet.h"
+#include "../Entities/Bullets/PlayerBullets/SpecialBullet.h"
+#include "../Entities/Bullets/PlayerBullets/UltimeBullet.h"
 
 #pragma endregion
 
-ShootModule::ShootModule(sf::Vector2f directionShoot) {
-	this->directionShoot = directionShoot;
+ShootModule::ShootModule() {
+	currentBullet = 0;
 }
 
-void ShootModule::Shoot(BulletEntity* bullet) {
-	if (dynamic_cast<PlayerBullet*>(bullet)) {
-		Managers::GetInstance()->SceneManager->currentLevel->SpawnPlayerBullet(bullet);
-		return;
+void ShootModule::ShootAuto() {
+	switch (currentBullet) {
+
+	case StateAuto::Neutral:
+		(new AutoBullet(player->getPosition()))->Spawn();
+
+	case StateAuto::Fire:
+		(new AutoBullet(player->getPosition()))->Spawn();
+
+	case StateAuto::Water:
+		(new AutoBullet(player->getPosition()))->Spawn();
+
+	case StateAuto::FireAndWater:
+		(new AutoBullet(player->getPosition()))->Spawn();
 	}
-	/*
-	if (dynamic_cast<EnnemyBullet*>(bullet)) {
-		Managers::GetInstance()->SceneManager->currentLevel->SpawnPlayerBullet(bullet);
-		return;
-	}
-	*/
+}
+
+void ShootModule::ShootSpecial() {
+	(new SpecialBullet(player->getPosition()))->Spawn();
+}
+
+void ShootModule::ShootUltime() {
+	(new UltimeBullet(player->getPosition()))->Spawn();
 }

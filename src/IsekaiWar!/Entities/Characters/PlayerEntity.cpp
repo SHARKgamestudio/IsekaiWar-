@@ -12,6 +12,7 @@
 
 PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float health)
 	: CharacterEntity(x, y, texture, columns, rows, radius, health),
+	ShootModule(),
 	clockAuto(IntervalClock(0.2f)),
 	clockSpecial(IntervalClock(1.f)),
 	clockUltime(IntervalClock(1.f)) 
@@ -80,17 +81,17 @@ void PlayerEntity::Update(float deltaTime) {
 	animator->Update(deltaTime);
 
 	if (this->inputs->GetKey("Auto") && canAuto) {
-		(new AutoBullet(this->getPosition()))->Spawn();
+		ShootAuto();
 		canAuto = false;
 	}
 
 	if (this->inputs->GetKeyDown("Special") && canSpecial) {
-		(new SpecialBullet(this->getPosition()))->Spawn();
+		ShootSpecial();
 		canSpecial = false;
 	}
 
 	if (this->inputs->GetKeyDown("Ult") && canUltime) {
-		(ultimeBullet = new UltimeBullet(this->getPosition()))->Spawn();
+		ShootUltime();
 		canUltime = false;
 	}
 	if (this->inputs->GetKeyUp("Ult") && ultimeBullet != nullptr) {

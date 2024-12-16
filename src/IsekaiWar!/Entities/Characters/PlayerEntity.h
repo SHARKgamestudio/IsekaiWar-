@@ -12,7 +12,7 @@
 class InputManager;
 class UltimeBullet;
 
-class PlayerEntity : public CharacterEntity {
+class PlayerEntity : public CharacterEntity, public ShootModule {
 private:
 	IntervalClock clockAuto;
 	IntervalClock clockSpecial;
