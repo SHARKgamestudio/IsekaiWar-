@@ -28,6 +28,10 @@ protected:
 	bool canUltime;
 
 public:
+
+	bool isFire;
+	bool isWater;
+
 	ShootModule(PlayerEntity* player);
 
 	void ShootAuto();
@@ -36,4 +40,5 @@ public:
 	void StopUltime();
 
 	void Update(float deltaTime);
+	void UpdateBullets();
 };

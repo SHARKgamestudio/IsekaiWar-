@@ -12,6 +12,7 @@
 #include "../../Entities/BackgroundEntity.h"
 #include "../../Entities/Bullets/PlayerBullets/SpecialBullet.h"
 #include "../../Entities/Characters/Enemies/StandardFighter.h"
+#include "../../Entities/PowerUps/FirePowerUp.h"
 #include "../../Utils/Clock.h"
 
 #pragma endregion
@@ -33,7 +34,7 @@ void Level1::Load() {
 
 	backgrounds.push_back(new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("water")));
 	player = new PlayerEntity(800/2, 600/2, Managers::GetInstance()->ResourceManager->GetTexture("player"), 5, 4, 32.f, 100.f);
-
+	SpawnEntity(new FirePowerUp(200, 0));
 	state = Playing;
 }
 

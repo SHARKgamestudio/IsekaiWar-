@@ -20,6 +20,9 @@ ShootModule::ShootModule(PlayerEntity* player)
 	clockSpecial(IntervalClock(1.f)),
 	clockUltime(IntervalClock(1.f)) 
 {
+	this->isFire = false;
+	this->isWater = false;
+
 	currentBullet = 0;
 	this->ultimeBullet = nullptr;
 	this->player = player;
@@ -65,4 +68,19 @@ void ShootModule::Update(float deltaTime) {
 	canAuto = clockAuto.Update(deltaTime) ? true : canAuto;
 	canSpecial = clockSpecial.Update(deltaTime) ? true : canSpecial;
 	canUltime = clockUltime.Update(deltaTime) ? true : canUltime;
+}
+
+void ShootModule::UpdateBullets() {
+	if (isFire and isWater) {
+		currentBullet = StateAuto::FireAndWater;
+	} 
+	else if (isFire) {
+		currentBullet = StateAuto::Fire;
+	}
+	else if (isWater) {
+		currentBullet = StateAuto::Water;
+	}
+	else {
+		currentBullet = StateAuto::Neutral;
+	}
 }

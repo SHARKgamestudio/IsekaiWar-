@@ -136,6 +136,8 @@ void LevelScene::SpawnEntity(CollidableEntity* entity) {
 		bullet->AddToCheck(entity);
 	}
 
+	entity->AddToCheck(player);
+
 	entities.push_back(entity);
 }
 
