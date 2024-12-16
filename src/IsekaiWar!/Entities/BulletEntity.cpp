@@ -1,18 +1,26 @@
 #include "BulletEntity.h"
 #include "../Managers.h"
 
-BulletEntity::BulletEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack)
+BulletEntity::BulletEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack, sf::Vector2f direction, float speed)
 	: CollidableEntity(x, y, texture, columns, rows, radius),
-	AttackModule(attack) {
+	AttackModule(attack),
+	MoveModule(direction, speed) {
 }
 
-BulletEntity::BulletEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float attack)
+BulletEntity::BulletEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float attack, sf::Vector2f direction, float speed)
 	: CollidableEntity(position, texture, split, radius),
-	AttackModule(attack) {
+	AttackModule(attack),
+	MoveModule(direction, speed) {
+}
+
+void BulletEntity::Move(float deltaTime) {
+	this->move(normalisedDirection * deltaTime * speed);
 }
 
 void BulletEntity::Update(float deltaTime) {
 	CollidableEntity::Update(deltaTime);
+
+	Move(deltaTime);
 
 	CheckCollisions();
 

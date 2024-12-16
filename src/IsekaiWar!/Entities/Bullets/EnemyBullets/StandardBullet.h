@@ -7,11 +7,10 @@
 
 #pragma endregion
 
-class StandardBullet : public EnemyBullet, public MoveModule {
+class StandardBullet : public EnemyBullet {
 public:
 	StandardBullet(float x, float y);
 	StandardBullet(sf::Vector2f position);
 
-	void Move(float deltaTime);
 	void Update(float deltaTime);
 };

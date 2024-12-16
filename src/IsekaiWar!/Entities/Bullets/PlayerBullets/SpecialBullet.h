@@ -8,13 +8,12 @@
 
 #pragma endregion
 
-class SpecialBullet : public PlayerBullet, public MoveModule {
+class SpecialBullet : public PlayerBullet {
 	private:
 		Animator animator;
 	public:
-		SpecialBullet(float x, float y, int columns = 6, int rows = 1);
-		SpecialBullet(sf::Vector2f position, sf::Vector2i split = sf::Vector2i(6, 1));
+		SpecialBullet(float x, float y);
+		SpecialBullet(sf::Vector2f position);
 
-		void Move(float deltaTime);
 		void Update(float deltaTime) override;
 };

@@ -2,35 +2,38 @@
 
 #pragma region Local Dependencies
 
+#include "../../LivingEntity.h"
 #include "../../../Managers.h"
 
 #pragma endregion
 
+#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("laser")
+#define COLUMNS 1
+#define ROWS 1
+#define RADIUS 5.f
+#define ATTACK 5.f
+#define SPEED 700.f
+#define SPEED_ANIMATION 2.f
+
 StandardBullet::StandardBullet(float x, float y)
-	: EnemyBullet(x, y, Managers::GetInstance()->ResourceManager->GetTexture("laser"), 1, 1, 10, 10000),
-	MoveModule(sf::Vector2f(0.f, -1.f), 30.f) {
-
-
+	: EnemyBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED)
+{
+	spritesheet.setScale(0.5f, 0.5f);
 	spritesheet.setOrigin(64 / 2, 64 / 2);
 	spritesheet.setRotation(90);
 }
 
 StandardBullet::StandardBullet(sf::Vector2f position)
-	: EnemyBullet(position, Managers::GetInstance()->ResourceManager->GetTexture("laser"), sf::Vector2i(1, 1), 10, 10000),
-	MoveModule(sf::Vector2f(0.0f, 1.0f), 800.0f) {
-
+	: EnemyBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED)
+{
+	spritesheet.setScale(0.5f, 0.5f);
 	spritesheet.setOrigin(64 / 2, 64 / 2);
 	spritesheet.setRotation(90);
-}
 
-void StandardBullet::Move(float deltaTime) {
-	this->move(normalisedDirection * deltaTime * speed);
 }
 
 void StandardBullet::Update(float deltaTime) {
-	BulletEntity::Update(deltaTime);
-
-	Move(deltaTime);
+	EnemyBullet::Update(deltaTime);
 
 	for (CollidableEntity* entityHit : entitiesHit) {
 		LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entityHit);

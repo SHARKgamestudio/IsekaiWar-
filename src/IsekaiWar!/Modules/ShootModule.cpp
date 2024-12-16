@@ -3,7 +3,7 @@
 #pragma region Local Dependencies
 
 #include "../Entities/Characters/PlayerEntity.h"
-#include "../Entities/Bullets/PlayerBullets/AutoBullet.h"
+#include "../Entities/Bullets/PlayerBullets/AutoBullets/FireAuto.h"
 #include "../Entities/Bullets/PlayerBullets/SpecialBullet.h"
 #include "../Entities/Bullets/PlayerBullets/UltimeBullet.h"
 
@@ -23,16 +23,16 @@ void ShootModule::ShootAuto() {
 	switch (currentBullet) {
 
 	case StateAuto::Neutral:
-		(new AutoBullet(player->getPosition()))->Spawn();
+		(new FireAuto(player->getPosition()))->Spawn();
 
 	case StateAuto::Fire:
-		(new AutoBullet(player->getPosition()))->Spawn();
+		(new FireAuto(player->getPosition()))->Spawn();
 
 	case StateAuto::Water:
-		(new AutoBullet(player->getPosition()))->Spawn();
+		(new FireAuto(player->getPosition()))->Spawn();
 
 	case StateAuto::FireAndWater:
-		(new AutoBullet(player->getPosition()))->Spawn();
+		(new FireAuto(player->getPosition()))->Spawn();
 	}
 }
 

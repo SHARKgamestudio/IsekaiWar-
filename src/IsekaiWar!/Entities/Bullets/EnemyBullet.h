@@ -8,8 +8,8 @@
 
 class EnemyBullet : public BulletEntity {
 public:
-	EnemyBullet(float x, float y, sf::Texture* texture, int columns = 1, int rows = 1, float radius = 8, float attack = 1);
-	EnemyBullet(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split = sf::Vector2i(1, 1), float radius = 8, float attack = 1);
+	EnemyBullet(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack, float speed);
+	EnemyBullet(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float attack, float speed);
 
 	void Spawn();
 };
