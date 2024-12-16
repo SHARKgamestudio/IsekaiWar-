@@ -18,3 +18,7 @@ float Maths::Clamp(float value, float min, float max) {
 float Maths::Lerp(float a, float b, float t) {
 	return a + (b - a) * t;
 }
+
+float Maths::Equals(float a, float b, float epsilon) {
+	return (a < b + epsilon && a > b - epsilon);
+}

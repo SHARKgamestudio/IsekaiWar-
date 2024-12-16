@@ -16,8 +16,8 @@ void Level1::Load() {
 	};
 
 	std::vector<CollidableEntity*> newEntities = {
-		new StandardFighter(196, 125, 20, 3),
-		new StandardFighter(640, 300, 20, 3)
+		new StandardFighter(196, 125),
+		new StandardFighter(640, 300)
 	};
 
 	std::vector<VisualEffectEntity*> newVisualEffects;

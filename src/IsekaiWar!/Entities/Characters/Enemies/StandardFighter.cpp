@@ -3,61 +3,54 @@
 #include "../../../Managers.h"
 #include "../../Bullets/EnemyBullets/StandardBullet.h"
 #include "../../../Managers.h"
+#include "../../../Utils/Maths.h"
 
-StandardFighter::StandardFighter(float x, float y, float radius, float health)
-	: EnemyEntity(x, -256, Managers::GetInstance()->ResourceManager->GetTexture("enemy"), 5, 4, radius, health) {
+# define CIRCLE_RADIUS 256
+# define START_DISTANCE 25
+
+StandardFighter::StandardFighter(float x, float y)
+	: EnemyEntity(x, -256, Managers::GetInstance()->ResourceManager->GetTexture("enemy"), 5, 4, 64, 2) {
 	
+	this->time = 0;
+	this->spawned = false;
 	this->spawn = sf::Vector2f(x, y);
 	this->shoot = new ShootModule(sf::Vector2f(0, 1));
-	
 	this->spritesheet.setOrigin(256 / 2, 256 / 2);
-
 	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 3) });
 	this->animator->Play("idle");
 }
 
-StandardFighter::StandardFighter(sf::Vector2f position, float radius, float health)
-	: EnemyEntity(sf::Vector2f(position.x, -256), Managers::GetInstance()->ResourceManager->GetTexture("enemy"), sf::Vector2i(5, 4), radius, health) {
+StandardFighter::StandardFighter(sf::Vector2f position)
+	: EnemyEntity(sf::Vector2f(position.x, -256), Managers::GetInstance()->ResourceManager->GetTexture("enemy"), sf::Vector2i(5, 4), 64, 2) {
 	
+	this->time = 0;
+	this->spawned = false;
 	this->spawn = position;
-
 	this->shoot = new ShootModule(sf::Vector2f(0, 1));
-
-	
 	this->spritesheet.setOrigin(256 / 2, 256 / 2);
-
 	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 3) });
 	this->animator->Play("idle");
 }
 
+IntervalClock shootClock(0.5f);
 void StandardFighter::Update(float deltaTime) {
 	EnemyEntity::Update(deltaTime);
 
 	animator->Update(deltaTime);
 
-	if (GetHealth() <= 0) Die();
-
+	time += deltaTime;
+	
 	if (!spawned) {
-		if (getPosition().y < spawn.y) {
-			setPosition(getPosition().x, getPosition().y + 100 * deltaTime);
+		setPosition(getPosition().x, Maths::Lerp(getPosition().y, spawn.y, deltaTime));
+		if (Maths::Equals(getPosition().y, spawn.y, START_DISTANCE)) spawned = true;
+	}
+	else {
+		setPosition(Maths::Lerp(getPosition().x, spawn.x + std::cos(time) * CIRCLE_RADIUS, deltaTime), Maths::Lerp(getPosition().y, spawn.y + std::sin(time) * CIRCLE_RADIUS, deltaTime));
+
+		if (shootClock.Update(deltaTime)) {
+			(new StandardBullet(getPosition() + sf::Vector2f(0, 128)))->Spawn();
 		}
-		else { setPosition(getPosition().x, spawn.y); }
 	}
 
-	if (getPosition() == spawn) {
-		if (!spawned) {
-			spawned = true;
-		}
-	}
-
-	if (spawned) {
-		test+=deltaTime;
-
-		float x = std::cos(test) * 256;
-		float y = std::sin(test) * 256;
-		
-		setPosition(sf::Vector2f(spawn.x + x - (256/2), spawn.y + y - (256 / 2)));
-
-		//shoot->Shoot(new StandardBullet(getPosition(), Managers::GetInstance()->ResourceManager.GetTexture("player"), sf::Vector2i(1, 1)));
-	}
+	if(GetHealth() <= 0) Die();
 }
