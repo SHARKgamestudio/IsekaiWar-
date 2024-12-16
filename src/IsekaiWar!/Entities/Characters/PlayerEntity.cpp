@@ -12,7 +12,14 @@
 
 PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float health)
 	: CharacterEntity(x, y, texture, columns, rows, radius, health),
-	ShootModule(sf::Vector2f(0, -1)) {
+	clockAuto(IntervalClock(0.2f)),
+	clockSpecial(IntervalClock(1.f)),
+	clockUltime(IntervalClock(1.f)) 
+{
+	this->canAuto = true;
+	this->canSpecial = true;
+	this->canUltime = true;
+	this->ultimeBullet = nullptr;
 
 	this->spritesheet.setOrigin(256/2, 256/2);
 	this->angle = 0;
@@ -23,17 +30,29 @@ PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, 
 }
 
 PlayerEntity::PlayerEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float health)
-	: CharacterEntity(position, texture, split, radius, health),
-	ShootModule(sf::Vector2f(0, -1)) {
+	: CharacterEntity(position, texture, split, radius, health) ,
+	clockAuto(IntervalClock(0.2f)),
+	clockSpecial(IntervalClock(1.f)),
+	clockUltime(IntervalClock(1.f)) 
+{
+	this->canAuto = true;
+	this->canSpecial = true;
+	this->canUltime = true;
+	this->ultimeBullet = nullptr;
+
 	this->spritesheet.setOrigin(256 / 2, 256 / 2);
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
+
 	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 3) });
 	this->animator->Play("idle");
 }
 
 void PlayerEntity::Update(float deltaTime) {
-	CharacterEntity::Update(deltaTime);
+
+	canAuto = clockAuto.Update(deltaTime) ? true : canAuto;
+	canSpecial = clockSpecial.Update(deltaTime) ? true : canSpecial;
+	canUltime = clockUltime.Update(deltaTime) ? true : canUltime;
 
 	float horizontal = inputs->GetAxis("Horizontal");
 	float vertical = inputs->GetAxis("Vertical");
@@ -60,19 +79,23 @@ void PlayerEntity::Update(float deltaTime) {
 
 	animator->Update(deltaTime);
 
-	if (this->inputs->GetKey("Auto")) {
+	if (this->inputs->GetKey("Auto") && canAuto) {
 		(new AutoBullet(this->getPosition()))->Spawn();
+		canAuto = false;
 	}
 
-	if (this->inputs->GetKeyDown("Special")) {
+	if (this->inputs->GetKeyDown("Special") && canSpecial) {
 		(new SpecialBullet(this->getPosition()))->Spawn();
+		canSpecial = false;
 	}
 
-	if (this->inputs->GetKeyDown("Ult")) {
+	if (this->inputs->GetKeyDown("Ult") && canUltime) {
 		(ultimeBullet = new UltimeBullet(this->getPosition()))->Spawn();
+		canUltime = false;
 	}
-	if (this->inputs->GetKeyUp("Ult")) {
+	if (this->inputs->GetKeyUp("Ult") && ultimeBullet != nullptr) {
 		ultimeBullet->Die();
+		ultimeBullet = nullptr;
 	}
 
 	this->move(direction * deltaTime);

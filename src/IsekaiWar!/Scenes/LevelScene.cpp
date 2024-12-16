@@ -64,14 +64,6 @@ void LevelScene::Draw(sf::RenderWindow& window) {
 	window.draw(*player);
 }
 
-void LevelScene::Pause() {
-	clock.Pause();
-}
-
-void LevelScene::Resume() {
-	clock.Resume();
-}
-
 std::vector<CollidableEntity*>* LevelScene::GetEntities() {
 	return &entities;
 }
