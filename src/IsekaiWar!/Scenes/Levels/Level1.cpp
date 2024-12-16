@@ -7,35 +7,41 @@
 #include "../../Entities/Bullets/PlayerBullets/SpecialBullet.h"
 #include "../../Entities/Characters/Enemies/StandardFighter.h"
 #include "../../Utils/Clock.h"
+#include <iostream>
 
 #pragma endregion
 
 void Level1::Load() {
+	clock = new Clock(true);
 
-	Clock clock(true);
-
-	std::vector<BackgroundEntity*> newBackgrounds = {
-		new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("water"))
+	ennemiesPool = {
+		new StandardFighter(196, 125, 0.0f),
+		new StandardFighter(640, 300, 10.0f),
+		new StandardFighter(196, 125, 10.0f),
+		new StandardFighter(640, 300, 20.0f)
 	};
 
-	std::vector<CollidableEntity*> newEntities = {};
+	backgrounds.push_back(new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("water")));
 
-	std::vector<EnemyEntity*> newEnnemies = {
-		new StandardFighter(196, 125),
-		new StandardFighter(640, 300)
-	};
-
-	for (BackgroundEntity* background : newBackgrounds) {
-		backgrounds.push_back(background);
-	}
-
-	for (CollidableEntity* entity : newEntities) {
-		SpawnEntity(entity);
-	}
-
-	for (EnemyEntity* ennemy : newEnnemies) {
-		SpawnEnnemy(ennemy);
-	}
+	//for (EnemyEntity* ennemy : newEnnemies) {
+	//	SpawnEnnemy(ennemy);
+	//}
 
 	player = new PlayerEntity(800/2, 600/2, Managers::GetInstance()->ResourceManager->GetTexture("player"), 5, 4, 32.f, 100.f);
+}
+
+void Level1::Update(float deltaTime) {
+	LevelScene::Update(deltaTime);
+
+	clock->Update(deltaTime);
+
+	float time = clock->GetTime();
+
+	for (int i = 0; i < ennemiesPool.size(); i++) {
+		std::cout << time << std::endl;
+		if (time >= float(ennemiesPool[i]->birth)) {
+			SpawnEnnemy(ennemiesPool[i]);
+			ennemiesPool.erase(ennemiesPool.begin() + i);
+		}
+	}
 }
