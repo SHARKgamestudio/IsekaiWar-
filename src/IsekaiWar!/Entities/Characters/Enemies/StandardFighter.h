@@ -9,7 +9,6 @@ private:
 	bool spawned;
 	float time;
 
-	ShootModule* shoot;
 	Animator* animator;
 public:
 	StandardFighter(float x, float y);
