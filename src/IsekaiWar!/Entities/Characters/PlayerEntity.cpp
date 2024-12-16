@@ -12,16 +12,11 @@
 
 PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float health)
 	: CharacterEntity(x, y, texture, columns, rows, radius, health),
-	ShootModule(),
+	ShootModule(this),
 	clockAuto(IntervalClock(0.2f)),
 	clockSpecial(IntervalClock(1.f)),
 	clockUltime(IntervalClock(1.f)) 
 {
-	this->canAuto = true;
-	this->canSpecial = true;
-	this->canUltime = true;
-	this->ultimeBullet = nullptr;
-
 	this->spritesheet.setOrigin(256/2, 256/2);
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
@@ -31,16 +26,12 @@ PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, 
 }
 
 PlayerEntity::PlayerEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float health)
-	: CharacterEntity(position, texture, split, radius, health) ,
+	: CharacterEntity(position, texture, split, radius, health),
+	ShootModule(this),
 	clockAuto(IntervalClock(0.2f)),
 	clockSpecial(IntervalClock(1.f)),
 	clockUltime(IntervalClock(1.f)) 
 {
-	this->canAuto = true;
-	this->canSpecial = true;
-	this->canUltime = true;
-	this->ultimeBullet = nullptr;
-
 	this->spritesheet.setOrigin(256 / 2, 256 / 2);
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
@@ -91,12 +82,11 @@ void PlayerEntity::Update(float deltaTime) {
 	}
 
 	if (this->inputs->GetKeyDown("Ult") && canUltime) {
-		ShootUltime();
+		StartUltime();
 		canUltime = false;
 	}
 	if (this->inputs->GetKeyUp("Ult") && ultimeBullet != nullptr) {
-		ultimeBullet->Die();
-		ultimeBullet = nullptr;
+		StopUltime();
 	}
 
 	this->move(direction * deltaTime);

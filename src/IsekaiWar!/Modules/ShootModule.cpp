@@ -9,8 +9,14 @@
 
 #pragma endregion
 
-ShootModule::ShootModule() {
+ShootModule::ShootModule(PlayerEntity* player) {
 	currentBullet = 0;
+	this->ultimeBullet = nullptr;
+	this->player = player;
+
+	this->canAuto = true;
+	this->canSpecial = true;
+	this->canUltime = true;
 }
 
 void ShootModule::ShootAuto() {
@@ -34,6 +40,11 @@ void ShootModule::ShootSpecial() {
 	(new SpecialBullet(player->getPosition()))->Spawn();
 }
 
-void ShootModule::ShootUltime() {
-	(new UltimeBullet(player->getPosition()))->Spawn();
+void ShootModule::StartUltime() {
+	(ultimeBullet = new UltimeBullet(player->getPosition()))->Spawn();
+}
+
+void ShootModule::StopUltime() {
+	ultimeBullet->Die();
+	ultimeBullet = nullptr;
 }

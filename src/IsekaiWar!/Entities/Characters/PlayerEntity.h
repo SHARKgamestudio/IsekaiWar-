@@ -17,11 +17,6 @@ private:
 	IntervalClock clockAuto;
 	IntervalClock clockSpecial;
 	IntervalClock clockUltime;
-	bool canAuto;
-	bool canSpecial;
-	bool canUltime;
-
-	UltimeBullet* ultimeBullet;
 
 	Animator* animator;
 	float angle;
