@@ -8,15 +8,13 @@
 
 #pragma endregion
 
-class AutoBullet : public PlayerBullet, public MoveModule {
+class AutoBullet : public PlayerBullet {
 	private:
-
 		Animator animator;
 
 	public:
-		AutoBullet(float x, float y, int columns = 6, int rows = 1);
-		AutoBullet(sf::Vector2f position, sf::Vector2i split = sf::Vector2i(6, 1));
+		AutoBullet(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack, float speed, float speedAnimation);
+		AutoBullet(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float attack, float speed, float speedAnimation);
 
-		void Move(float deltaTime);
 		void Update(float deltaTime) override;
 };

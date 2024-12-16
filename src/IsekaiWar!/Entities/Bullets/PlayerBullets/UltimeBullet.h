@@ -8,12 +8,13 @@
 
 #pragma endregion
 
-class UltimeBullet : public PlayerBullet, public MoveModule {
-private:
-	Animator animatorHead;
+class UltimeBullet : public PlayerBullet {
+protected:
+	Animator animator;
+
 public:
-	UltimeBullet(float x, float y, int columns = 6, int rows = 1);
-	UltimeBullet(sf::Vector2f position, sf::Vector2i split = sf::Vector2i(6, 1));
+	UltimeBullet(float x, float y);
+	UltimeBullet(sf::Vector2f position);
 
 	void Move(float deltaTime);
 	void Update(float deltaTime) override;
