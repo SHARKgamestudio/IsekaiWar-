@@ -17,12 +17,14 @@
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
 
-GameManager::GameManager() : view(sf::View(sf::FloatRect(0, 0, 1920 / 2, 1080))) {
+GameManager::GameManager() : view(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT))) {
 	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "IsekaiWar!", sf::Style::Fullscreen);
+	view.move(-WINDOW_WIDTH / 4, 0);
+	window.setView(view);
 }
 
 void GameManager::Run() {
-	Managers::GetInstance()->SceneManager->LoadMenu("MainMenu");
+	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
 	while (window.isOpen()) {
 		sf::Time deltaTime = clock.restart();
 		HandleEvents();
@@ -41,7 +43,6 @@ void GameManager::HandleEvents() {
 }
 
 void GameManager::UpdateLogic(float deltaTime) {
-
 	// LOGIC GOES HERE //
 	Managers::GetInstance()->SceneManager->UpdateLogic(deltaTime);
 	Managers::GetInstance()->InputManager->UpdateInputs();
