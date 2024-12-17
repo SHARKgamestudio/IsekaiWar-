@@ -27,6 +27,6 @@ void MainMenu::Update(float deltaTime) {
 }
 
 void MainMenu::Draw(sf::RenderWindow& window) {
-
+	std::cout << "Main Menu Draw" << std::endl;
 	slider->Update(window);
 }
