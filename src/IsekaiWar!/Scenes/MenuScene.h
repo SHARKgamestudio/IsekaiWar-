@@ -15,4 +15,5 @@
 class MenuScene : public Scene {
 public:
 	void virtual Load();
+	void virtual Draw(sf::RenderWindow& window) override;
 };
