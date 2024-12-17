@@ -15,5 +15,5 @@ public:
 	void virtual Move(float deltaTime);
 	void virtual Spawn();
 	void virtual Action() = 0;
-	void Update(float deltaTime) override;
+	void UpdateLogic(float deltaTime) override;
 };

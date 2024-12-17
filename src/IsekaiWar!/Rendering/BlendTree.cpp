@@ -8,7 +8,7 @@ std::string BlendTree::GetCurrent() {
 		float distance = sqrt(pow(vector.x, 2) + pow(vector.y, 2));
 		if (distance < smallestDistance) { closestSlotIndex = i; smallestDistance = distance; }
 	}
-	return slots[closestSlotIndex]->animation;
+	return slots[closestSlotIndex]->animatedValue;
 }
 
 
@@ -17,8 +17,8 @@ BlendTree::BlendTree(std::string name, std::vector<Slot*> slots) {
 	this->slots = slots;
 }
 
-void BlendTree::AddSlot(std::string animation, sf::Vector2i position) {
-	slots.push_back(new Slot(animation, position));
+void BlendTree::AddSlot(std::string animatedValue, sf::Vector2i position) {
+	slots.push_back(new Slot(animatedValue, position));
 }
 
 void BlendTree::SetHorizontal(float value) {
@@ -33,12 +33,12 @@ void BlendTree::SetCursor(sf::Vector2f cursor) {
 	this->cursor = cursor;
 }
 
-Slot::Slot(std::string animation, sf::Vector2i position) {
-	this->animation = animation;
+Slot::Slot(std::string animatedValue, sf::Vector2i position) {
+	this->animatedValue = animatedValue;
 	this->position = position;
 }
 
-Slot::Slot(std::string animation, int x, int y) {
-	this->animation = animation;
+Slot::Slot(std::string animatedValue, int x, int y) {
+	this->animatedValue = animatedValue;
 	this->position = sf::Vector2i(x, y);
 }

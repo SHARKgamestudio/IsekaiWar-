@@ -39,6 +39,6 @@ public:
 	void StartUltime();
 	void StopUltime();
 
-	void Update(float deltaTime);
+	void UpdateLogic(float deltaTime);
 	void UpdateBullets();
 };

@@ -55,10 +55,10 @@ void Level1::End() {
 	std::cout << "State: " << state << std::endl;
 }
 
-void Level1::Update(float deltaTime) {
-	LevelScene::Update(deltaTime);
+void Level1::UpdateLogic(float deltaTime) {
+	LevelScene::UpdateLogic(deltaTime);
 
-	clock->Update(deltaTime);
+	clock->UpdateLogic(deltaTime);
 
 	float time = clock->GetTime();
 

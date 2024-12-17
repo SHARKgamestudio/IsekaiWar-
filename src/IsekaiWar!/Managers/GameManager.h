@@ -11,7 +11,7 @@ private:
 	sf::RenderWindow window;
 	sf::Clock clock;
 
-	void Update(float deltaTime);
+	void UpdateLogic(float deltaTime);
 	void HandleEvents();
 	void Render();
 

@@ -9,15 +9,15 @@
 
 #pragma endregion
 
-void LevelScene::Update(float deltaTime) {
-	player->Update(deltaTime);
+void LevelScene::UpdateLogic(float deltaTime) {
+	player->UpdateLogic(deltaTime);
 
 	for (BackgroundEntity* background : backgrounds) {
-		background->Update(deltaTime);
+		background->UpdateLogic(deltaTime);
 	}
 
 	for (CollidableEntity* entity : entities) {
-		entity->Update(deltaTime);
+		entity->UpdateLogic(deltaTime);
 
 		if (entity->ToDestroy()) {
 			entitiesToDestroy.push_back(entity);
@@ -25,7 +25,7 @@ void LevelScene::Update(float deltaTime) {
 	}
 
 	for (EnemyEntity* ennemy : ennemies) {
-		ennemy->Update(deltaTime);
+		ennemy->UpdateLogic(deltaTime);
 
 		if (ennemy->ToDestroy()) {
 			ennemiesToDestroy.push_back(ennemy);
@@ -33,7 +33,7 @@ void LevelScene::Update(float deltaTime) {
 	}
 
 	for (BulletEntity* bullet : bullets) {
-		bullet->Update(deltaTime);
+		bullet->UpdateLogic(deltaTime);
 
 		if (bullet->ToDestroy()) {
 			bulletsToDestroy.push_back(bullet);

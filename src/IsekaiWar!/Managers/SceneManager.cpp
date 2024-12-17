@@ -49,8 +49,8 @@ void SceneManager::LoadLevel(std::string name) {
 	currentScene->Load();
 }
 
-void SceneManager::Update(float deltaTime) {
-	currentScene->Update(deltaTime);
+void SceneManager::UpdateLogic(float deltaTime) {
+	currentScene->UpdateLogic(deltaTime);
 }
 void SceneManager::Draw(sf::RenderWindow& window) {
 	currentScene->Draw(window);

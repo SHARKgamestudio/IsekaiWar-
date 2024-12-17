@@ -15,5 +15,5 @@ class SpecialBullet : public PlayerBullet {
 		SpecialBullet(float x, float y);
 		SpecialBullet(sf::Vector2f position);
 
-		void Update(float deltaTime) override;
+		void UpdateLogic(float deltaTime) override;
 };

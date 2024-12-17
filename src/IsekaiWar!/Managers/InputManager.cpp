@@ -57,7 +57,7 @@ bool InputManager::GetKeyValue(sf::Keyboard::Key key) {
 
 void InputManager::UpdateInputs() {
 
-	#pragma region Update Axes
+	#pragma region UpdateLogic Axes
 
 	for (int i = 0; i < axes.size(); i++) {
 		if (joystickConnected) {
@@ -71,7 +71,7 @@ void InputManager::UpdateInputs() {
 
 	#pragma endregion
 
-	#pragma region Update Keys
+	#pragma region UpdateLogic Keys
 
 	for (int i = 0; i < keys.size(); i++) {
 		if (joystickConnected) {

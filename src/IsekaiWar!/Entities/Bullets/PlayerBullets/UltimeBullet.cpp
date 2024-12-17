@@ -44,11 +44,11 @@ UltimeBullet::UltimeBullet(sf::Vector2f position)
 	animator.Play("forward");
 }
 
-void UltimeBullet::Update(float deltaTime) {
-	PlayerBullet::Update(deltaTime);
+void UltimeBullet::UpdateLogic(float deltaTime) {
+	PlayerBullet::UpdateLogic(deltaTime);
 
 	//animatorBody.Update(deltaTime);
-	animator.Update(deltaTime);
+	animator.UpdateLogic(deltaTime);
 
 	if (!entitiesHit.empty()) {
 		Attack(dynamic_cast<LivingEntity*>(entitiesHit[0]), deltaTime);

@@ -17,8 +17,8 @@ void BulletEntity::Move(float deltaTime) {
 	this->move(normalisedDirection * deltaTime * speed);
 }
 
-void BulletEntity::Update(float deltaTime) {
-	CollidableEntity::Update(deltaTime);
+void BulletEntity::UpdateLogic(float deltaTime) {
+	CollidableEntity::UpdateLogic(deltaTime);
 
 	Move(deltaTime);
 

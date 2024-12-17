@@ -38,10 +38,10 @@ StandardFighter::StandardFighter(sf::Vector2f position, float birth)
 }
 
 IntervalClock shootClock(0.5f);
-void StandardFighter::Update(float deltaTime) {
-	EnemyEntity::Update(deltaTime);
+void StandardFighter::UpdateLogic(float deltaTime) {
+	EnemyEntity::UpdateLogic(deltaTime);
 
-	animator->Update(deltaTime);
+	animator->UpdateLogic(deltaTime);
 
 	time += deltaTime;
 	
@@ -52,7 +52,7 @@ void StandardFighter::Update(float deltaTime) {
 	else {
 		setPosition(Maths::Lerp(getPosition().x, spawn.x + std::cos(time) * CIRCLE_RADIUS, deltaTime), Maths::Lerp(getPosition().y, spawn.y + std::sin(time) * CIRCLE_RADIUS, deltaTime));
 
-		if (shootClock.Update(deltaTime)) {
+		if (shootClock.UpdateLogic(deltaTime)) {
 			(new StandardBullet(getPosition() + sf::Vector2f(0, 128)))->Spawn();
 		}
 	}

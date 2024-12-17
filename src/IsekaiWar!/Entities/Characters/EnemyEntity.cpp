@@ -10,6 +10,6 @@ EnemyEntity::EnemyEntity(sf::Vector2f position, sf::Texture* texture, float birt
 	this->birth = birth;
 }
 
-void EnemyEntity::Update(float deltaTime) {
-	CollidableEntity::Update(deltaTime);
+void EnemyEntity::UpdateLogic(float deltaTime) {
+	CollidableEntity::UpdateLogic(deltaTime);
 }

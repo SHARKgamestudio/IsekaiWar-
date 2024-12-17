@@ -7,8 +7,8 @@
 #pragma endregion
 
 float Maths::Round(float value, int decimals) {
-	float factor = pow(10, decimals);
-	return roundf(value * factor) / factor;
+	float animatedValue = pow(10, decimals);
+	return roundf(value * animatedValue) / animatedValue;
 }
 
 float Maths::Clamp(float value, float min, float max) {

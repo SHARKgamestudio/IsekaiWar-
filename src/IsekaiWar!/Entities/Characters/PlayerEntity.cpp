@@ -27,9 +27,9 @@ PlayerEntity::PlayerEntity()
 	this->animator->Play("idle");
 }
 
-void PlayerEntity::Update(float deltaTime) {
-	CharacterEntity::Update(deltaTime);
-	ShootModule::Update(deltaTime);
+void PlayerEntity::UpdateLogic(float deltaTime) {
+	CharacterEntity::UpdateLogic(deltaTime);
+	ShootModule::UpdateLogic(deltaTime);
 	
 	float horizontal = inputs->GetAxis("Horizontal");
 	float vertical = inputs->GetAxis("Vertical");
@@ -54,7 +54,7 @@ void PlayerEntity::Update(float deltaTime) {
 		else if (angle < 0) { angle += (std::pow(-angle / 25, 0.5f)) * deltaTime * 512; }
 	}
 
-	animator->Update(deltaTime);
+	animator->UpdateLogic(deltaTime);
 
 	if (this->inputs->GetKey("Auto") && canAuto) {
 		ShootAuto();

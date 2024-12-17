@@ -20,6 +20,6 @@ public:
 	
 	void virtual Die();
 	bool ToDestroy();
-	void virtual Update(float deltaTime);
+	void virtual UpdateLogic(float deltaTime);
 	void virtual draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

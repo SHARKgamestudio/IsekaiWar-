@@ -26,7 +26,7 @@ void GameManager::Run() {
 	while (window.isOpen()) {
 		sf::Time deltaTime = clock.restart();
 		HandleEvents();
-		Update(deltaTime.asSeconds());
+		UpdateLogic(deltaTime.asSeconds());
 		Render();
 	}
 }
@@ -40,10 +40,10 @@ void GameManager::HandleEvents() {
 	}
 }
 
-void GameManager::Update(float deltaTime) {
+void GameManager::UpdateLogic(float deltaTime) {
 
 	// LOGIC GOES HERE //
-	Managers::GetInstance()->SceneManager->Update(deltaTime);
+	Managers::GetInstance()->SceneManager->UpdateLogic(deltaTime);
 	Managers::GetInstance()->InputManager->UpdateInputs();
 }
 

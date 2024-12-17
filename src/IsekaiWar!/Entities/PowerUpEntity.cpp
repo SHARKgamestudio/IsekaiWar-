@@ -21,8 +21,8 @@ void PowerUpEntity::Spawn() {
 	Managers::GetInstance()->SceneManager->currentLevel->SpawnEntity(this);
 }
 
-void PowerUpEntity::Update(float deltaTime) {
-	CollidableEntity::Update(deltaTime);
+void PowerUpEntity::UpdateLogic(float deltaTime) {
+	CollidableEntity::UpdateLogic(deltaTime);
 
 	Move(deltaTime);
 	spritesheet.rotate(100 * deltaTime);

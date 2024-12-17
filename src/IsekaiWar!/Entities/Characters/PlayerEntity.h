@@ -20,5 +20,5 @@ private:
 public:
 	PlayerEntity();
 
-	void Update(float deltaTime);
+	void UpdateLogic(float deltaTime);
 };

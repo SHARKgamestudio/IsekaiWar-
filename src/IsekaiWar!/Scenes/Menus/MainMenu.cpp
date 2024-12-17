@@ -1,10 +1,18 @@
 #include "MainMenu.h"
 
+#pragma region External Dependencies
+
+#include <iostream>
+
+#pragma endregion
+
+#pragma region Local Dependencies
+
 #include "../../Managers.h"
 #include "../../Rendering/Spritesheet.h"
 #include "../../UI/Components/Button.h"
 
-#include <iostream>
+#pragma endregion
 
 void MainMenu::Load() {
 	std::cout << "Main Menu Loaded" << std::endl;
@@ -17,8 +25,18 @@ void MainMenu::Load() {
 	text->setCharacterSize(30);
 
 	Button* button = new Button(text, spritesheet);
-	button->setScale(0.5f, 0.5f);
+	button->SetScale(0.25f, 0.25f);
 	button->setPosition(400, 300);
 
 	elements.push_back(button);
+}
+
+void MainMenu::UpdateLogic(float dt) {
+	MenuScene::UpdateLogic(dt);
+
+	Button* button = (Button*)elements[0];
+
+	if (button->IsPressed()) {
+		button->Disable();
+	}
 }

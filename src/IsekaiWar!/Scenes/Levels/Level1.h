@@ -33,5 +33,5 @@ public:
 
 	void Load();
 	void End();
-	void Update(float deltaTime) override;
+	void UpdateLogic(float deltaTime) override;
 };

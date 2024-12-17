@@ -6,9 +6,9 @@ void MenuScene::Load(){
 
 }
 
-void MenuScene::Update(float dt) { 
+void MenuScene::UpdateLogic(float dt) { 
 	for (UIComponent* element : elements) {
-		element->Update(dt);
+		element->UpdateLogic(dt);
 	}
 }
 

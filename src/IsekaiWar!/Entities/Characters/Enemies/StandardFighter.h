@@ -14,5 +14,5 @@ public:
 	StandardFighter(float x, float y, float birth = 0);
 	StandardFighter(sf::Vector2f position, float birth = 0);
 
-	void Update(float deltaTime) override;
+	void UpdateLogic(float deltaTime) override;
 };

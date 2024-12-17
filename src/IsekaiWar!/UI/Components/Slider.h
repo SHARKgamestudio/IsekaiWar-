@@ -13,6 +13,6 @@ protected:
 	Spritesheet* background;
 public:
 	Slider(Spritesheet* handle, Spritesheet* background, Anchor anchor = Center);
-	void Update(const sf::RenderWindow& window);
+	void UpdateLogic(const sf::RenderWindow& window);
 	float GetValue();
 };

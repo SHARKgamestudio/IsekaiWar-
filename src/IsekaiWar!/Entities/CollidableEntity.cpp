@@ -10,8 +10,8 @@ CollidableEntity::CollidableEntity(sf::Vector2f position, sf::Texture* texture, 
 	HitboxModule(this, radius, 0b11){
 }
 
-void CollidableEntity::Update(float deltaTime) {
-	Entity::Update(deltaTime);
+void CollidableEntity::UpdateLogic(float deltaTime) {
+	Entity::UpdateLogic(deltaTime);
 	
 	if (statut & 0b01) {
 		UpdateLines();

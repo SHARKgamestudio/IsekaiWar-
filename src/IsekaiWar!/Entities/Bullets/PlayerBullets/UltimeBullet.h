@@ -17,7 +17,7 @@ public:
 	UltimeBullet(sf::Vector2f position);
 
 	void Move(float deltaTime);
-	void Update(float deltaTime) override;
+	void UpdateLogic(float deltaTime) override;
 	void UpdateLines();
 	void CheckCollisions();
 };
