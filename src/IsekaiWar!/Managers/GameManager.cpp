@@ -22,7 +22,7 @@ GameManager::GameManager() {
 }
 
 void GameManager::Run() {
-	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
+	Managers::GetInstance()->SceneManager->LoadMenu("MainMenu");
 	while (window.isOpen()) {
 		sf::Time deltaTime = clock.restart();
 		HandleEvents();

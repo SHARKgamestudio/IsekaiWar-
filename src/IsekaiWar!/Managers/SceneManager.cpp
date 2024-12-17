@@ -9,17 +9,18 @@
 #pragma region Local Dependencies
 
 #include "../Scenes/Levels/Level1.h"
+#include "../Scenes/Menus/MainMenu.h"
+#include "../Scenes/MenuScene.h"
 
 #pragma endregion
 
 SceneManager::SceneManager() {
 	levels["Level1"] = new Level1();
-	//currentLevel = levels["Level1"];
-	//currentScene = levels["Level1"];
+	scenes["MainMenu"] = new MainMenu();
 }
 
 void SceneManager::Pause() {
-	currentScene = mainMenu["pause"];
+	currentScene = scenes["pause"];
 	currentScene->Load();
 }
 
@@ -28,12 +29,17 @@ void SceneManager::Resume() {
 }
 
 void SceneManager::BackToMainMenu() {
-	currentScene = mainMenu["mainMenu"];
+	currentScene = scenes["mainMenu"];
 	currentScene->Load();
 }
 
 void SceneManager::NavigateInMenu(std::string name) {
-	currentScene = mainMenu[name];
+	currentScene = scenes[name];
+	currentScene->Load();
+}
+
+void SceneManager::LoadMenu(std::string name) {
+	currentScene = scenes[name];
 	currentScene->Load();
 }
 
