@@ -19,7 +19,7 @@ class Scene;
 class SceneManager {
 public:
 
-	std::map<std::string, Scene*> mainMenu;
+	std::map<std::string, Scene*> scenes;
 	std::map<std::string, LevelScene*> levels;
 
 	LevelScene* currentLevel;
@@ -37,4 +37,5 @@ public:
 	void NavigateInMenu(std::string name);
 
 	void LoadLevel(std::string name);
+	void LoadMenu(std::string name);
 };

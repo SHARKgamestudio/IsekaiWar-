@@ -11,10 +11,10 @@ private:
 	int columns, rows;
 	int hres, vres;
 
-	sf::Sprite sprite;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
+	sf::Sprite sprite;
 
 	int current;
 	Spritesheet();

@@ -22,7 +22,7 @@ GameManager::GameManager() : view(sf::View(sf::FloatRect(0, 0, 1920 / 2, 1080)))
 }
 
 void GameManager::Run() {
-	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
+	Managers::GetInstance()->SceneManager->LoadMenu("MainMenu");
 	while (window.isOpen()) {
 		sf::Time deltaTime = clock.restart();
 		HandleEvents();
