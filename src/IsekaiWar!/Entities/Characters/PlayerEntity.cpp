@@ -4,29 +4,22 @@
 
 #include "../../Managers.h"
 #include "../../Utils/Maths.h"
-#include "../Bullets/PlayerBullets/AutoBullet.h"
-#include "../Bullets/PlayerBullets/SpecialBullet.h"
-#include "../Bullets/PlayerBullets/UltimeBullet.h"
-#include "../PowerUps/FirePowerUp.h"
-#include <iostream>
 
 #pragma endregion
 
-PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float health)
-	: CharacterEntity(x, y, texture, columns, rows, radius, health),
-	ShootModule(this)
-{
-	this->angle = 0;
-	this->inputs = Managers::GetInstance()->InputManager;
+// constructor
+#define POSITION_X 400
+#define POSITION_Y 400
+#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("player")
+#define COLUMNS 5
+#define ROWS 4
+#define RADIUS 32.f
+#define HEALTH 100.f
+#define MAGNITUDE 512.f
 
-	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 3) });
-	this->animator->Play("idle");
-}
-
-PlayerEntity::PlayerEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float health)
-	: CharacterEntity(position, texture, split, radius, health),
-	ShootModule(this)
-{
+PlayerEntity::PlayerEntity()
+	: CharacterEntity(POSITION_X, POSITION_Y, TEXTURE, COLUMNS, ROWS, RADIUS, HEALTH),
+	ShootModule(this) {
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
 
@@ -38,14 +31,12 @@ void PlayerEntity::Update(float deltaTime) {
 	CharacterEntity::Update(deltaTime);
 	ShootModule::Update(deltaTime);
 	
-	//std::cout << "Health : " << GetHealth() << std::endl;
-
 	float horizontal = inputs->GetAxis("Horizontal");
 	float vertical = inputs->GetAxis("Vertical");
 
 	sf::Vector2f inputs(horizontal, vertical);
 
-	float magnitude = Maths::Clamp((float)sqrt(pow(inputs.x, 2) + pow(inputs.y, 2)), 0, 1) * 512;
+	float magnitude = Maths::Clamp((float)sqrt(pow(inputs.x, 2) + pow(inputs.y, 2)), 0, 1) * MAGNITUDE;
 
 	sf::Vector2f direction = inputs * magnitude;
 
@@ -72,7 +63,6 @@ void PlayerEntity::Update(float deltaTime) {
 	}
 
 	if (this->inputs->GetKeyDown("Special") && canSpecial) {
-		//(new FirePowerUp(200, 0))->Spawn();
 		ShootSpecial();
 		canSpecial = false;
 		clockSpecial.Restart();

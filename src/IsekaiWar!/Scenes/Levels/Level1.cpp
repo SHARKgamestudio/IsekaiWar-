@@ -19,6 +19,12 @@
 
 #pragma endregion
 
+Level1::Level1() {
+	state = LevelState::Playing;
+	clock = new Clock();
+	highest = 0;
+}
+
 void Level1::Load() {
 	Managers::GetInstance()->SoundManager->PlayMusic("music");
 
@@ -31,13 +37,12 @@ void Level1::Load() {
 		new StandardFighter(640, 300, 20.0f)
 	};
 
-	
 	for (int i = 0; i < ennemiesPool.size(); i++) {
 		if (ennemiesPool[i]->birth > highest) highest = ennemiesPool[i]->birth;
 	}
 
 	backgrounds.push_back(new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("water")));
-	player = new PlayerEntity(800/2, 600/2, Managers::GetInstance()->ResourceManager->GetTexture("player"), 5, 4, 32.f, 100.f);
+	player = new PlayerEntity();
 	SpawnEntity(new FirePowerUp(200, 0));
 	SpawnEntity(new WaterPowerUp(600, 0));
 	state = Playing;

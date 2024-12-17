@@ -7,8 +7,6 @@
 
 #pragma endregion
 
-#include <iostream>
-
 #define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("fireAuto")
 #define COLUMNS 6
 #define ROWS 1

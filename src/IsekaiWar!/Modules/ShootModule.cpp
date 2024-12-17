@@ -13,12 +13,15 @@
 
 #pragma endregion
 
-#include <iostream>
+// behaviour
+#define RELOAD_AUTO 0.3f
+#define RELOAD_SPECIAL 1.f
+#define RELOAD_ULTIME 1.f
 
 ShootModule::ShootModule(PlayerEntity* player)
-	: clockAuto(IntervalClock(0.2f)),
-	clockSpecial(IntervalClock(1.f)),
-	clockUltime(IntervalClock(1.f)) 
+	: clockAuto(IntervalClock(RELOAD_AUTO)),
+	clockSpecial(IntervalClock(RELOAD_SPECIAL)),
+	clockUltime(IntervalClock(RELOAD_ULTIME))
 {
 	this->isFire = false;
 	this->isWater = false;
@@ -51,7 +54,6 @@ void ShootModule::ShootAuto() {
 }
 
 void ShootModule::ShootSpecial() {
-	std::cout << "test" << std::endl;
 	(new SpecialBullet(player->getPosition()))->Spawn();
 }
 
@@ -73,6 +75,7 @@ void ShootModule::Update(float deltaTime) {
 void ShootModule::UpdateBullets() {
 	if (isFire and isWater) {
 		currentBullet = StateAuto::FireAndWater;
+		clockAuto.maxTime = 0.2f;
 	} 
 	else if (isFire) {
 		currentBullet = StateAuto::Fire;

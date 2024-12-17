@@ -3,9 +3,10 @@
 class IntervalClock {
 private:
     float elapseTime;
-    float maxTime;
 
 public:
+    float maxTime;
+
     IntervalClock(float maxTime);
 
     bool Update(float deltaTime);

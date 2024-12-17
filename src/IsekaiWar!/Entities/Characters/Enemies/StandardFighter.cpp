@@ -5,11 +5,20 @@
 #include "../../../Managers.h"
 #include "../../../Utils/Maths.h"
 
+// behaviour
 #define CIRCLE_RADIUS 256
 #define START_DISTANCE 25
 
+// constructor
+#define INITIAL_POSITION_Y -256
+#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("enemy")
+#define COLUMNS 5
+#define ROWS 4
+#define RADIUS 64
+#define HEALTH 2
+
 StandardFighter::StandardFighter(float x, float y, float birth)
-	: EnemyEntity(x, -256, Managers::GetInstance()->ResourceManager->GetTexture("enemy"), birth, 5, 4, 64, 2) {
+	: EnemyEntity(x, INITIAL_POSITION_Y, TEXTURE, birth, COLUMNS, ROWS, RADIUS, HEALTH) {
 	
 	this->time = 0;
 	this->spawned = false;
