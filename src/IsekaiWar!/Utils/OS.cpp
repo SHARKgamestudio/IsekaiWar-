@@ -46,6 +46,10 @@ std::string OS::GetExecutablePath() {
     return result;
 }
 
+std::string OS::GetAbsolutePath(std::string path) {
+   return fs::absolute(path).generic_string(); 
+}
+
 std::vector<std::string> OS::GetFilesInDirectory(std::string path, std::string extension) {
     std::vector<std::string> files;
 
