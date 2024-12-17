@@ -6,13 +6,14 @@ BackgroundEntity::BackgroundEntity(sf::Texture* texture)
 	TravellingModule(sf::Vector2f(0, 1), 20.f) {
 	texture->setRepeated(true);
 	this->spritesheet.SetTexture(texture, 1, 1);
+	this->setPosition(50, 50);
 }
 
 void BackgroundEntity::Traveling(float deltaTime) {
 	u = u - normalisedDirection.x * deltaTime * speed;
 	v = v - normalisedDirection.y * deltaTime * speed;
 
-	spritesheet.SetTextureRect(sf::IntRect(int(u), int(v), 850, 650));
+	spritesheet.SetTextureRect(sf::IntRect(int(u), int(v), 1920 / 2, 1080));
 }
 
 void BackgroundEntity::Update(float deltaTime) {

@@ -14,11 +14,11 @@
 
 #pragma endregion
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
 
-GameManager::GameManager() {
-	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "IsekaiWar!");
+GameManager::GameManager() : view(sf::View(sf::FloatRect(0, 0, 1920 / 2, 1080))) {
+	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "IsekaiWar!", sf::Style::Fullscreen);
 }
 
 void GameManager::Run() {
@@ -45,6 +45,7 @@ void GameManager::Update(float deltaTime) {
 	// LOGIC GOES HERE //
 	Managers::GetInstance()->SceneManager->Update(deltaTime);
 	Managers::GetInstance()->InputManager->UpdateInputs();
+	view.setViewport(sf::FloatRect(1920 / 4, 1080, 1920 / 2, 1080));
 }
 
 void GameManager::Render() {

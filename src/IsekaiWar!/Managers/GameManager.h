@@ -9,6 +9,7 @@
 class GameManager {
 private:
 	sf::RenderWindow window;
+	sf::View view;
 	sf::Clock clock;
 
 	void Update(float deltaTime);
