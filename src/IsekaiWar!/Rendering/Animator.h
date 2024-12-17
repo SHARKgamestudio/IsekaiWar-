@@ -29,11 +29,11 @@ public:
 	Animator(Spritesheet* spritesheet, std::vector<Animation*> animations = {});
 	~Animator();
 
-	void Update(float deltaTime);
+	void UpdateLogic(float deltaTime);
 
 	Animation* Find(std::string name);
 
-	void AddAnimation(Animation* animation);
+	void AddAnimation(Animation* animatedValue);
 	void AddBlendTree(BlendTree* blendtree);
 
 	void Play(std::string name);

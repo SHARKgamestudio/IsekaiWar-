@@ -12,5 +12,5 @@ public:
 	StandardBullet(float x, float y);
 	StandardBullet(sf::Vector2f position);
 
-	void Update(float deltaTime);
+	void UpdateLogic(float deltaTime);
 };

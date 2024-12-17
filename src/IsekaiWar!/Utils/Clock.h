@@ -12,7 +12,7 @@ private:
 	float time;
 public:
 	Clock(bool start = false);
-	void Update(float deltaTime);
+	void UpdateLogic(float deltaTime);
 
 	float GetTime();
 	State GetState();

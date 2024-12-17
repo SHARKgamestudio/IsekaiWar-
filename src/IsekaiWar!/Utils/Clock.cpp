@@ -5,7 +5,7 @@ Clock::Clock(bool start) {
 	this->time = 0.0f;
 }
 
-void Clock::Update(float deltaTime) {
+void Clock::UpdateLogic(float deltaTime) {
 	if (state == Running) {
 		time += deltaTime;
 	}

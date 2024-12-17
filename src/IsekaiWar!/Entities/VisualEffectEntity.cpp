@@ -14,6 +14,6 @@ void VisualEffectEntity::Move(float deltaTime) {
 	spritesheet.move(direction);
 }
 
-void VisualEffectEntity::Update(float deltaTime) {
+void VisualEffectEntity::UpdateLogic(float deltaTime) {
 	Move(deltaTime);
 }

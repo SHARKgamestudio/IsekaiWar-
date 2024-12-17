@@ -66,10 +66,10 @@ void ShootModule::StopUltime() {
 	ultimeBullet = nullptr;
 }
 
-void ShootModule::Update(float deltaTime) {
-	canAuto = clockAuto.Update(deltaTime) ? true : canAuto;
-	canSpecial = clockSpecial.Update(deltaTime) ? true : canSpecial;
-	canUltime = clockUltime.Update(deltaTime) ? true : canUltime;
+void ShootModule::UpdateLogic(float deltaTime) {
+	canAuto = clockAuto.UpdateLogic(deltaTime) ? true : canAuto;
+	canSpecial = clockSpecial.UpdateLogic(deltaTime) ? true : canSpecial;
+	canUltime = clockUltime.UpdateLogic(deltaTime) ? true : canUltime;
 }
 
 void ShootModule::UpdateBullets() {

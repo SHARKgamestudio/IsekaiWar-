@@ -5,7 +5,7 @@ IntervalClock::IntervalClock(float maxTime) {
 	elapseTime = 0;
 };
 
-bool IntervalClock::Update(float deltaTime) {
+bool IntervalClock::UpdateLogic(float deltaTime) {
 	elapseTime += deltaTime;
 
 	if (elapseTime > maxTime) {

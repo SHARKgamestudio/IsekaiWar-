@@ -12,7 +12,7 @@ private:
 	sf::View view;
 	sf::Clock clock;
 
-	void Update(float deltaTime);
+	void UpdateLogic(float deltaTime);
 	void HandleEvents();
 	void Render();
 

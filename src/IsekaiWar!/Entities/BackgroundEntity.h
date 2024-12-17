@@ -13,7 +13,7 @@ public :
 	BackgroundEntity(sf::Texture* texture);
 
 	void Traveling(float deltaTime);
-	void Update(float deltaTime) override;
+	void UpdateLogic(float deltaTime) override;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	void Despawn();

@@ -31,23 +31,23 @@ Animator::~Animator() {
 	}
 }
 
-void Animator::Update(float deltaTime) {
+void Animator::UpdateLogic(float deltaTime) {
 
-	Animation* animation = animations[currentAnimation];
+	Animation* animatedValue = animations[currentAnimation];
 
-	if (animation != nullptr) {
-		if (last != animation) {
-			frameAsTime = float(animation->start);
-			last = animation;
+	if (animatedValue != nullptr) {
+		if (last != animatedValue) {
+			frameAsTime = float(animatedValue->start);
+			last = animatedValue;
 		}
 
-		if (spritesheet->current <= animation->end) {
-			frameAsTime += (deltaTime * 8) * animation->speed;
+		if (spritesheet->current <= animatedValue->end) {
+			frameAsTime += (deltaTime * 8) * animatedValue->speed;
 		}
 		else {
 			if (!blendtree) { blendtree = true; }
-			spritesheet->current = animation->start;
-			frameAsTime = float(animation->start);
+			spritesheet->current = animatedValue->start;
+			frameAsTime = float(animatedValue->start);
 		}
 	}
 
@@ -56,8 +56,8 @@ void Animator::Update(float deltaTime) {
 	spritesheet->UpdateViewport();
 }
 
-void Animator::AddAnimation(Animation* animation) {
-	animations.push_back(animation);
+void Animator::AddAnimation(Animation* animatedValue) {
+	animations.push_back(animatedValue);
 }
 
 void Animator::AddBlendTree(BlendTree* blendtree) {

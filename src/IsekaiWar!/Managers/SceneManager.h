@@ -30,7 +30,7 @@ public:
 	void Pause();
 	void Resume();
 
-	void Update(float deltaTime);
+	void UpdateLogic(float deltaTime);
 	void Draw(sf::RenderWindow& window);
 
 	void BackToMainMenu();

@@ -37,7 +37,7 @@ public:
 
 	void virtual Load();
 
-	void virtual Update(float dt);
+	void virtual UpdateLogic(float dt);
 	void virtual Draw(sf::RenderWindow& window) override;
 
 	void virtual SpawnPlayerBullet(BulletEntity* bullet);

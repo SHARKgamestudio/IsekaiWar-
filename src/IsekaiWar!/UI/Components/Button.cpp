@@ -1,12 +1,17 @@
 #include "Button.h"
 
+#pragma region Local Dependencies
+
 #include "../../Rendering/Spritesheet.h"
 
+#pragma endregion
+
 Button::Button(sf::Text* text, Spritesheet* spritesheet, Anchor anchor) {
-	this->factor = 0;
-	this->state = 0;
 	this->text = text;
+	this->enabled = true;
+	this->state = State::Normal;
 	this->anchor = anchor;
+	this->animatedValue = 0;
 	this->spritesheet = spritesheet;
 
 	// TEMP //
@@ -15,31 +20,51 @@ Button::Button(sf::Text* text, Spritesheet* spritesheet, Anchor anchor) {
 }
 
 void Button::UpdateCursor(const sf::RenderWindow& window) {
+	if (!enabled) return;
+
 	sf::FloatRect bounds = getTransform().transformRect(spritesheet->sprite.getGlobalBounds());
 
 	bool inBounds = bounds.contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)));
 	bool isPressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
-	state = inBounds ? (isPressed ? 2 : 1) : 0;
+	state = inBounds ? (isPressed ? State::Pressed : State::Hovered) : State::Normal;
 
 	spritesheet->current = state;
 	spritesheet->UpdateViewport();
 }
 
-void Button::Update(float deltaTime) {
-	if (state == 1 && factor < 1) { factor += deltaTime * 4; }
-	else if (factor > 0.0f) { factor -= deltaTime * 4; }
+void Button::UpdateLogic(float deltaTime) {
+	if (!enabled) return;
 
-	float test = std::pow(factor, 2) / 64;
+	if (state == 1 && animatedValue < 1) { animatedValue += deltaTime * 4; }
+	else if (animatedValue > 0.0f) { animatedValue -= deltaTime * 4; }
 
-	setScale(0.5f + test, 0.5f + test);
+	float scale = std::pow(animatedValue, 2) / 64;
+	setScale(baseScale.x + scale, baseScale.y + scale);
+}
+
+void Button::SetScale(float x, float y) {
+	baseScale = sf::Vector2f(x, y);
+	setScale(x, y);
+}
+
+void Button::Enable() {
+	enabled = true;
+	state = State::Normal;
+}
+
+void Button::Disable() {
+	enabled = false;
+	state = State::Normal;
 }
 
 bool Button::IsPressed() {
-	return state == 2;
+	return state == State::Pressed;
 }
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+	if (!enabled) return;
+
 	states.transform.combine(getTransform());
 	target.draw(*spritesheet, states);
 	target.draw(*text, states);

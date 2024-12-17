@@ -16,7 +16,7 @@ void BackgroundEntity::Traveling(float deltaTime) {
 	spritesheet.SetTextureRect(sf::IntRect(int(u), int(v), 1920 / 2, 1080));
 }
 
-void BackgroundEntity::Update(float deltaTime) {
+void BackgroundEntity::UpdateLogic(float deltaTime) {
 	Traveling(deltaTime);
 }
 

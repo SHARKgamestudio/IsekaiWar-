@@ -9,6 +9,6 @@ public:
 
     IntervalClock(float maxTime);
 
-    bool Update(float deltaTime);
+    bool UpdateLogic(float deltaTime);
     void Restart();
 };

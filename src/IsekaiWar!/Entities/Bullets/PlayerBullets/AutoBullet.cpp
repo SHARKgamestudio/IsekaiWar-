@@ -19,10 +19,10 @@ AutoBullet::AutoBullet(sf::Vector2f position, sf::Texture* texture, sf::Vector2i
 	animator.Play("forward");
 }
 
-void AutoBullet::Update(float deltaTime) {
-	PlayerBullet::Update(deltaTime);
+void AutoBullet::UpdateLogic(float deltaTime) {
+	PlayerBullet::UpdateLogic(deltaTime);
 
-	animator.Update(deltaTime);
+	animator.UpdateLogic(deltaTime);
 
 	for (CollidableEntity* entityHit : entitiesHit) {
 

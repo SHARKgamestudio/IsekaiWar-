@@ -32,8 +32,8 @@ StandardBullet::StandardBullet(sf::Vector2f position)
 
 }
 
-void StandardBullet::Update(float deltaTime) {
-	EnemyBullet::Update(deltaTime);
+void StandardBullet::UpdateLogic(float deltaTime) {
+	EnemyBullet::UpdateLogic(deltaTime);
 
 	for (CollidableEntity* entityHit : entitiesHit) {
 		LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entityHit);

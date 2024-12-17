@@ -16,5 +16,5 @@ class AutoBullet : public PlayerBullet {
 		AutoBullet(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack, float speed, float speedAnimation);
 		AutoBullet(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float radius, float attack, float speed, float speedAnimation);
 
-		void Update(float deltaTime) override;
+		void UpdateLogic(float deltaTime) override;
 };

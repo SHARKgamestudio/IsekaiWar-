@@ -9,7 +9,7 @@ Slider::Slider(Spritesheet* handle, Spritesheet* background, Anchor anchor) {
 	this->background = background;
 }
 
-void Slider::Update(const sf::RenderWindow& window) {
+void Slider::UpdateLogic(const sf::RenderWindow& window) {
 	sf::FloatRect bounds = getTransform().transformRect(handle->sprite.getGlobalBounds());
 	sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 

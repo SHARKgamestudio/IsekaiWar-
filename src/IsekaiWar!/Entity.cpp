@@ -21,7 +21,7 @@ bool Entity::ToDestroy() {
 	return toDestroy;
 }
 
-void Entity::Update(float deltaTime) {
+void Entity::UpdateLogic(float deltaTime) {
 	toDestroy = toDisable ? true : false;
 }
 

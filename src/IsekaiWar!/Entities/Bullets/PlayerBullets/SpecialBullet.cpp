@@ -36,10 +36,10 @@ SpecialBullet::SpecialBullet(sf::Vector2f position)
 	animator.Play("forward");
 }
 
-void SpecialBullet::Update(float deltaTime) {
-	PlayerBullet::Update(deltaTime);
+void SpecialBullet::UpdateLogic(float deltaTime) {
+	PlayerBullet::UpdateLogic(deltaTime);
 
-	animator.Update(deltaTime);
+	animator.UpdateLogic(deltaTime);
 
 	for (CollidableEntity* entityHit : entitiesHit) {
 		if (LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entityHit)) {
