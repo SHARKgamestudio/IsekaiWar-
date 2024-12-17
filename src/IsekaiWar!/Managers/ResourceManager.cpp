@@ -8,15 +8,29 @@
 
 #pragma endregion
 
-ResourceManager::ResourceManager() {
-	std::string path = OS::GetExecutablePath();
+const std::string debug_path = "../../../src/IsekaiWar!/";
 
+ResourceManager::ResourceManager() {
+	std::string root = "";
+	std::string subdir = "";
+
+	#ifdef _DEBUG
+		root = OS::GetAbsolutePath(debug_path);
+		subdir = "Assets/";
+	#else
+	root = OS::GetExecutablePath();
+	subdir = "/resourcepacks/";
+	#endif
+
+	std::string path = root + subdir;
+	std::cout << "Debug path: " << path << std::endl;
+	
 	LoadTextures(path);
 	LoadSounds(path);
 }
 
 void ResourceManager::LoadTextures(std::string path) {
-	std::vector<std::string> assets = OS::GetFilesInDirectory(path + "/resourcepacks/", ".png");
+	std::vector<std::string> assets = OS::GetFilesInDirectory(path, ".png");
 
 	for (const std::string& asset : assets) {
 		std::string name = asset.substr(asset.find_last_of("/") + 1);
@@ -25,7 +39,7 @@ void ResourceManager::LoadTextures(std::string path) {
 	}
 }
 void ResourceManager::LoadSounds(std::string path) {
-	std::vector<std::string> assets = OS::GetFilesInDirectory(path + "/resourcepacks/", ".wav");
+	std::vector<std::string> assets = OS::GetFilesInDirectory(path, ".wav");
 
 	for (const std::string& asset : assets) {
 		std::string name = asset.substr(asset.find_last_of("/") + 1);
