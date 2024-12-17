@@ -20,6 +20,8 @@
 #pragma endregion
 
 void Level1::Load() {
+	Managers::GetInstance()->SoundManager->PlayMusic("music");
+
 	clock = new Clock(true);
 
 	ennemiesPool = {

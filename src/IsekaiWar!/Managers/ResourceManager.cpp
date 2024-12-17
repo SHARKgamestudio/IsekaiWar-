@@ -8,18 +8,18 @@
 
 #pragma endregion
 
-const std::string debug_path = "../../../src/IsekaiWar!/";
+const std::string DEBUG_PATH = "../../../src/IsekaiWar!/";
 
 ResourceManager::ResourceManager() {
 	std::string root = "";
 	std::string subdir = "";
 
 	#ifdef _DEBUG
-		root = OS::GetAbsolutePath(debug_path);
+		root = OS::GetAbsolutePath(DEBUG_PATH);
 		subdir = "Assets/";
 	#else
-	root = OS::GetExecutablePath();
-	subdir = "/resourcepacks/";
+		root = OS::GetExecutablePath();
+		subdir = "/resourcepacks/";
 	#endif
 
 	std::string path = root + subdir;
@@ -27,6 +27,7 @@ ResourceManager::ResourceManager() {
 	
 	LoadTextures(path);
 	LoadSounds(path);
+	LoadMusics(path);
 }
 
 void ResourceManager::LoadTextures(std::string path) {
@@ -47,6 +48,15 @@ void ResourceManager::LoadSounds(std::string path) {
 		AddSound(name, asset);
 	}
 }
+void ResourceManager::LoadMusics(std::string path) {
+	std::vector<std::string> assets = OS::GetFilesInDirectory(path, ".wav");
+
+	for (const std::string& asset : assets) {
+		std::string name = asset.substr(asset.find_last_of("/") + 1);
+		name = name.substr(0, name.find_last_of("."));
+		AddMusic(name, asset);
+	}
+}
 
 void ResourceManager::AddTexture(std::string name, std::string path) {
 	bool success = textures[name].loadFromFile(path);
@@ -59,11 +69,25 @@ sf::Texture* ResourceManager::GetTexture(std::string name) {
 }
 
 void ResourceManager::AddSound(std::string name, std::string path) {
-	bool success = sounds[name].loadFromFile(path);
+	sf::SoundBuffer* buffer = new sf::SoundBuffer;
+	buffer->loadFromFile(path);
+
+	sounds[name] = sf::Sound(*buffer);
+	bool success = sounds.contains(name);
 	Debug::Assert(success, "Could not add the sound to the resources");
 }
-sf::SoundBuffer* ResourceManager::GetSound(std::string name) {
+sf::Sound* ResourceManager::GetSound(std::string name) {
 	bool success = sounds.contains(name);
 	Debug::Assert(success, "Could not retreive requested resource");
 	return &sounds[name];
+}
+
+void ResourceManager::AddMusic(std::string name, std::string path) {
+	bool success = musics[name].openFromFile(path);
+	Debug::Assert(success, "Could not add the music to the resources");
+}
+sf::Music* ResourceManager::GetMusic(std::string name) {
+	bool success = musics.contains(name);
+	Debug::Assert(success, "Could not retreive requested resource");
+	return &musics[name];
 }

@@ -36,6 +36,7 @@ void AutoBullet::Update(float deltaTime) {
 			return;
 		}
 
+		Managers::GetInstance()->SoundManager->PlaySound("explosion");
 		Attack(castEntity);
 		toDisable = true;
 		return;

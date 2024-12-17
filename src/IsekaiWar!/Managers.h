@@ -6,6 +6,7 @@
 #include "Managers/InputManager.h"
 #include "Managers/ResourceManager.h"
 #include "Managers/SceneManager.h"
+#include "Managers/SoundManager.h"
 
 #pragma endregion
 
@@ -19,6 +20,7 @@ public:
 	InputManager* InputManager;
 	ResourceManager* ResourceManager;
 	SceneManager* SceneManager;
+	SoundManager* SoundManager;
 
 	static Managers* GetInstance();
 };

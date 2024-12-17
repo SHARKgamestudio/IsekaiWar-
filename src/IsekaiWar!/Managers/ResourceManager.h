@@ -12,17 +12,24 @@
 class ResourceManager {
 private:
 	std::map<std::string, sf::Texture> textures;
-	std::map<std::string, sf::SoundBuffer> sounds;
+	std::map<std::string, sf::Sound> sounds;
+	std::map<std::string, sf::Music> musics;
+
 	ResourceManager();
 
 	void LoadTextures(std::string path);
 	void LoadSounds(std::string path);
+	void LoadMusics(std::string path);
 public:
 	void AddTexture(std::string name, std::string path);
 	sf::Texture* GetTexture(std::string name);
 
 	void AddSound(std::string name, std::string path);
-	sf::SoundBuffer* GetSound(std::string name);
+	sf::Sound* GetSound(std::string name);
+
+	void AddMusic(std::string name, std::string path);
+	sf::Music* GetMusic(std::string name);
 
 	friend class Managers;
+	friend class SoundManager;
 };

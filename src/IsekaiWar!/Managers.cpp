@@ -11,6 +11,7 @@ Managers::Managers() {
 	this->InputManager = new ::InputManager();
 	this->ResourceManager = new ::ResourceManager();
 	this->SceneManager = new ::SceneManager();
+	this->SoundManager = new ::SoundManager();
 }
 
 Managers* Managers::GetInstance() {
