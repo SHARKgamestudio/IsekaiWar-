@@ -29,6 +29,8 @@ public:
 
 	std::vector<EnemyEntity*> ennemiesPool;
 
+	Level1();
+
 	void Load();
 	void End();
 	void Update(float deltaTime) override;

@@ -1,6 +1,10 @@
 #include "UltimeBullet.h"
 
+#pragma region External Dependencies
+
 #include <cmath>
+
+#pragma endregion
 
 #pragma region Local Dependencies
 

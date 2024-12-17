@@ -14,8 +14,8 @@
 
 SceneManager::SceneManager() {
 	levels["Level1"] = new Level1();
-	//currentLevel = levels["Level1"];
-	//currentScene = levels["Level1"];
+	currentScene = nullptr;
+	currentLevel = nullptr;
 }
 
 void SceneManager::Pause() {
