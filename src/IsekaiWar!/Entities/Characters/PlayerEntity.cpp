@@ -7,6 +7,7 @@
 #include "../Bullets/PlayerBullets/AutoBullet.h"
 #include "../Bullets/PlayerBullets/SpecialBullet.h"
 #include "../Bullets/PlayerBullets/UltimeBullet.h"
+#include "../PowerUps/FirePowerUp.h"
 #include <iostream>
 
 #pragma endregion
@@ -15,7 +16,6 @@ PlayerEntity::PlayerEntity(float x, float y, sf::Texture* texture, int columns, 
 	: CharacterEntity(x, y, texture, columns, rows, radius, health),
 	ShootModule(this)
 {
-	this->spritesheet.setOrigin(256/2, 256/2);
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
 
@@ -27,7 +27,6 @@ PlayerEntity::PlayerEntity(sf::Vector2f position, sf::Texture* texture, sf::Vect
 	: CharacterEntity(position, texture, split, radius, health),
 	ShootModule(this)
 {
-	this->spritesheet.setOrigin(256 / 2, 256 / 2);
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
 
@@ -73,6 +72,7 @@ void PlayerEntity::Update(float deltaTime) {
 	}
 
 	if (this->inputs->GetKeyDown("Special") && canSpecial) {
+		//(new FirePowerUp(200, 0))->Spawn();
 		ShootSpecial();
 		canSpecial = false;
 		clockSpecial.Restart();

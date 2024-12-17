@@ -23,7 +23,6 @@ UltimeBullet::UltimeBullet(float x, float y)
 {
 	entity = Managers::GetInstance()->SceneManager->currentLevel->GetPlayer();
 	spritesheet.setScale(0.8f, 0.8f);
-	spritesheet.setOrigin(300.f / 2, 300.f / 2);
 	spritesheet.setRotation(-90);
 
 	animator.Play("forward");

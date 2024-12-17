@@ -22,7 +22,6 @@ SpecialBullet::SpecialBullet(float x, float y)
 	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS, SPEED_ANIMATION) })
 {
 	spritesheet.setScale(0.8f, 0.8f);
-	spritesheet.setOrigin(300.f / 2, 300.f / 2);
 	spritesheet.setRotation(-90);
 
 	animator.Play("forward");

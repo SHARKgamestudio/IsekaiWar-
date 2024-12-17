@@ -12,12 +12,13 @@ Spritesheet::Spritesheet() {
 	this->columns = 0; this->rows = 0;
 
 	this->sprite.setTextureRect(sf::IntRect(0, 0, 0, 0));
-	this->sprite.setOrigin(0, 0);
+	this->sprite.setOrigin(vres / 2, vres / 2);
 }
 
 Spritesheet::Spritesheet(sf::Texture* texture, int columns, int rows) {
 	this->current = 0;
 	this->SetTexture(texture, columns, rows);
+	this->sprite.setOrigin(vres / 2, vres / 2);
 }
 
 void Spritesheet::SetTexture(sf::Texture* texture, int columns, int rows) {

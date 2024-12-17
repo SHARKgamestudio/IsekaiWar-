@@ -16,8 +16,6 @@ SceneManager::SceneManager() {
 	levels["Level1"] = new Level1();
 	//currentLevel = levels["Level1"];
 	//currentScene = levels["Level1"];
-
-	LoadLevel("Level1");
 }
 
 void SceneManager::Pause() {

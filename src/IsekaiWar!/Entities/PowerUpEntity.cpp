@@ -1,6 +1,8 @@
 #include "PowerUpEntity.h"
 #include "../Managers.h"
 
+#include <iostream>
+
 PowerUpEntity::PowerUpEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack, sf::Vector2f direction, float speed)
 	: CollidableEntity(x, y, texture, columns, rows, radius),
 	MoveModule(direction, speed) {
@@ -23,7 +25,7 @@ void PowerUpEntity::Update(float deltaTime) {
 	CollidableEntity::Update(deltaTime);
 
 	Move(deltaTime);
-
+	spritesheet.rotate(100 * deltaTime);
 	CheckCollisions();
 
 	if (!entitiesHit.empty()) {

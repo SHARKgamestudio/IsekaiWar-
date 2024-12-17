@@ -2,7 +2,7 @@
 #include "../Managers.h"
 
 BackgroundEntity::BackgroundEntity(sf::Texture* texture)
-	: Entity(0.f, 0.f, texture, 1, 1),
+	: Entity(0, 0, texture, 1, 1),
 	TravellingModule(sf::Vector2f(0, 1), 20.f) {
 	texture->setRepeated(true);
 	this->spritesheet.SetTexture(texture, 1, 1);
@@ -12,7 +12,7 @@ void BackgroundEntity::Traveling(float deltaTime) {
 	u = u - normalisedDirection.x * deltaTime * speed;
 	v = v - normalisedDirection.y * deltaTime * speed;
 
-	spritesheet.SetTextureRect(sf::IntRect(int(u), int(v), 800, 600));
+	spritesheet.SetTextureRect(sf::IntRect(int(u), int(v), 850, 650));
 }
 
 void BackgroundEntity::Update(float deltaTime) {

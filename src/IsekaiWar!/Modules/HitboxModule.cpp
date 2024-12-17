@@ -8,6 +8,8 @@
 
 #pragma endregion
 
+#include <iostream>
+
 HitboxModule::HitboxModule(CollidableEntity* entity, float radius, char statut) {
 	this->entity = entity;
 	this->radius = radius;
@@ -44,7 +46,7 @@ void HitboxModule::UpdateLines() {
 }
 
 void HitboxModule::RemoveToCheck(CollidableEntity* otherEntity) {
-	auto it = std::find(collisionsToCheck.begin(), collisionsToCheck.end(), otherEntity);
+	std::_Vector_iterator it = std::find(collisionsToCheck.begin(), collisionsToCheck.end(), otherEntity);
 
 	if (it != collisionsToCheck.end()) {
 		int index = std::distance(collisionsToCheck.begin(), it);
@@ -66,6 +68,7 @@ void HitboxModule::CheckCollisions() {
 		float distance = sqrtf(difference.y * difference.y + difference.x * difference.x);
 
 		if (distance < radius + otherEntity->radius) {
+			std::cout << "collision";
 			entitiesHit.push_back(otherEntity);
 		}
 	}

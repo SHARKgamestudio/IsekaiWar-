@@ -42,6 +42,7 @@ void LevelScene::Update(float deltaTime) {
 
 	// PARCOURS DE DESPAWN
 	for (CollidableEntity* entity : entitiesToDestroy) {
+		std::cout << "despawn";
 		DespawnEntity(entity);
 	}
 
@@ -52,6 +53,10 @@ void LevelScene::Update(float deltaTime) {
 	for (BulletEntity* bullet : bulletsToDestroy) {
 		DespawnBullet(bullet);
 	}
+
+	entitiesToDestroy.clear();
+	ennemiesToDestroy.clear();
+	bulletsToDestroy.clear();
 }
 
 void LevelScene::Draw(sf::RenderWindow& window) {
@@ -100,7 +105,7 @@ void LevelScene::SpawnEnnemyBullet(BulletEntity* bullet) {
 }
 
 void LevelScene::DespawnBullet(BulletEntity* bullet) {
-	auto it = std::find(bullets.begin(), bullets.end(), bullet);
+	std::_Vector_iterator it = std::find(bullets.begin(), bullets.end(), bullet);
 
 	if (it != bullets.end()) {
 		int index = std::distance(bullets.begin(), it);
@@ -118,7 +123,7 @@ void LevelScene::SpawnEnnemy(EnemyEntity* ennemy) {
 }
 
 void LevelScene::DespawnEnnemy(EnemyEntity* ennemy) {
-	auto it = std::find(ennemies.begin(), ennemies.end(), ennemy);
+	std::_Vector_iterator it = std::find(ennemies.begin(), ennemies.end(), ennemy);
 
 	if (it != ennemies.end()) {
 		int index = std::distance(ennemies.begin(), it);
@@ -132,17 +137,13 @@ void LevelScene::DespawnEnnemy(EnemyEntity* ennemy) {
 }
 
 void LevelScene::SpawnEntity(CollidableEntity* entity) {
-	for (BulletEntity* bullet : bullets) {
-		bullet->AddToCheck(entity);
-	}
-
 	entity->AddToCheck(player);
 
 	entities.push_back(entity);
 }
 
 void LevelScene::DespawnEntity(CollidableEntity* entity) {
-	auto it = std::find(entities.begin(), entities.end(), entity);
+	std::_Vector_iterator it = std::find(entities.begin(), entities.end(), entity);
 
 	if (it != entities.end()) {
 		int index = std::distance(entities.begin(), it);
@@ -160,7 +161,7 @@ void LevelScene::SpawnBackground(BackgroundEntity* background) {
 }
 
 void LevelScene::DespawnBackground(BackgroundEntity* background) {
-	auto it = std::find(backgrounds.begin(), backgrounds.end(), background);
+	std::_Vector_iterator it = std::find(backgrounds.begin(), backgrounds.end(), background);
 
 	if (it != backgrounds.end()) {
 		int index = std::distance(backgrounds.begin(), it);

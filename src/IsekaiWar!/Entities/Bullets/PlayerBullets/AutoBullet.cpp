@@ -36,7 +36,7 @@ void AutoBullet::Update(float deltaTime) {
 			return;
 		}
 
-		Attack(castEntity, deltaTime);
+		Attack(castEntity);
 		toDisable = true;
 		return;
 	}
