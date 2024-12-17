@@ -13,10 +13,10 @@ Button::Button(sf::Text* text, Spritesheet* spritesheet, Anchor anchor) {
 	text->setOrigin(text->getLocalBounds().width / 2.0f, text->getLocalBounds().height / 1.5f);
 }
 
-void Button::Update(const sf::RenderWindow* window) {
+void Button::Update(const sf::RenderWindow& window) {
 	sf::FloatRect bounds = getTransform().transformRect(spritesheet->sprite.getGlobalBounds());
 
-	bool inBounds = bounds.contains(window->mapPixelToCoords(sf::Mouse::getPosition(*window)));
+	bool inBounds = bounds.contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)));
 	bool isPressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
 	state = inBounds ? (isPressed ? 2 : 1) : 0;

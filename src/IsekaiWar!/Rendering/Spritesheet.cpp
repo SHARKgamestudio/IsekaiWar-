@@ -9,7 +9,7 @@
 Spritesheet::Spritesheet() {
 	this->current = 0;
 	this->hres = 0; this->vres = 0;
-	this->columns = 0; this->rows = 0;
+	this->columns = 1; this->rows = 1;
 
 	this->sprite.setTextureRect(sf::IntRect(0, 0, 0, 0));
 	this->sprite.setOrigin(vres / 2, vres / 2);

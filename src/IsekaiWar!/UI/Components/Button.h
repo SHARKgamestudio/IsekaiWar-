@@ -13,7 +13,7 @@ protected:
 	Spritesheet* spritesheet;
 public:
 	Button(sf::Text* text, Spritesheet* spritesheet, Anchor anchor = Center);
-	void Update(const sf::RenderWindow* window);
+	void Update(const sf::RenderWindow& window);
 
 	bool IsPressed();
 };
