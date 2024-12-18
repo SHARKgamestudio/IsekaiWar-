@@ -61,19 +61,29 @@ void GameManager::DisplayLoadingScreen() {
 		path = OS::GetExecutablePath() + "/resourcepacks/";
 	#endif
 
+	sf::Texture engineLogoTexture;
+	engineLogoTexture.loadFromFile(path + "engine-logo.png");
+
+	sf::Sprite engineLogo;
+	engineLogo.setTexture(engineLogoTexture);
+	engineLogo.setOrigin(engineLogo.getLocalBounds().width / 2, engineLogo.getLocalBounds().height / 2);
+	engineLogo.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+
+
 	sf::Font font;
 	font.loadFromFile(path + "font.ttf");
 
 	sf::Text loadingText;
 	loadingText.setFont(font);
-	loadingText.setString("Loading Resources..");
-	loadingText.setCharacterSize(96);
-	loadingText.setFillColor(sf::Color::Red);
+	loadingText.setString("loading resources..");
+	loadingText.setCharacterSize(48);
+	loadingText.setFillColor(sf::Color::White);
 	loadingText.setOrigin(loadingText.getLocalBounds().width / 2, loadingText.getLocalBounds().height / 2);
-	loadingText.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	loadingText.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 1.2f);
 	
 	window.clear();
 
+	window.draw(engineLogo);
 	window.draw(loadingText);
 
 	window.display();
