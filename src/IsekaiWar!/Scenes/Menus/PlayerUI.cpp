@@ -31,6 +31,16 @@ void PlayerUI::Load() {
 	right_background_image->setPosition(1760, 538);
 	elements.push_back(right_background_image);
 
+	Spritesheet* play_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("play-button"), 1, 4);
+	sf::Text* play_text = new sf::Text();
+	play_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("font"));
+	play_text->setString("");
+	play_text->setCharacterSize(30);
+	Button* play_button = new Button(play_text, play_spritesheet);
+	play_button->SetScale(1, 1);
+	play_button->setPosition(1920 / 2, 598);
+	elements.push_back(play_button);
+
 	cursor = new sf::Sprite();
 	cursor->setTexture(*Managers::GetInstance()->ResourceManager->GetTexture("cursor"));
 	cursor->setScale(1, 1);
@@ -40,4 +50,10 @@ void PlayerUI::Load() {
 
 void PlayerUI::UpdateLogic(float dt) {
 	MenuScene::UpdateLogic(dt);
+
+	//Button* play_button = (Button*)elements[2];
+	//if (play_button->IsPressed()) {
+	//	play_button->Disable();
+	//	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
+	//}
 }
