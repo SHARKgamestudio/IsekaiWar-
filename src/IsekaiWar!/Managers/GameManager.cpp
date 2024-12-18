@@ -18,12 +18,12 @@
 
 GameManager::GameManager() : view(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT))) {
 	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "IsekaiWar!", sf::Style::Fullscreen);
-	view.move(-WINDOW_WIDTH / 4, 0);
-	window.setView(view);
+	//view.move(-WINDOW_WIDTH / 4, 0);
+	//window.setView(view);
 }
 
 void GameManager::Run() {
-	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
+	Managers::GetInstance()->SceneManager->LoadMenu("MainMenu");
 	while (window.isOpen()) {
 		sf::Time deltaTime = clock.restart();
 		HandleEvents();
@@ -45,7 +45,7 @@ void GameManager::UpdateLogic(float deltaTime) {
 	// LOGIC GOES HERE //
 	Managers::GetInstance()->SceneManager->UpdateLogic(deltaTime);
 	Managers::GetInstance()->InputManager->UpdateInputs();
-	view.setViewport(sf::FloatRect(1920 / 4, 1080, 1920 / 2, 1080));
+	//view.setViewport(sf::FloatRect(1920 / 4, 1080, 1920 / 2, 1080));
 }
 
 void GameManager::Render() {

@@ -39,7 +39,7 @@ void Button::UpdateLogic(float deltaTime) {
 	if (state == 1 && animatedValue < 1) { animatedValue += deltaTime * 4; }
 	else if (animatedValue > 0.0f) { animatedValue -= deltaTime * 4; }
 
-	float scale = std::pow(animatedValue, 2) / 64;
+	float scale = std::pow(animatedValue, 2) / 32;
 	setScale(baseScale.x + scale, baseScale.y + scale);
 }
 
