@@ -21,6 +21,8 @@ protected:
 	sf::Sprite* cursor;
 	std::vector<UIComponent*> elements;
 public:
+	MenuScene();
+
 	void virtual Load();
 	void virtual UpdateLogic(float dt);
 	void virtual Draw(sf::RenderWindow& window) override;

@@ -12,62 +12,74 @@
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
 SceneManager::SceneManager() :
-	viewMenu(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT))),
-	viewLevel(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT))) {
+	levelView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT))),
+	menuView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT))) {
+	
+	currentLevel = nullptr;
+	currentScene = nullptr;
+
 	levels["Level1"] = new Level1();
 	scenes["MainMenu"] = new MainMenu();
 
-	viewLevel.move(-WINDOW_WIDTH / 4, 0);
-}
-
-void SceneManager::SetViewMenu() {
-	Managers::GetInstance()->GameManager->window.setView(viewMenu);
-}
-
-void SceneManager::SetViewLevel() {
-	Managers::GetInstance()->GameManager->window.setView(viewLevel);
-}
-
-void SceneManager::Pause() {
-	SetViewMenu();
-	currentScene = scenes["pause"];
-	currentScene->Load();
-}
-
-void SceneManager::Resume() {
-	SetViewLevel();
-	currentScene = currentLevel;
-}
-
-void SceneManager::BackToMainMenu() {
-	SetViewMenu();
-	currentScene = scenes["mainMenu"];
-	currentScene->Load();
-}
-
-void SceneManager::NavigateInMenu(std::string name) {
-	SetViewMenu();
-	currentScene = scenes[name];
-	currentScene->Load();
+	levelView.move(-WINDOW_WIDTH / 4, 0);
 }
 
 void SceneManager::LoadMenu(std::string name) {
-	SetViewMenu();
 	currentScene = scenes[name];
+	currentLevel = nullptr;
+
 	currentScene->Load();
+}
+void SceneManager::LoadMenuAsync(std::string name) {
+	currentScene = scenes[name];
+
+	currentScene->Load();
+}
+void SceneManager::UnloadMenu() {
+	currentLevel = nullptr;
+	currentScene = nullptr;
+}
+void SceneManager::UnloadMenuAsync() {
+	currentScene = nullptr;
 }
 
 void SceneManager::LoadLevel(std::string name) {
-	SetViewLevel();
 	currentLevel = levels[name];
-	currentScene = currentLevel;
-	currentScene->Load();
+	currentScene = nullptr;
+
+	currentLevel->Load();
+}
+void SceneManager::LoadLevelAsync(std::string name) {
+	currentLevel = levels[name];
+
+	currentLevel->Load();
+}
+void SceneManager::UnloadLevel() {
+	currentLevel = nullptr;
+	currentScene = nullptr;
+}
+void SceneManager::UnloadLevelAsync() {
+	currentLevel = nullptr;
 }
 
 void SceneManager::UpdateLogic(float deltaTime) {
-	currentScene->UpdateLogic(deltaTime);
-}
+	if (currentLevel != nullptr) {
+		currentLevel->UpdateLogic(deltaTime);
+	}
 
+	if (currentScene != nullptr) {
+		currentScene->UpdateLogic(deltaTime);
+	}
+}
 void SceneManager::Draw(sf::RenderWindow& window) {
-	currentScene->Draw(window);
+
+	if (currentLevel != nullptr) {
+		Managers::GetInstance()->GameManager->window.setView(levelView);
+		currentLevel->Draw(window);
+	}
+
+	if (currentScene != nullptr) {
+		Managers::GetInstance()->GameManager->window.setView(menuView);
+		currentScene->Draw(window);
+	}
 }

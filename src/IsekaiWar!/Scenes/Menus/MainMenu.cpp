@@ -16,6 +16,10 @@
 
 #pragma endregion
 
+MainMenu::MainMenu() {
+	resetCursor = true;
+}
+
 void MainMenu::Load() {
 	std::cout << "Main Menu Loaded" << std::endl;
 
@@ -75,7 +79,7 @@ void MainMenu::UpdateLogic(float dt) {
 	Button* play_button = (Button*)elements[2];
 	if (play_button->IsPressed()) {
 		play_button->Disable();
-		Managers::GetInstance()->SceneManager->LoadLevel("Level1");
+		Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");
 	}
 
 	Button* quit_button = (Button*)elements[4];
