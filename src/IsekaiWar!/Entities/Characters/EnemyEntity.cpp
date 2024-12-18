@@ -29,5 +29,7 @@ void EnemyEntity::UpdateLogic(float deltaTime) {
 		else if (randint <= 10) {
 			(new WaterPowerUp(getPosition()))->Spawn();
 		}
+
+		Managers::GetInstance()->SceneManager->currentLevel->UpdateScore(200);
 	}
 }

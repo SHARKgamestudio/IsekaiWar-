@@ -66,6 +66,13 @@ void LevelScene::UpdateLogic(float deltaTime) {
 	entitiesToDestroy.clear();
 	ennemiesToDestroy.clear();
 	bulletsToDestroy.clear();
+
+	// Reset combo
+	comboIsBreack = comboClock->UpdateLogic(deltaTime);
+
+	if (comboIsBreack) {
+		multiplicator = 1;
+	}
 }
 
 void LevelScene::Draw(sf::RenderWindow& window) {
@@ -106,6 +113,8 @@ void LevelScene::Load() {
 	entities.clear();
 	bullets.clear();
 	visualEffects.clear();
+
+	comboClock = new IntervalClock(3);
 }
 
 void LevelScene::SpawnPlayerBullet(BulletEntity* bullet) {
@@ -199,4 +208,11 @@ void LevelScene::DespawnBackground(BackgroundEntity* background) {
 
 		backgrounds.erase(it);
 	}
+}
+
+void LevelScene::UpdateScore(int score) {
+	this->score += score * multiplicator;
+
+	multiplicator += 0.1f;
+	comboClock.Restart();
 }

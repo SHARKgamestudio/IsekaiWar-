@@ -16,6 +16,7 @@
 #include "../Entities/BulletEntity.h"
 #include "../Entities/Characters/PlayerEntity.h"
 #include "../Entities/Characters/EnemyEntity.h"
+#include "../Utils/IntervalClock.h"
 
 #pragma endregion
 
@@ -32,6 +33,11 @@ protected:
 	std::vector<EnemyEntity*> ennemiesToDestroy;
 	std::vector<BulletEntity*> bulletsToDestroy;
 	std::vector<VisualEffectEntity*> visualEffectsToDestroy;
+
+	IntervalClock* comboClock;
+	bool comboIsBreack;
+	int score;
+	float multiplicator;
 
 public:
 	std::vector<CollidableEntity*>* GetEntities();
@@ -57,4 +63,6 @@ public:
 
 	void virtual SpawnBackground(BackgroundEntity* background);
 	void virtual DespawnBackground(BackgroundEntity* background);
+
+	void UpdateScore(int score);
 };
