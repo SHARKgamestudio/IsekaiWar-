@@ -9,8 +9,6 @@
 #pragma endregion
 
 class SpecialBullet : public PlayerBullet {
-	private:
-		Animator animator;
 	public:
 		SpecialBullet(float x, float y);
 		SpecialBullet(sf::Vector2f position);

@@ -7,7 +7,7 @@
 
 #pragma endregion
 
-#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("laser")
+#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("laserBullet")
 #define COLUMNS 1
 #define ROWS 1
 #define RADIUS 5.f
