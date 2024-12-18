@@ -8,19 +8,22 @@
 
 class GameManager {
 private:
+	bool running;
+
 	sf::RenderWindow window;
 	sf::Clock clock;
 
 	void DisplayLoadingScreen();
 
 	void UpdateLogic(float deltaTime);
-	void HandleEvents();
+	bool HandleEvents();
 	void Render();
 
 	GameManager();
 
 public:
 	void Run();
+	void Stop();
 
 	friend class Managers;
 	friend class SceneManager;

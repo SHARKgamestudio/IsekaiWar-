@@ -20,30 +20,38 @@ const std::string DEBUG_PATH = "../../../src/IsekaiWar!/";
 #define WINDOW_HEIGHT 1080
 
 GameManager::GameManager() {
-	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "IsekaiWar!", sf::Style::Fullscreen);
+	running = false;
+	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "IsekaiWar!", sf::Style::Default);
 }
 
 void GameManager::Run() {
+	running = true;
 	DisplayLoadingScreen();
 
 	Managers::GetInstance()->SceneManager->LoadMenu("MainMenu");
 	//Managers::GetInstance()->SceneManager->LoadLevel("Level1");
-	while (window.isOpen()) {
+	while (window.isOpen() && running) {
 		sf::Time deltaTime = clock.restart();
-		HandleEvents();
+		if (HandleEvents() == true) { running = false; break; }
 		UpdateLogic(deltaTime.asSeconds());
 		Render();
 	}
+
+	window.close();
 }
 
-void GameManager::HandleEvents() {
+void GameManager::Stop() {
+	running = false;
+}
+
+bool GameManager::HandleEvents() {
 	sf::Event event;
 	while (window.pollEvent(event)) {
 		Managers::GetInstance()->InputManager->UpdateEvents(&event);
 		if (Managers::GetInstance()->InputManager->GetKey("Pause"))
-			window.close();
+			return true;
 		if (event.type == sf::Event::Closed)
-			window.close();
+			return true;
 	}
 }
 
@@ -57,12 +65,12 @@ void GameManager::DisplayLoadingScreen() {
 	#endif
 
 	sf::Font font;
-	font.loadFromFile(path);
+	font.loadFromFile(path + "font.ttf");
 
 	sf::Text loadingText;
 	loadingText.setFont(font);
 	loadingText.setString("Loading Resources..");
-	loadingText.setCharacterSize(24);
+	loadingText.setCharacterSize(96);
 	loadingText.setFillColor(sf::Color::Red);
 	loadingText.setOrigin(loadingText.getLocalBounds().width / 2, loadingText.getLocalBounds().height / 2);
 	loadingText.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
