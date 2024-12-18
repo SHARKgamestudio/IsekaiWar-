@@ -101,7 +101,11 @@ PlayerEntity* LevelScene::GetPlayer() {
 }
 
 void LevelScene::Load() {
-
+	backgrounds.clear();
+	ennemies.clear();
+	entities.clear();
+	bullets.clear();
+	visualEffects.clear();
 }
 
 void LevelScene::SpawnPlayerBullet(BulletEntity* bullet) {

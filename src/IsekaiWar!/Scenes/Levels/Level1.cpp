@@ -26,6 +26,8 @@ Level1::Level1() {
 }
 
 void Level1::Load() {
+	LevelScene::Load();
+
 	Managers::GetInstance()->SoundManager->PlayMusic("music");
 
 	clock = new Clock(true);
@@ -73,8 +75,7 @@ void Level1::Load() {
 void Level1::End() {
 	// EXECUTE AT THE END OF THE LEVEL //
 
-	std::cout << "Level Ended" << std::endl;
-	std::cout << "State: " << current << std::endl;
+	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
 }
 
 void Level1::UpdateLogic(float deltaTime) {

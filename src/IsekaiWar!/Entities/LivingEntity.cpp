@@ -10,3 +10,15 @@ LivingEntity::LivingEntity(sf::Vector2f position, sf::Texture* texture, sf::Vect
 	: CollidableEntity(position, texture, split, radius),
 	HealthModule(health) {
 }
+
+void LivingEntity::UpdateLogic(float deltaTime) {
+	CollidableEntity::UpdateLogic(deltaTime);
+
+	if (hasTakeDamage) {
+		spritesheet.sprite.setColor(sf::Color(255, 0, 0));
+		hasTakeDamage = !hitClock.UpdateLogic(deltaTime);
+	}
+	else {
+		spritesheet.sprite.setColor(sf::Color(255, 255, 255));
+	}
+}
