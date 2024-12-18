@@ -35,7 +35,7 @@ protected:
 	std::vector<VisualEffectEntity*> visualEffectsToDestroy;
 
 	IntervalClock* comboClock;
-	bool comboIsBreack;
+	bool comboIsBreak;
 	int score;
 	float multiplicator;
 

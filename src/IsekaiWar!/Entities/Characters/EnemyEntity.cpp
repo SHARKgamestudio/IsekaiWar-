@@ -23,13 +23,18 @@ void EnemyEntity::UpdateLogic(float deltaTime) {
 
 		int randint = rand() % 100;
 
-		if (randint <= 5) {
-			(new FirePowerUp(getPosition()))->Spawn();
-		}
-		else if (randint <= 10) {
-			(new WaterPowerUp(getPosition()))->Spawn();
-		}
+		if (randint <= 10) {
+			int randint = rand() % 2;
 
+			switch (randint) {
+			case 0:
+				(new FirePowerUp(getPosition()))->Spawn();
+				break;
+			case 1:
+				(new WaterPowerUp(getPosition()))->Spawn();
+				break;
+			}
+		}
 		Managers::GetInstance()->SceneManager->currentLevel->UpdateScore(200);
 	}
 }
