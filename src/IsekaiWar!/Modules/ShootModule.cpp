@@ -7,6 +7,7 @@
 #include "../Entities/Bullets/PlayerBullets/AutoBullets/NeutralAuto.h"
 #include "../Entities/Bullets/PlayerBullets/AutoBullets/FireAuto.h"
 #include "../Entities/Bullets/PlayerBullets/AutoBullets/WaterAuto.h"
+#include "../Entities/Bullets/PlayerBullets/AutoBullets/FireAndWaterAuto.h"
 
 #include "../Entities/Bullets/PlayerBullets/SpecialBullet.h"
 #include "../Entities/Bullets/PlayerBullets/UltimeBullet.h"
@@ -48,7 +49,7 @@ void ShootModule::ShootAuto() {
 		(new WaterAuto(player->getPosition()))->Spawn();
 		return;
 	case StateAuto::FireAndWater:
-		(new FireAuto(player->getPosition()))->Spawn();
+		(new FireAndWaterAuto(player->getPosition()))->Spawn();
 		return;
 	}
 }
@@ -82,6 +83,7 @@ void ShootModule::UpdateBullets() {
 	}
 	else if (isWater) {
 		currentBullet = StateAuto::Water;
+		clockAuto.maxTime = 0.2f;
 	}
 	else {
 		currentBullet = StateAuto::Neutral;

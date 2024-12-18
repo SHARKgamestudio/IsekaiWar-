@@ -11,7 +11,7 @@
 #define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("waterBook")
 #define COLUMNS 1
 #define ROWS 1
-#define RADIUS 10.f
+#define RADIUS 30.f
 #define ATTACK 2.f
 #define DIRECTION_X  0.f
 #define DIRECTION_Y  1.f
@@ -23,7 +23,6 @@ WaterPowerUp::WaterPowerUp(float x, float y)
 	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS, SPEED_ANIMATION) })
 {
 	spritesheet.setScale(0.1f, 0.1f);
-	spritesheet.setPosition(-23.f, 22.f);
 	spritesheet.setRotation(-90);
 
 	animator.Play("forward");

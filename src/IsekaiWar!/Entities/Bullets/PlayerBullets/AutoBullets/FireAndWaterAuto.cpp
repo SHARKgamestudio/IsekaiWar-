@@ -1,4 +1,4 @@
-#include "WaterAuto.h"
+#include "FireAndWaterAuto.h"
 
 #pragma region Local Dependencies
 
@@ -7,30 +7,30 @@
 
 #pragma endregion
 
-#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("waterAuto")
+#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("fireAndWaterAuto")
 #define COLUMNS 6
 #define ROWS 1
-#define RADIUS 20
-#define ATTACK 0.7f
+#define RADIUS 30
+#define ATTACK 1.2f
 #define SPEED 700
 #define SPEED_ANIMATION 2
-#define SCALE 0.55f
+#define SCALE 0.8f
 #define POSITION_X 0
-#define POSITION_Y 30
+#define POSITION_Y 35
 
 
-WaterAuto::WaterAuto(float x, float y)
+FireAndWaterAuto::FireAndWaterAuto(float x, float y)
 	: AutoBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED, SPEED_ANIMATION) 
 {
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.setScale(SCALE, SCALE);
-	spritesheet.setRotation(90);
+	spritesheet.setRotation(-90);
 }
 
-WaterAuto::WaterAuto(sf::Vector2f position)
+FireAndWaterAuto::FireAndWaterAuto(sf::Vector2f position)
 	: AutoBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED, SPEED_ANIMATION)
 {
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.setScale(SCALE, SCALE);
-	spritesheet.setRotation(90);
+	spritesheet.setRotation(-90);
 }
