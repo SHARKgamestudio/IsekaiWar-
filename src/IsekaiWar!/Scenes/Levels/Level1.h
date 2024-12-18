@@ -22,7 +22,7 @@ public:
 		Lose
 	};
 
-	LevelState state;
+	LevelState current;
 
 	Clock* clock;
 	float highest;

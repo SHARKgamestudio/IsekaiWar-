@@ -37,7 +37,7 @@ public:
 	unsigned int button;
 
 	bool hold;
-	State state;
+	State current;
 
 	Key(std::string name, sf::Keyboard::Key key, unsigned int button);
 };

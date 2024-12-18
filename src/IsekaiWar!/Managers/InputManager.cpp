@@ -20,7 +20,7 @@ Key::Key(std::string name, sf::Keyboard::Key key, unsigned int button) {
 	this->key = key;
 	this->button = button;
 	this->hold = false;
-	this->state = None;
+	this->current = None;
 }
 
 float InputManager::GetRawAxis(std::string name) {
@@ -35,7 +35,7 @@ float InputManager::GetRawAxis(std::string name) {
 State InputManager::GetRawKey(std::string name) {
 	for (int i = 0; i < keys.size(); i++) {
 		if (keys[i].name == name) {
-			return keys[i].state;
+			return keys[i].current;
 		}
 	}
 	return None;
@@ -70,20 +70,20 @@ void InputManager::UpdateInputs() {
 	for (int i = 0; i < keys.size(); i++) {
 		if (joystickConnected) {
 			if (sf::Joystick::isButtonPressed(0, keys[i].button)) {
-				keys[i].state = keys[i].hold ? Hold : Pressed;
+				keys[i].current = keys[i].hold ? Hold : Pressed;
 				keys[i].hold = true;
 			} else {
-				keys[i].state = keys[i].hold ? Released : None;
+				keys[i].current = keys[i].hold ? Released : None;
 				keys[i].hold = false;
 			}
 		}
 		else {
 			if (sf::Keyboard::isKeyPressed(keys[i].key)) {
-				keys[i].state = keys[i].hold ? Hold : Pressed;
+				keys[i].current = keys[i].hold ? Hold : Pressed;
 				keys[i].hold = true;
 			}
 			else {
-				keys[i].state = keys[i].hold ? Released : None;
+				keys[i].current = keys[i].hold ? Released : None;
 				keys[i].hold = false;
 			}
 		}

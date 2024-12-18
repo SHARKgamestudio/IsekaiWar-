@@ -3,13 +3,16 @@
 #pragma region Local Dependencies
 
 #include "../../Rendering/Spritesheet.h"
+#include "../../Managers.h"
 
 #pragma endregion
 
 Button::Button(sf::Text* text, Spritesheet* spritesheet, Anchor anchor) {
+	this->changed = false;
 	this->text = text;
 	this->enabled = true;
-	this->state = State::Normal;
+	this->current = State::Normal;
+	this->previous = State::Normal;
 	this->anchor = anchor;
 	this->animatedValue = 0;
 	this->spritesheet = spritesheet;
@@ -27,16 +30,27 @@ void Button::UpdateCursor(const sf::RenderWindow& window) {
 	bool inBounds = bounds.contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)));
 	bool isPressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
-	state = inBounds ? (isPressed ? State::Pressed : State::Hovered) : State::Normal;
+	current = inBounds ? (isPressed ? State::Pressed : State::Hovered) : State::Normal;
 
-	spritesheet->current = state;
+	if (current != previous) { changed = true; previous = current; } else { changed = false; }
+
+	if (changed) {
+		if (current == State::Hovered && previous != State::Pressed) {
+			Managers::GetInstance()->SoundManager->PlaySound("select");
+		}
+		if (current == State::Pressed) {
+			Managers::GetInstance()->SoundManager->PlaySound("confirm");
+		}
+	}
+
+	spritesheet->current = current;
 	spritesheet->UpdateViewport();
 }
 
 void Button::UpdateLogic(float deltaTime) {
 	if (!enabled) return;
 
-	if (state == 1 && animatedValue < 1) { animatedValue += deltaTime * 4; }
+	if (current == 1 && animatedValue < 1) { animatedValue += deltaTime * 4; }
 	else if (animatedValue > 0.0f) { animatedValue -= deltaTime * 4; }
 
 	float scale = std::pow(animatedValue, 2) / 32;
@@ -50,16 +64,16 @@ void Button::SetScale(float x, float y) {
 
 void Button::Enable() {
 	enabled = true;
-	state = State::Normal;
+	current = State::Normal;
 }
 
 void Button::Disable() {
 	enabled = false;
-	state = State::Normal;
+	current = State::Normal;
 }
 
 bool Button::IsPressed() {
-	return state == State::Pressed;
+	return current == State::Pressed;
 }
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const {

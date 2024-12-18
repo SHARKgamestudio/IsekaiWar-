@@ -8,7 +8,7 @@ private:
 		Paused
 	};
 
-	State state;
+	State current;
 	float time;
 public:
 	Clock(bool start = false);

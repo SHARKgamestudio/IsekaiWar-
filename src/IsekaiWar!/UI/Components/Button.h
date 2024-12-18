@@ -18,13 +18,16 @@ private:
 		Disabled
 	};
 
+	bool changed;
+
 	sf::Text* text;
 	Spritesheet* spritesheet;
 
 	float animatedValue;
 	sf::Vector2f baseScale;
 
-	State state;
+	State current;
+	State previous;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

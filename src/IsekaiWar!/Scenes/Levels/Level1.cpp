@@ -20,7 +20,7 @@
 #pragma endregion
 
 Level1::Level1() {
-	state = LevelState::Playing;
+	current = LevelState::Playing;
 	clock = new Clock();
 	highest = 0;
 }
@@ -45,14 +45,14 @@ void Level1::Load() {
 	player = new PlayerEntity();
 	SpawnEntity(new FirePowerUp(200, 0));
 	SpawnEntity(new WaterPowerUp(600, 0));
-	state = Playing;
+	current = Playing;
 }
 
 void Level1::End() {
 	// EXECUTE AT THE END OF THE LEVEL //
 
 	std::cout << "Level Ended" << std::endl;
-	std::cout << "State: " << state << std::endl;
+	std::cout << "State: " << current << std::endl;
 }
 
 void Level1::UpdateLogic(float deltaTime) {
@@ -70,13 +70,13 @@ void Level1::UpdateLogic(float deltaTime) {
 	}
 
 	if (player->IsDead()) {
-		state = Lose;
+		current = Lose;
 		End();
 	}
 
 	if (ennemies.size() == 0) {
 		if (time >= highest) {
-			state = Win;
+			current = Win;
 			End();	
 		}
 

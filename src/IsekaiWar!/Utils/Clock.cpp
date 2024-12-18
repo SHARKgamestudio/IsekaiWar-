@@ -1,12 +1,12 @@
 #include "Clock.h"
 
 Clock::Clock(bool start) {
-	this->state = start ? Running : Stopped;
+	this->current = start ? Running : Stopped;
 	this->time = 0.0f;
 }
 
 void Clock::UpdateLogic(float deltaTime) {
-	if (state == Running) {
+	if (current == Running) {
 		time += deltaTime;
 	}
 }
@@ -16,25 +16,25 @@ float Clock::GetTime() {
 }
 
 Clock::State Clock::GetState() {
-	return state;
+	return current;
 }
 
 void Clock::Start() {
 	time = 0.0f;
-	state = Running;
+	current = Running;
 }
 
 void Clock::Stop() {
-	state = Stopped;
+	current = Stopped;
 	time = 0.0f;
 }
 
 void Clock::Pause() {
-	state = Paused;
+	current = Paused;
 }
 
 void Clock::Resume() {
-	state = Running;
+	current = Running;
 }
 
 void Clock::Reset() {
