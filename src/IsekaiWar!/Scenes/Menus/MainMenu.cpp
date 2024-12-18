@@ -21,8 +21,6 @@ MainMenu::MainMenu() {
 }
 
 void MainMenu::Load() {
-	std::cout << "Main Menu Loaded" << std::endl;
-
 	Spritesheet* background_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("background"), 1, 1);
 	Image* background_image = new Image(background_spritesheet);
 	background_image->setScale(1, 1);
@@ -79,7 +77,8 @@ void MainMenu::UpdateLogic(float dt) {
 	Button* play_button = (Button*)elements[2];
 	if (play_button->IsPressed()) {
 		play_button->Disable();
-		Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");
+		Managers::GetInstance()->SceneManager->LoadLevel("Level1");
+		Managers::GetInstance()->SceneManager->LoadMenuAsync("PlayerUI");
 	}
 
 	Button* quit_button = (Button*)elements[4];

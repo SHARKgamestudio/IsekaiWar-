@@ -5,6 +5,7 @@
 #include "../Managers.h"
 #include "../Scenes/Levels/Level1.h"
 #include "../Scenes/Menus/MainMenu.h"
+#include "../Scenes/Menus/PlayerUI.h"
 #include "../Scenes/MenuScene.h"
 
 #pragma endregion
@@ -18,8 +19,9 @@ SceneManager::SceneManager() :
 	currentLevel = nullptr;
 	currentScene = nullptr;
 
-	levels["Level1"] = new Level1();
 	scenes["MainMenu"] = new MainMenu();
+	scenes["PlayerUI"] = new PlayerUI();
+	levels["Level1"] = new Level1();
 
 	levelView.move(-WINDOW_WIDTH / 4, 0);
 }

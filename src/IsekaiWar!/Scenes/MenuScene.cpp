@@ -2,12 +2,8 @@
 
 #include "../UI/UIComponent.h"
 
-MenuScene::MenuScene() {
-	cursor = nullptr;
-}
-
 void MenuScene::Load(){
-
+	cursor = nullptr;
 }
 
 void MenuScene::UpdateLogic(float dt) { 
