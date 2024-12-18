@@ -10,7 +10,7 @@
 #define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("fireBook")
 #define COLUMNS 1
 #define ROWS 1
-#define RADIUS 10.f
+#define RADIUS 30.f
 #define ATTACK 2.f
 #define DIRECTION_X  0.f
 #define DIRECTION_Y  1.f
