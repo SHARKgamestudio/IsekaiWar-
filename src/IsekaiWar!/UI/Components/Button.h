@@ -35,7 +35,7 @@ public:
 	void Enable();
 	void Disable();
 
-	void UpdateCursor(const sf::RenderWindow& window);
+	void UpdateCursor(const sf::RenderWindow& window, sf::FloatRect cursor);
 	void UpdateLogic(float deltaTime);
 
 	void SetScale(float x, float y);

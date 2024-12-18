@@ -16,7 +16,7 @@ private:
 	void DisplayLoadingScreen();
 
 	void UpdateLogic(float deltaTime);
-	bool HandleEvents();
+	void HandleEvents();
 	void Render();
 
 	GameManager();

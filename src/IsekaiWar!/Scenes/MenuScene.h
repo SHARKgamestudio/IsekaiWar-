@@ -10,12 +10,15 @@
 
 #include "../Scene.h"
 
+
 #pragma endregion
 
 class UIComponent;
+class Sprite;
 
 class MenuScene : public Scene {
 protected:
+	sf::Sprite* cursor;
 	std::vector<UIComponent*> elements;
 public:
 	void virtual Load();

@@ -11,7 +11,7 @@ Image::Image(Spritesheet* spritesheet, Anchor anchor) {
 	this->anchor = anchor;
 }
 
-void Image::UpdateCursor(const sf::RenderWindow& window) {
+void Image::UpdateCursor(const sf::RenderWindow& window, sf::FloatRect cursor) {
 	if (!enabled) return;
 }
 

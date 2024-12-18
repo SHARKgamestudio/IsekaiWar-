@@ -22,13 +22,21 @@ Button::Button(sf::Text* text, Spritesheet* spritesheet, Anchor anchor) {
 	text->setOrigin(text->getLocalBounds().width / 2.0f, text->getLocalBounds().height / 1.5f);
 }
 
-void Button::UpdateCursor(const sf::RenderWindow& window) {
+void Button::UpdateCursor(const sf::RenderWindow& window, sf::FloatRect cursor) {
 	if (!enabled) return;
 
 	sf::FloatRect bounds = getTransform().transformRect(spritesheet->sprite.getGlobalBounds());
 
-	bool inBounds = bounds.contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)));
-	bool isPressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+	bool inBounds = false;
+	bool isPressed = false;
+	if (Managers::GetInstance()->InputManager->isJoystickConnected()) {
+		inBounds = bounds.intersects(cursor);
+		isPressed = Managers::GetInstance()->InputManager->GetKeyDown("Confirm");
+	}
+	else {
+		inBounds = bounds.contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)));
+		isPressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+	}
 
 	current = inBounds ? (isPressed ? State::Pressed : State::Hovered) : State::Normal;
 

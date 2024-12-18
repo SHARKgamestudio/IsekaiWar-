@@ -49,6 +49,10 @@ bool InputManager::GetKeyValue(sf::Keyboard::Key key) {
 	return sf::Keyboard::isKeyPressed(key);
 }
 
+bool InputManager::isJoystickConnected() {
+	return joystickConnected;
+}
+
 void InputManager::UpdateInputs() {
 
 	#pragma region UpdateLogic Axes

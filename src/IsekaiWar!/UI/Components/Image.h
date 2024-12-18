@@ -17,7 +17,7 @@ public:
 	void Enable();
 	void Disable();
 
-	void UpdateCursor(const sf::RenderWindow& window);
+	void UpdateCursor(const sf::RenderWindow& window, sf::FloatRect cursor);
 	void UpdateLogic(float deltaTime);
 
 	Image(Spritesheet* spritesheet, Anchor anchor = Center);

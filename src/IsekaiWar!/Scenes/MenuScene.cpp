@@ -14,7 +14,9 @@ void MenuScene::UpdateLogic(float dt) {
 
 void MenuScene::Draw(sf::RenderWindow& window) {
 	for (UIComponent* element : elements) {
-		element->UpdateCursor(window);
+		element->UpdateCursor(window, cursor->getGlobalBounds());
 		window.draw(*element);
 	}
+	
+	window.draw(*cursor);
 }

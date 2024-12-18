@@ -29,10 +29,10 @@ void GameManager::Run() {
 	DisplayLoadingScreen();
 
 	Managers::GetInstance()->SceneManager->LoadMenu("MainMenu");
-	//Managers::GetInstance()->SceneManager->LoadLevel("Level1");
+
 	while (window.isOpen() && running) {
 		sf::Time deltaTime = clock.restart();
-		if (HandleEvents() == true) { running = false; break; }
+		HandleEvents();
 		UpdateLogic(deltaTime.asSeconds());
 		Render();
 	}
@@ -44,14 +44,11 @@ void GameManager::Stop() {
 	running = false;
 }
 
-bool GameManager::HandleEvents() {
+void GameManager::HandleEvents() {
 	sf::Event event;
 	while (window.pollEvent(event)) {
 		Managers::GetInstance()->InputManager->UpdateEvents(&event);
-		if (Managers::GetInstance()->InputManager->GetKey("Pause"))
-			return true;
-		if (event.type == sf::Event::Closed)
-			return true;
+		if (event.type == sf::Event::Closed) { Stop(); }
 	}
 }
 

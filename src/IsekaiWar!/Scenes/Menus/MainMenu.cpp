@@ -3,6 +3,7 @@
 #pragma region External Dependencies
 
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
 #pragma endregion
 
@@ -59,6 +60,13 @@ void MainMenu::Load() {
 	quit_button->SetScale(1, 1);
 	quit_button->setPosition(1920/2, 898);
 	elements.push_back(quit_button);
+
+	cursor = new sf::Sprite();
+	cursor->setTexture(*Managers::GetInstance()->ResourceManager->GetTexture("cursor"));
+	cursor->setScale(1, 1);
+	cursor->setOrigin(32, 32);
+
+	resetCursor = true;
 }
 
 void MainMenu::UpdateLogic(float dt) {
@@ -74,5 +82,14 @@ void MainMenu::UpdateLogic(float dt) {
 	if (quit_button->IsPressed()) {
 		quit_button->Disable();
 		Managers::GetInstance()->GameManager->Stop();
+	}
+
+	if (Managers::GetInstance()->InputManager->isJoystickConnected()) {
+		if (resetCursor) { cursor->setPosition(1920 / 2, 1080 / 2); resetCursor = false; }
+		cursor->move(Managers::GetInstance()->InputManager->GetAxis("Horizontal"), Managers::GetInstance()->InputManager->GetAxis("Vertical"));
+	}
+	else {
+		cursor->setPosition(2000, 2000);
+		resetCursor = true;
 	}
 }

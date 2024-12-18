@@ -25,6 +25,6 @@ public:
 
 	virtual void Enable() = 0;
 	virtual void Disable() = 0;
-	virtual void UpdateCursor(const sf::RenderWindow& window) = 0;
+	virtual void UpdateCursor(const sf::RenderWindow& window, sf::FloatRect cursor) = 0;
 	virtual void UpdateLogic(float deltaTime) = 0;
 };
