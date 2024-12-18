@@ -11,7 +11,8 @@
 class UltimeBullet : public PlayerBullet {
 protected:
 	Animator animator;
-	sf::Sprite spriteLaser;
+	Spritesheet spriteLaser;
+	int distanceLaser;
 
 public:
 	UltimeBullet(float x, float y);

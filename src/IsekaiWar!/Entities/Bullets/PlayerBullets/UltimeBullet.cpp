@@ -15,6 +15,7 @@
 
 #define TEXTURE_FIRE Managers::GetInstance()->ResourceManager->GetTexture("fireUltime")
 #define TEXTURE_LASER Managers::GetInstance()->ResourceManager->GetTexture("laserUltime")
+#define PLAYER Managers::GetInstance()->SceneManager->currentLevel->GetPlayer();
 #define COLUMNS 4
 #define ROWS 2
 #define RADIUS 30.f
@@ -27,27 +28,27 @@
 UltimeBullet::UltimeBullet(float x, float y)
 	: PlayerBullet(x, y, TEXTURE_FIRE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED),
 	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS - 1, SPEED_ANIMATION) }),
-	spriteLaser(sf::Sprite())
+	spriteLaser(Spritesheet(TEXTURE_LASER, 1, 1))
 {
-	entity = Managers::GetInstance()->SceneManager->currentLevel->GetPlayer();
+	entity = PLAYER;
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.setScale(1.5f, 1.5f);
 	spritesheet.setRotation(180);
-
-	TEXTURE_LASER->setRepeated(true);
-	spriteLaser.setTexture(*TEXTURE_LASER);
+	distanceLaser = 140;
 
 	animator.Play("forward");
 }
 
 UltimeBullet::UltimeBullet(sf::Vector2f position)
 	: PlayerBullet(position, TEXTURE_FIRE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED),
-	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS - 1, SPEED_ANIMATION) })
+	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS - 1, SPEED_ANIMATION) }),
+	spriteLaser(Spritesheet(TEXTURE_LASER, 1, 1))
 {
 	entity = Managers::GetInstance()->SceneManager->currentLevel->GetPlayer();
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.setScale(1.5f, 1.5f);
 	spritesheet.setRotation(180);
+	distanceLaser = 140;
 
 	animator.Play("forward");
 }
@@ -55,19 +56,25 @@ UltimeBullet::UltimeBullet(sf::Vector2f position)
 void UltimeBullet::UpdateLogic(float deltaTime) {
 	PlayerBullet::UpdateLogic(deltaTime);
 
-	//animatorBody.Update(deltaTime);
 	animator.UpdateLogic(deltaTime);
 
 	if (!entitiesHit.empty()) {
 		Attack(dynamic_cast<LivingEntity*>(entitiesHit[0]), deltaTime);
+		spriteLaser.setScale(1, (entity->getPosition().y - entitiesHit[0]->getPosition().y - distanceLaser) / 90);
+		spriteLaser.setPosition(0, (entity->getPosition().y - entitiesHit[0]->getPosition().y - distanceLaser) / 2);
+		return;
 	}
+
+	spriteLaser.setScale(1, (entity->getPosition().y + 20 - distanceLaser) / 90);
+	spriteLaser.setPosition(0, (entity->getPosition().y + 20 - distanceLaser) / 2);
 }
 
 void UltimeBullet::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-	Entity::draw(target, states);
+	CollidableEntity::draw(target, states);
 
 	states.transform.combine(getTransform());
 	target.draw(spriteLaser, states);
+	target.draw(spritesheet, states);
 }
 
 void UltimeBullet::Move(float deltaTime) {
