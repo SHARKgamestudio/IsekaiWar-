@@ -11,17 +11,19 @@ const std::string DEBUG_PATH = "../../../src/IsekaiWar!/";
 
 ResourceManager::ResourceManager() {
 	loaded = false;
+}
 
+void ResourceManager::LoadResources() {
 	std::string root = "";
 	std::string subdir = "";
 
-	#ifdef _DEBUG
-		root = OS::GetAbsolutePath(DEBUG_PATH);
-		subdir = "Assets/";
-	#else
-		root = OS::GetExecutablePath();
-		subdir = "/resourcepacks/";
-	#endif
+#ifdef _DEBUG
+	root = OS::GetAbsolutePath(DEBUG_PATH);
+	subdir = "Assets/";
+#else
+	root = OS::GetExecutablePath();
+	subdir = "/resourcepacks/";
+#endif
 
 	std::string path = root + subdir;
 
