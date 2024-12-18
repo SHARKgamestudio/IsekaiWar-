@@ -10,6 +10,8 @@
 const std::string DEBUG_PATH = "../../../src/IsekaiWar!/";
 
 ResourceManager::ResourceManager() {
+	loaded = false;
+
 	std::string root = "";
 	std::string subdir = "";
 
@@ -27,6 +29,8 @@ ResourceManager::ResourceManager() {
 	LoadSounds(path);
 	LoadMusics(path);
 	LoadFonts(path);
+
+	loaded = true;
 }
 
 void ResourceManager::LoadTextures(std::string path) {
@@ -108,4 +112,8 @@ sf::Font* ResourceManager::GetFont(std::string name) {
 	bool success = fonts.contains(name);
 	Debug::Assert(success, "Could not retreive requested resource");
 	return &fonts[name];
+}
+
+bool ResourceManager::ResourcesLoaded() {
+	return loaded;
 }

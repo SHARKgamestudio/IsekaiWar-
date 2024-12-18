@@ -11,6 +11,8 @@
 
 class ResourceManager {
 private:
+	bool loaded;
+
 	std::map<std::string, sf::Texture> textures;
 	std::map<std::string, sf::Sound> sounds;
 	std::map<std::string, sf::Music> musics;
@@ -34,6 +36,8 @@ public:
 
 	void AddFont(std::string name, std::string path);
 	sf::Font* GetFont(std::string name);
+
+	bool ResourcesLoaded();
 
 	friend class Managers;
 	friend class SoundManager;
