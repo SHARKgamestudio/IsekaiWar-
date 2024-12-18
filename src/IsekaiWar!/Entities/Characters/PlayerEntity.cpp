@@ -28,7 +28,7 @@ PlayerEntity::PlayerEntity()
 }
 
 void PlayerEntity::UpdateLogic(float deltaTime) {
-	CharacterEntity::UpdateLogic(deltaTime);
+	LivingEntity::UpdateLogic(deltaTime);
 	ShootModule::UpdateLogic(deltaTime);
 	
 	float horizontal = inputs->GetAxis("Horizontal");

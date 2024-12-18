@@ -1,9 +1,16 @@
 #pragma once
 
+#include "../Utils/IntervalClock.h"
+
 class HealthModule {
 private:
 	bool isDead;
 	float HP, maxHP;
+
+protected:
+
+	IntervalClock hitClock;
+	bool hasTakeDamage;
 
 public:
 	HealthModule(float health);

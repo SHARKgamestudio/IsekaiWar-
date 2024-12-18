@@ -12,8 +12,6 @@
 #include "../../Entities/BackgroundEntity.h"
 #include "../../Entities/Bullets/PlayerBullets/SpecialBullet.h"
 #include "../../Entities/Characters/Enemies/StandardFighter.h"
-#include "../../Entities/PowerUps/FirePowerUp.h"
-#include "../../Entities/PowerUps/WaterPowerUp.h"
 
 #include "../../Utils/Clock.h"
 
@@ -26,6 +24,8 @@ Level1::Level1() {
 }
 
 void Level1::Load() {
+	LevelScene::Load();
+
 	Managers::GetInstance()->SoundManager->PlayMusic("music");
 
 	clock = new Clock(true);
@@ -65,16 +65,14 @@ void Level1::Load() {
 
 	backgrounds.push_back(new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("water")));
 	player = new PlayerEntity();
-	SpawnEntity(new FirePowerUp(200, 0));
-	SpawnEntity(new WaterPowerUp(600, 0));
 	current = Playing;
 }
 
 void Level1::End() {
 	// EXECUTE AT THE END OF THE LEVEL //
 
-	std::cout << "Level Ended" << std::endl;
-	std::cout << "State: " << current << std::endl;
+	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
+	Managers::GetInstance()->SceneManager->LoadMenuAsync("PlayerUI");
 }
 
 void Level1::UpdateLogic(float deltaTime) {

@@ -19,7 +19,7 @@
 #define COLUMNS 4
 #define ROWS 2
 #define RADIUS 30.f
-#define ATTACK 2.f
+#define ATTACK 10.f
 #define SPEED 700.f
 #define SPEED_ANIMATION 2.f
 #define POSITION_X 0
@@ -109,7 +109,7 @@ void UltimeBullet::CheckCollisions() {
 			continue;
 		}
 		
-		if (getPosition().y < entitiesHit[0]->getPosition().y) {
+		if (otherEntity->getPosition().y > entitiesHit[0]->getPosition().y) {
 			entitiesHit[0] = otherEntity;
 			continue;
 		}

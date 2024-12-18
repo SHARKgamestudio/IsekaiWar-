@@ -16,12 +16,13 @@
 #define DIRECTION_Y  1.f
 #define SPEED 200.f
 #define SPEED_ANIMATION 2.f
+#define SCALE 0.1f
 
 FirePowerUp::FirePowerUp(float x, float y)
 	: PowerUpEntity(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, sf::Vector2f(DIRECTION_X, DIRECTION_Y), SPEED),
 	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS, SPEED_ANIMATION) })
 {
-	spritesheet.setScale(0.1f, 0.1f);
+	spritesheet.setScale(SCALE, SCALE);
 	spritesheet.setRotation(-90);
 
 	animator.Play("forward");
@@ -31,7 +32,7 @@ FirePowerUp::FirePowerUp(sf::Vector2f position)
 	: PowerUpEntity(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, sf::Vector2f(DIRECTION_X, DIRECTION_Y), SPEED),
 	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS, SPEED_ANIMATION) })
 {
-	spritesheet.setScale(0.8f, 0.8f);
+	spritesheet.setScale(SCALE, SCALE);
 	spritesheet.setRotation(-90);
 
 	animator.Play("forward");
