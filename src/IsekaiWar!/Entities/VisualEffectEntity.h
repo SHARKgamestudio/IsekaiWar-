@@ -10,14 +10,21 @@
 
 #include "../Entity.h"
 #include "../Modules/MoveModule.h"
+#include "../Rendering/Animator.h"
 
 #pragma endregion
 
-class VisualEffectEntity : public Entity, public MoveModule {
-public:
-	VisualEffectEntity(float x, float y, sf::Texture* texture, int columns = 1, int rows = 1, float speed = 1);
-	VisualEffectEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split = sf::Vector2i(1, 1), float speed = 1);
+class VisualEffectEntity : public Entity {
+private:
+	Animator animator;
+	float timeAnimation;
+	int nbFrames;
+	float currentFrame;
 
-	void virtual UpdateLogic(float deltaTime);
-	void virtual Move(float deltaTime);
+public:
+	VisualEffectEntity(float x, float y, sf::Texture* texture, int columns, int rows, float timeAnimation);
+	VisualEffectEntity(sf::Vector2f position, sf::Texture* texture, sf::Vector2i split, float timeAnimation);
+
+	void UpdateLogic(float deltaTime) override;
+	void Spawn();
 };

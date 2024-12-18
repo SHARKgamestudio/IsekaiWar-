@@ -16,7 +16,7 @@
 #define SPEED_ANIMATION 2
 #define SCALE 0.55f
 #define POSITION_X 0
-#define POSITION_Y 15
+#define POSITION_Y 30
 
 
 WaterAuto::WaterAuto(float x, float y)

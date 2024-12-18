@@ -7,8 +7,6 @@
 
 #pragma endregion
 
-#include <iostream>
-
 #define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("fireBook")
 #define COLUMNS 1
 #define ROWS 1

@@ -5,8 +5,6 @@
 #include "../Entities/Bullets/PlayerBullets/SpecialBullet.h"
 #include "../Utils/Clock.h"
 
-#include <iostream>
-
 #pragma endregion
 
 void LevelScene::UpdateLogic(float deltaTime) {
@@ -40,9 +38,16 @@ void LevelScene::UpdateLogic(float deltaTime) {
 		}
 	}
 
+	for (VisualEffectEntity* visualEffect : visualEffects) {
+		visualEffect->UpdateLogic(deltaTime);
+
+		if (visualEffect->ToDestroy()) {
+			visualEffectsToDestroy.push_back(visualEffect);
+		}
+	}
+
 	// PARCOURS DE DESPAWN
 	for (CollidableEntity* entity : entitiesToDestroy) {
-		std::cout << "despawn";
 		DespawnEntity(entity);
 	}
 
@@ -52,6 +57,10 @@ void LevelScene::UpdateLogic(float deltaTime) {
 
 	for (BulletEntity* bullet : bulletsToDestroy) {
 		DespawnBullet(bullet);
+	}
+
+	for (VisualEffectEntity* visualEffect : visualEffectsToDestroy) {
+		DespawnVisualEffect(visualEffect);
 	}
 
 	entitiesToDestroy.clear();
@@ -74,6 +83,10 @@ void LevelScene::Draw(sf::RenderWindow& window) {
 
 	for (BulletEntity* bullet : bullets) {
 		window.draw(*bullet);
+	}
+
+	for (VisualEffectEntity* visualEffect : visualEffects) {
+		window.draw(*visualEffect);
 	}
 
 	window.draw(*player);
@@ -111,6 +124,20 @@ void LevelScene::DespawnBullet(BulletEntity* bullet) {
 		int index = std::distance(bullets.begin(), it);
 
 		bullets.erase(it);
+	}
+}
+
+void LevelScene::SpawnVisualEffect(VisualEffectEntity* visualEffect) {
+	visualEffects.push_back(visualEffect);
+}
+
+void LevelScene::DespawnVisualEffect(VisualEffectEntity* visualEffect) {
+	std::_Vector_iterator it = std::find(visualEffects.begin(), visualEffects.end(), visualEffect);
+
+	if (it != visualEffects.end()) {
+		int index = std::distance(visualEffects.begin(), it);
+
+		visualEffects.erase(it);
 	}
 }
 

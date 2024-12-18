@@ -1,5 +1,4 @@
 #include "Entity.h"
-#include <iostream>
 
 Entity::Entity(float x, float y, sf::Texture* texture, int columns, int rows) : spritesheet(texture, columns, rows) {
 	setPosition(x, y);

@@ -1,11 +1,5 @@
 #include "InputManager.h"
 
-#pragma region External Dependencies
-
-#include <iostream>
-
-#pragma endregion
-
 #pragma region Local Dependencies
 
 #include "../Utils/Maths.h"

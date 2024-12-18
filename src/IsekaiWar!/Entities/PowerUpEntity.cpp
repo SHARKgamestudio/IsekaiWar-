@@ -1,7 +1,8 @@
 #include "PowerUpEntity.h"
 #include "../Managers.h"
 
-#include <iostream>
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
 
 PowerUpEntity::PowerUpEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack, sf::Vector2f direction, float speed)
 	: CollidableEntity(x, y, texture, columns, rows, radius),
@@ -34,7 +35,7 @@ void PowerUpEntity::UpdateLogic(float deltaTime) {
 	}
 
 	sf::Vector2f pos = getPosition();
-	if (-10 > pos.x || pos.x > 810 || -10 > pos.y || pos.y > 610) {
+	if (-20 > pos.x || pos.x > WINDOW_WIDTH / 2 + 20 || -20 > pos.y || pos.y > WINDOW_HEIGHT + 20) {
 		Die();
 	}
 }

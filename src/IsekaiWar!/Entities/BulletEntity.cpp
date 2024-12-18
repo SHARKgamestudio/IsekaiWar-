@@ -3,6 +3,7 @@
 
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
+
 BulletEntity::BulletEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius, float attack, sf::Vector2f direction, float speed)
 	: CollidableEntity(x, y, texture, columns, rows, radius),
 	AttackModule(attack),

@@ -10,7 +10,6 @@
 #pragma region Local Dependencies
 
 #include "../Managers.h"
-#include <iostream>
 
 #pragma endregion
 
@@ -37,7 +36,7 @@ void GameManager::HandleEvents() {
 	sf::Event event;
 	while (window.pollEvent(event)) {
 		Managers::GetInstance()->InputManager->UpdateEvents(&event);
-		if (event.type == sf::Event::Closed)
+		if (Managers::GetInstance()->InputManager->GetKeyDown("Pause"))
 			window.close();
 	}
 }

@@ -22,14 +22,16 @@
 class LevelScene : public Scene {
 protected:
 	PlayerEntity* player;
-	std::vector<BackgroundEntity*> backgrounds; //mettre en const à terme
-	std::vector<EnemyEntity*> ennemies; //mettre en const à terme
-	std::vector<CollidableEntity*> entities; //mettre en const à terme
-	std::vector<BulletEntity*> bullets; //mettre en const à terme
+	std::vector<BackgroundEntity*> backgrounds;
+	std::vector<EnemyEntity*> ennemies;
+	std::vector<CollidableEntity*> entities;
+	std::vector<BulletEntity*> bullets;
+	std::vector<VisualEffectEntity*> visualEffects;
 
 	std::vector<CollidableEntity*> entitiesToDestroy;
 	std::vector<EnemyEntity*> ennemiesToDestroy;
 	std::vector<BulletEntity*> bulletsToDestroy;
+	std::vector<VisualEffectEntity*> visualEffectsToDestroy;
 
 public:
 	std::vector<CollidableEntity*>* GetEntities();
@@ -44,6 +46,9 @@ public:
 	void virtual SpawnEnnemyBullet(BulletEntity* bullet);
 	void virtual DespawnBullet(BulletEntity* bullet);
 
+	void virtual SpawnVisualEffect(VisualEffectEntity* visualEffect);
+
+	void virtual DespawnVisualEffect(VisualEffectEntity* visualEffect);
 	void virtual SpawnEnnemy(EnemyEntity* ennemy);
 	void virtual DespawnEnnemy(EnemyEntity* ennemy);
 

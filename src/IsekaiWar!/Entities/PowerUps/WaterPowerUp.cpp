@@ -7,7 +7,6 @@
 
 #pragma endregion
 
-#include <iostream>
 
 #define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("waterBook")
 #define COLUMNS 1
