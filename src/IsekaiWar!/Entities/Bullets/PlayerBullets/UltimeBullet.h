@@ -11,6 +11,7 @@
 class UltimeBullet : public PlayerBullet {
 protected:
 	Animator animator;
+	sf::Sprite spriteLaser;
 
 public:
 	UltimeBullet(float x, float y);
@@ -18,6 +19,7 @@ public:
 
 	void Move(float deltaTime);
 	void UpdateLogic(float deltaTime) override;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void UpdateLines();
 	void CheckCollisions();
 };

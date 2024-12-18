@@ -17,7 +17,7 @@
 
 SpecialBullet::SpecialBullet(float x, float y)
 	: PlayerBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED),
-	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS, SPEED_ANIMATION) })
+	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS - 1, SPEED_ANIMATION) })
 {
 	spritesheet.setScale(0.8f, 0.8f);
 	spritesheet.setRotation(-90);
@@ -27,7 +27,7 @@ SpecialBullet::SpecialBullet(float x, float y)
 
 SpecialBullet::SpecialBullet(sf::Vector2f position)
 	: PlayerBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED),
-	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS, SPEED_ANIMATION) })
+	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS - 1, SPEED_ANIMATION) })
 {
 	spritesheet.setScale(0.8f, 0.8f);
 	spritesheet.setOrigin(300.f / 2, 300.f / 2);

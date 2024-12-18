@@ -13,33 +13,41 @@
 
 #pragma endregion
 
-#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("fireAuto")
-#define COLUMNS 6
-#define ROWS 1
+#define TEXTURE_FIRE Managers::GetInstance()->ResourceManager->GetTexture("fireUltime")
+#define TEXTURE_LASER Managers::GetInstance()->ResourceManager->GetTexture("laserUltime")
+#define COLUMNS 4
+#define ROWS 2
 #define RADIUS 30.f
 #define ATTACK 2.f
 #define SPEED 700.f
 #define SPEED_ANIMATION 2.f
+#define POSITION_X 0
+#define POSITION_Y 60
 
 UltimeBullet::UltimeBullet(float x, float y)
-	: PlayerBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED),
-	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS, SPEED_ANIMATION) })
+	: PlayerBullet(x, y, TEXTURE_FIRE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED),
+	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS - 1, SPEED_ANIMATION) }),
+	spriteLaser(sf::Sprite())
 {
 	entity = Managers::GetInstance()->SceneManager->currentLevel->GetPlayer();
-	spritesheet.setScale(0.8f, 0.8f);
-	spritesheet.setRotation(-90);
+	spritesheet.setPosition(POSITION_X, POSITION_Y);
+	spritesheet.setScale(1.5f, 1.5f);
+	spritesheet.setRotation(180);
+
+	TEXTURE_LASER->setRepeated(true);
+	spriteLaser.setTexture(*TEXTURE_LASER);
 
 	animator.Play("forward");
 }
 
 UltimeBullet::UltimeBullet(sf::Vector2f position)
-	: PlayerBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED),
-	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS, SPEED_ANIMATION) })
+	: PlayerBullet(position, TEXTURE_FIRE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED),
+	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS - 1, SPEED_ANIMATION) })
 {
 	entity = Managers::GetInstance()->SceneManager->currentLevel->GetPlayer();
-	spritesheet.setScale(0.8f, 0.8f);
-	spritesheet.setOrigin(300.f / 2, 300.f / 2);
-	spritesheet.setRotation(-90);
+	spritesheet.setPosition(POSITION_X, POSITION_Y);
+	spritesheet.setScale(1.5f, 1.5f);
+	spritesheet.setRotation(180);
 
 	animator.Play("forward");
 }
@@ -53,6 +61,13 @@ void UltimeBullet::UpdateLogic(float deltaTime) {
 	if (!entitiesHit.empty()) {
 		Attack(dynamic_cast<LivingEntity*>(entitiesHit[0]), deltaTime);
 	}
+}
+
+void UltimeBullet::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+	Entity::draw(target, states);
+
+	states.transform.combine(getTransform());
+	target.draw(spriteLaser, states);
 }
 
 void UltimeBullet::Move(float deltaTime) {

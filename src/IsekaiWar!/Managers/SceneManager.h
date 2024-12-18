@@ -22,10 +22,16 @@ public:
 	std::map<std::string, Scene*> scenes;
 	std::map<std::string, LevelScene*> levels;
 
+	sf::View viewMenu;
+	sf::View viewLevel;
+
 	LevelScene* currentLevel;
 	Scene* currentScene;
 
 	SceneManager();
+
+	void SetViewMenu();
+	void SetViewLevel();
 
 	void Pause();
 	void Resume();

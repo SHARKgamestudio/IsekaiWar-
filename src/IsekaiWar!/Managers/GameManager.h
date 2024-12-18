@@ -9,7 +9,6 @@
 class GameManager {
 private:
 	sf::RenderWindow window;
-	sf::View view;
 	sf::Clock clock;
 
 	void UpdateLogic(float deltaTime);
@@ -22,4 +21,5 @@ public:
 	void Run();
 
 	friend class Managers;
+	friend class SceneManager;
 };
