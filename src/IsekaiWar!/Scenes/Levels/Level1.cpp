@@ -12,8 +12,6 @@
 #include "../../Entities/BackgroundEntity.h"
 #include "../../Entities/Bullets/PlayerBullets/SpecialBullet.h"
 #include "../../Entities/Characters/Enemies/StandardFighter.h"
-#include "../../Entities/PowerUps/FirePowerUp.h"
-#include "../../Entities/PowerUps/WaterPowerUp.h"
 
 #include "../../Utils/Clock.h"
 
@@ -67,8 +65,6 @@ void Level1::Load() {
 
 	backgrounds.push_back(new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("water")));
 	player = new PlayerEntity();
-	SpawnEntity(new FirePowerUp(200, 0));
-	SpawnEntity(new WaterPowerUp(600, 0));
 	current = Playing;
 }
 
@@ -76,6 +72,7 @@ void Level1::End() {
 	// EXECUTE AT THE END OF THE LEVEL //
 
 	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
+	Managers::GetInstance()->SceneManager->LoadMenuAsync("PlayerUI");
 }
 
 void Level1::UpdateLogic(float deltaTime) {
