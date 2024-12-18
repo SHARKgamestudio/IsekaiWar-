@@ -64,8 +64,9 @@ void MainMenu::Load() {
 void MainMenu::UpdateLogic(float dt) {
 	MenuScene::UpdateLogic(dt);
 
-	//Button* button = (Button*)elements[0];
-	//if (button->IsPressed()) {
-	//	button->Disable();
-	//}
+	Button* button = (Button*)elements[2];
+	if (button->IsPressed()) {
+		button->Disable();
+		Managers::GetInstance()->SceneManager->LoadLevel("Level1");
+	}
 }
