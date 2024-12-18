@@ -20,8 +20,8 @@ GameManager::GameManager() {
 }
 
 void GameManager::Run() {
-	//Managers::GetInstance()->SceneManager->LoadMenu("MainMenu");
-	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
+	Managers::GetInstance()->SceneManager->LoadMenu("MainMenu");
+	//Managers::GetInstance()->SceneManager->LoadLevel("Level1");
 	while (window.isOpen()) {
 		sf::Time deltaTime = clock.restart();
 		HandleEvents();
@@ -34,7 +34,9 @@ void GameManager::HandleEvents() {
 	sf::Event event;
 	while (window.pollEvent(event)) {
 		Managers::GetInstance()->InputManager->UpdateEvents(&event);
-		if (Managers::GetInstance()->InputManager->GetKeyDown("Pause"))
+		if (Managers::GetInstance()->InputManager->GetKey("Pause"))
+			window.close();
+		if (event.type == sf::Event::Closed)
 			window.close();
 	}
 }
