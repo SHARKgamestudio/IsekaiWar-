@@ -31,7 +31,7 @@ public:
 
 	Level1();
 
-	void Load();
+	void Load() override;
 	void End();
 	void UpdateLogic(float deltaTime) override;
 };

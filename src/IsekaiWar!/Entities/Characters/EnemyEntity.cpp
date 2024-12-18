@@ -14,7 +14,7 @@ EnemyEntity::EnemyEntity(sf::Vector2f position, sf::Texture* texture, float birt
 }
 
 void EnemyEntity::UpdateLogic(float deltaTime) {
-	CollidableEntity::UpdateLogic(deltaTime);
+	LivingEntity::UpdateLogic(deltaTime);
 
 	if (toDestroy) {
 		(new VisualEffectEntity(getPosition(), Managers::GetInstance()->ResourceManager->GetTexture("explosion"), sf::Vector2i(6, 1), 0.8f))->Spawn();
