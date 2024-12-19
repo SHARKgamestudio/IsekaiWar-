@@ -3,6 +3,7 @@
 #pragma region External Dependencies
 
 #include <iostream>
+#include <string>
 #include <SFML/Graphics.hpp>
 
 #pragma endregion
@@ -70,27 +71,43 @@ void PlayerUI::Load() {
 
 	healthbar = new ProgressBar(left_healthbar_spritesheet, middle_healthbar_spritesheet, right_healthbar_spritesheet, left_healthbackground_spritesheet, middle_healthbackground_spritesheet, right_healthbackground_spritesheet, 296);
 	healthbar->SetFactors(6, 9, 18);
-	healthbar->setPosition(100, 500);
+	healthbar->setPosition(125, 343);
 	healthbar->SetValue(0);
 	this->value = 0;
 	elements.push_back(healthbar);
+
+	Spritesheet* health_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("health-icon"), 1, 1);
+	health_spritesheet->sprite.setOrigin(0, 0);
+	Image* health_image = new Image(health_spritesheet);
+	health_image->setScale(1, 1);
+	health_image->setPosition(53, 309);
+	elements.push_back(health_image);
+
+	Spritesheet* mana_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("mana-icon"), 1, 1);
+	mana_spritesheet->sprite.setOrigin(0, 0);
+	Image* mana_image = new Image(mana_spritesheet);
+	mana_image->setScale(1, 1);
+	mana_image->setPosition(60, 390);
+	elements.push_back(mana_image);
 
 	cursor = new sf::Sprite();
 	cursor->setTexture(*Managers::GetInstance()->ResourceManager->GetTexture("cursor"));
 	cursor->setScale(1, 1);
 	cursor->setOrigin(32, 32);
 	cursor->setPosition(2000, 2000);
-
-	
 }
 
 void PlayerUI::UpdateLogic(float dt) {
 	MenuScene::UpdateLogic(dt);
 
-	if (this->value < 100) { this->value+= dt; }
+	if (this->value < 100) { this->value += dt * 64; }
+	else { this->value = 0; }
 }
 
 void PlayerUI::Draw(sf::RenderWindow& window) {
+	MenuScene::Draw(window);
+
 	healthbar->UpdateCursor(window, cursor->getGlobalBounds());
 	healthbar->SetValue(value);
+	healthbar->SetText(std::to_string((int)value));
 }

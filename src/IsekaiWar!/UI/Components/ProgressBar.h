@@ -23,6 +23,8 @@ private:
 
 public:
 	void SetFactors(float leftFill, float middleFill, float rightFill);
+
+	void SetText(std::string text);
 	void SetValue(float percent);
 
 	void Enable();

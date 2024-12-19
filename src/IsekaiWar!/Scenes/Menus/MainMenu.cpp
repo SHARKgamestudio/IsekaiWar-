@@ -88,7 +88,7 @@ void MainMenu::UpdateLogic(float dt) {
 
 	if (Managers::GetInstance()->InputManager->isJoystickConnected()) {
 		if (resetCursor) { cursor->setPosition(1920 / 2, 1080 / 2); resetCursor = false; }
-		cursor->move(Managers::GetInstance()->InputManager->GetAxis("Horizontal"), Managers::GetInstance()->InputManager->GetAxis("Vertical"));
+		cursor->move(Managers::GetInstance()->InputManager->GetAxis("Horizontal") * dt * 512, Managers::GetInstance()->InputManager->GetAxis("Vertical") * dt * 512);
 	}
 	else {
 		cursor->setPosition(2000, 2000);
