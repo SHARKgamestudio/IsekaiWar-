@@ -41,6 +41,10 @@ void ProgressBar::SetFactors(float leftFill, float middleFill, float rightFill) 
 	rightFactor = rightFill;
 }
 
+void ProgressBar::SetText(std::string text) {
+	this->text->setString(text);
+}
+
 void ProgressBar::SetValue(float percent) {
 	this->value = percent;
 }

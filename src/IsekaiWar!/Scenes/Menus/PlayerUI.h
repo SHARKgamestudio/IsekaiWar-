@@ -11,6 +11,7 @@ class PlayerUI : public MenuScene {
 public:
 	float value;
 	ProgressBar* healthbar;
+	ProgressBar* manabar;
 
 	PlayerUI();
 
