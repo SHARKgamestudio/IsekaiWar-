@@ -9,6 +9,6 @@
 
 class NeutralAuto : public AutoBullet {
 	public:
-		NeutralAuto(float x, float y);
-		NeutralAuto(sf::Vector2f position);
+		NeutralAuto(float x, float y, sf::Vector2f direction);
+		NeutralAuto(sf::Vector2f position, sf::Vector2f direction);
 };

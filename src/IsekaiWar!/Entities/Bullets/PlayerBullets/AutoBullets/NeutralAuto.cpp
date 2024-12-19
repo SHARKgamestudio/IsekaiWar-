@@ -18,18 +18,18 @@
 #define POSITION_X -3
 #define POSITION_Y 40
 
-NeutralAuto::NeutralAuto(float x, float y)
-	: AutoBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED, SPEED_ANIMATION) 
+NeutralAuto::NeutralAuto(float x, float y, sf::Vector2f direction)
+	: AutoBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, direction, SPEED, SPEED_ANIMATION) 
 {
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.setScale(SCALE, SCALE);
-	spritesheet.setRotation(90);
+	spritesheet.rotate(-90);
 }
 
-NeutralAuto::NeutralAuto(sf::Vector2f position)
-	: AutoBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED, SPEED_ANIMATION)
+NeutralAuto::NeutralAuto(sf::Vector2f position, sf::Vector2f direction)
+	: AutoBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, direction, SPEED, SPEED_ANIMATION)
 {
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.setScale(SCALE, SCALE);
-	spritesheet.setRotation(90);
+	spritesheet.rotate(-90);
 }

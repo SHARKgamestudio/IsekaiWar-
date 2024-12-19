@@ -18,18 +18,18 @@
 #define POSITION_X 5
 #define POSITION_Y 5
 
-FireAuto::FireAuto(float x, float y)
-	: AutoBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED, SPEED_ANIMATION) 
+FireAuto::FireAuto(float x, float y, sf::Vector2f direction)
+	: AutoBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, direction, SPEED, SPEED_ANIMATION)
 {
 	spritesheet.setScale(SCALE, SCALE);
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
-	spritesheet.setRotation(-90);
+	spritesheet.rotate(90);
 }
 
-FireAuto::FireAuto(sf::Vector2f position)
-	: AutoBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED, SPEED_ANIMATION)
+FireAuto::FireAuto(sf::Vector2f position, sf::Vector2f direction)
+	: AutoBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, direction, SPEED, SPEED_ANIMATION)
 {
 	spritesheet.setScale(SCALE, SCALE);
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
-	spritesheet.setRotation(-90);
+	spritesheet.rotate(90);
 }

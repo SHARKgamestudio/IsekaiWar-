@@ -53,7 +53,7 @@ void StandardFighter::UpdateLogic(float deltaTime) {
 		setPosition(Maths::Lerp(getPosition().x, spawn.x + std::cos(time) * CIRCLE_RADIUS, deltaTime), Maths::Lerp(getPosition().y, spawn.y + std::sin(time) * CIRCLE_RADIUS, deltaTime));
 
 		if (shootClock.UpdateLogic(deltaTime)) {
-			(new StandardBullet(getPosition() + sf::Vector2f(0, 128)))->Spawn();
+			(new StandardBullet(getPosition() + sf::Vector2f(0, 128), sf::Vector2f(0, 1)))->Spawn();
 		}
 	}
 

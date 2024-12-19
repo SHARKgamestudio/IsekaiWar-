@@ -68,9 +68,9 @@ void LevelScene::UpdateLogic(float deltaTime) {
 	bulletsToDestroy.clear();
 
 	// Reset combo
-	comboIsBreack = comboClock->UpdateLogic(deltaTime);
+	comboIsBreak = comboClock->UpdateLogic(deltaTime);
 
-	if (comboIsBreack) {
+	if (comboIsBreak) {
 		multiplicator = 1;
 	}
 }

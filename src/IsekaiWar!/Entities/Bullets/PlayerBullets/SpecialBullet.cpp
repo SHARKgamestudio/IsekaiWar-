@@ -15,16 +15,18 @@
 #define SPEED 400.f
 #define SPEED_ROTATION 300
 #define SCALE 0.3f
+#define DIRECTION_X  0
+#define DIRECTION_Y -1
 
 SpecialBullet::SpecialBullet(float x, float y)
-	: PlayerBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED)
+	: PlayerBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, sf::Vector2f(DIRECTION_X, DIRECTION_Y), SPEED)
 {
 	spritesheet.setScale(SCALE, SCALE);
 
 }
 
 SpecialBullet::SpecialBullet(sf::Vector2f position)
-	: PlayerBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED)
+	: PlayerBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, sf::Vector2f(DIRECTION_X, DIRECTION_Y), SPEED)
 {
 	spritesheet.setScale(SCALE, SCALE);
 }

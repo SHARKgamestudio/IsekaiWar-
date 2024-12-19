@@ -24,9 +24,11 @@
 #define SPEED_ANIMATION 2.f
 #define POSITION_X 0
 #define POSITION_Y 60
+#define DIRECTION_X  0
+#define DIRECTION_Y -1
 
 UltimeBullet::UltimeBullet(float x, float y)
-	: PlayerBullet(x, y, TEXTURE_FIRE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED),
+	: PlayerBullet(x, y, TEXTURE_FIRE, COLUMNS, ROWS, RADIUS, ATTACK, sf::Vector2f(DIRECTION_X, DIRECTION_Y), SPEED),
 	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS - 1, SPEED_ANIMATION) }),
 	spriteLaser(Spritesheet(TEXTURE_LASER, 1, 1))
 {
@@ -40,7 +42,7 @@ UltimeBullet::UltimeBullet(float x, float y)
 }
 
 UltimeBullet::UltimeBullet(sf::Vector2f position)
-	: PlayerBullet(position, TEXTURE_FIRE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED),
+	: PlayerBullet(position, TEXTURE_FIRE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, sf::Vector2f(DIRECTION_X, DIRECTION_Y), SPEED),
 	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS - 1, SPEED_ANIMATION) }),
 	spriteLaser(Spritesheet(TEXTURE_LASER, 1, 1))
 {

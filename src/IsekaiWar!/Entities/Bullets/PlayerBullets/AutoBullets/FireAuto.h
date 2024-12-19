@@ -9,6 +9,6 @@
 
 class FireAuto : public AutoBullet {
 	public:
-		FireAuto(float x, float y);
-		FireAuto(sf::Vector2f position);
+		FireAuto(float x, float y, sf::Vector2f direction);
+		FireAuto(sf::Vector2f position, sf::Vector2f direction);
 };

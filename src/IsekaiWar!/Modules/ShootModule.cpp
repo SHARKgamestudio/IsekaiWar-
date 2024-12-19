@@ -4,6 +4,7 @@
 
 #include "../Entities/Characters/PlayerEntity.h"
 
+#include "../Entities/Bullets/PlayerBullets/AutoBullet.h"
 #include "../Entities/Bullets/PlayerBullets/AutoBullets/NeutralAuto.h"
 #include "../Entities/Bullets/PlayerBullets/AutoBullets/FireAuto.h"
 #include "../Entities/Bullets/PlayerBullets/AutoBullets/WaterAuto.h"
@@ -27,7 +28,11 @@ ShootModule::ShootModule(PlayerEntity* player)
 	this->isFire = false;
 	this->isWater = false;
 
-	currentBullet = 0;
+	this->isDouble = false;
+	this->isTriple = false;
+	this->isQuadruple = false;
+
+	currentBullet = StateAuto::Neutral;
 	this->ultimeBullet = nullptr;
 	this->player = player;
 
@@ -37,20 +42,43 @@ ShootModule::ShootModule(PlayerEntity* player)
 }
 
 void ShootModule::ShootAuto() {
+
+	sf::Vector2f pos = player->getPosition();
+
+	if (isDouble) {
+		GetAutoBullet(sf::Vector2f(pos.x - 20, pos.y), sf::Vector2f(0, -1))->Spawn();
+		GetAutoBullet(sf::Vector2f(pos.x + 20, pos.y), sf::Vector2f(0, -1))->Spawn();
+	}
+	else {
+		GetAutoBullet(player->getPosition(), sf::Vector2f(0, -1))->Spawn();
+	}
+
+	if (isTriple) {
+		GetAutoBullet(player->getPosition(), sf::Vector2f(-1, -2))->Spawn();
+		GetAutoBullet(player->getPosition(), sf::Vector2f( 1, -2))->Spawn();
+	}
+
+	if (isQuadruple) {
+		GetAutoBullet(player->getPosition(), sf::Vector2f(-1, 0))->Spawn();
+		GetAutoBullet(player->getPosition(), sf::Vector2f( 1, 0))->Spawn();
+		GetAutoBullet(player->getPosition(), sf::Vector2f( 0, 1))->Spawn();
+	}
+}
+
+AutoBullet* ShootModule::GetAutoBullet(sf::Vector2f pos, sf::Vector2f direction) {
 	switch (currentBullet) {
 
 	case StateAuto::Neutral:
-		(new NeutralAuto(player->getPosition()))->Spawn();
-		return;
+		return new NeutralAuto(pos, direction);
+
 	case StateAuto::Fire:
-		(new FireAuto(player->getPosition()))->Spawn();
-		return;
+		return new FireAuto(pos, direction);
+
 	case StateAuto::Water:
-		(new WaterAuto(player->getPosition()))->Spawn();
-		return;
+		return new WaterAuto(pos, direction);
+
 	case StateAuto::FireAndWater:
-		(new FireAndWaterAuto(player->getPosition()))->Spawn();
-		return;
+		return new FireAndWaterAuto(pos, direction);
 	}
 }
 
