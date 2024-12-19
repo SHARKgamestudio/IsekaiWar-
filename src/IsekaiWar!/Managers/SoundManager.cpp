@@ -4,7 +4,9 @@
 
 SoundManager::SoundManager() {
 	resources = Managers::GetInstance()->ResourceManager;
-}	
+}
+
+
 
 sf::Sound* SoundManager::PlaySound(std::string sound, bool loop) {
 	resources->sounds[sound].setVolume(global_volume * effects_volume / 100.0f);

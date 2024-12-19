@@ -14,7 +14,7 @@
 #define ATTACK 8.f
 #define SPEED 400.f
 #define SPEED_ROTATION 300
-#define SCALE 0.3f
+#define SCALE 0.15f
 #define DIRECTION_X  0
 #define DIRECTION_Y -1
 

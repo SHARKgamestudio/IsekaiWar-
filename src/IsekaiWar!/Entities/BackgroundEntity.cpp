@@ -6,7 +6,7 @@ BackgroundEntity::BackgroundEntity(sf::Texture* texture)
 	TravellingModule(sf::Vector2f(0, 1), 20.f) {
 	texture->setRepeated(true);
 	this->spritesheet.SetTexture(texture, 1, 1);
-	this->setPosition(50, 50);
+	this->setPosition(1920 / 2, 1080 * 0.83f);
 }
 
 void BackgroundEntity::Traveling(float deltaTime) {

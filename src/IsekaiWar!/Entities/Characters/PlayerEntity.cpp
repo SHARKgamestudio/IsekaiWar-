@@ -54,6 +54,15 @@ void PlayerEntity::UpdateLogic(float deltaTime) {
 		else if (angle < 0) { angle += (std::pow(-angle / 25, 0.5f)) * deltaTime * 512; }
 	}
 
+	sf::Vector2f newPos = getPosition();
+	
+	newPos.x = newPos.x < 0 ? 0 : newPos.x;
+	newPos.x = newPos.x > 1920 / 2 - 80 ? 1920 / 2 - 80 : newPos.x;
+	newPos.y = newPos.y < 0 ? 0 : newPos.y;
+	newPos.y = newPos.y > 1080 ? 1080 : newPos.y;
+
+	setPosition(newPos);
+
 	animator->UpdateLogic(deltaTime);
 
 	if (this->inputs->GetKey("Auto") && canAuto) {

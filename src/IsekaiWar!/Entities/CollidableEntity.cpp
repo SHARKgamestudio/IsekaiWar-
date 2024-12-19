@@ -1,6 +1,6 @@
 #include "CollidableEntity.h"
 
-#define SHOW_GIZMOS	0b00 // hitbox | lines
+#define SHOW_GIZMOS	0b10 // hitbox | lines
 
 CollidableEntity::CollidableEntity(float x, float y, sf::Texture* texture, int columns, int rows, float radius)
 	: Entity(x, y, texture, columns, rows),
