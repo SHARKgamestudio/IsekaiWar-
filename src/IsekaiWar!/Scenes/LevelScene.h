@@ -40,6 +40,8 @@ protected:
 	float multiplicator;
 
 public:
+	~LevelScene();
+
 	std::vector<CollidableEntity*>* GetEntities();
 	PlayerEntity* GetPlayer();
 

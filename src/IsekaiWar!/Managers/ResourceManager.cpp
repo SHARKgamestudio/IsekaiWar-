@@ -16,10 +16,14 @@ ResourceManager::ResourceManager() {
 ResourceManager::~ResourceManager() {
 	textures.clear();
 
+	for (auto& pair : sounds) {
+		delete pair.second.getBuffer();
+		pair.second.stop();
+	}
 	sounds.clear();
 
 	for (auto& pair : musics) {
-		delete& pair.second;
+		pair.second.stop();
 	}
 	musics.clear();
 
