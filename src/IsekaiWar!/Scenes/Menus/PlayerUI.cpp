@@ -76,6 +76,21 @@ void PlayerUI::Load() {
 	this->value = 0;
 	elements.push_back(healthbar);
 
+	Spritesheet* left_manabar_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("left-mana-progress"), 1, 1);
+	Spritesheet* middle_manabar_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("middle-mana-progress"), 1, 1);
+	Spritesheet* right_manabar_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("right-mana-progress"), 1, 1);
+
+	Spritesheet* left_manabackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("left-mana-background"), 1, 1);
+	Spritesheet* middle_manabackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("middle-mana-background"), 1, 1);
+	Spritesheet* right_manabackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("right-mana-background"), 1, 1);
+
+	manabar = new ProgressBar(left_manabar_spritesheet, middle_manabar_spritesheet, right_manabar_spritesheet, left_manabackground_spritesheet, middle_manabackground_spritesheet, right_manabackground_spritesheet, 296);
+	manabar->SetFactors(6, 9, 18);
+	manabar->setPosition(125, 427);
+	manabar->SetValue(0);
+	this->value = 0;
+	elements.push_back(manabar);
+
 	Spritesheet* health_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("health-icon"), 1, 1);
 	health_spritesheet->sprite.setOrigin(0, 0);
 	Image* health_image = new Image(health_spritesheet);
@@ -110,4 +125,8 @@ void PlayerUI::Draw(sf::RenderWindow& window) {
 	healthbar->UpdateCursor(window, cursor->getGlobalBounds());
 	healthbar->SetValue(value);
 	healthbar->SetText(std::to_string((int)value));
+
+	manabar->UpdateCursor(window, cursor->getGlobalBounds());
+	manabar->SetValue(value);
+	manabar->SetText(std::to_string((int)value));
 }
