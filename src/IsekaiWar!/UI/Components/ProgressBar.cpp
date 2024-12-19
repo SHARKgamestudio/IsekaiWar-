@@ -4,12 +4,13 @@
 #include "../../Managers.h"
 
 ProgressBar::ProgressBar(Spritesheet* leftFill, Spritesheet* middleFill, Spritesheet* rightFill, Spritesheet* leftBackground, Spritesheet* middleBackground, Spritesheet* rightBackground, float size, Anchor anchor) {
+	this->value = 0;
+	
 	this->size = size;
 
 	this->leftFill = leftFill;
 	this->middleFill = middleFill;
 	this->rightFill = rightFill;
-
 
 	this->leftBackground = leftBackground;
 	this->middleBackground = middleBackground;

@@ -68,10 +68,11 @@ void PlayerUI::Load() {
 	Spritesheet* middle_healthbackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("middle-health-background"), 1, 1);
 	Spritesheet* right_healthbackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("right-health-background"), 1, 1);
 
-	ProgressBar* healthbar = new ProgressBar(left_healthbar_spritesheet, middle_healthbar_spritesheet, right_healthbar_spritesheet, left_healthbackground_spritesheet, middle_healthbackground_spritesheet, right_healthbackground_spritesheet, 296);
+	healthbar = new ProgressBar(left_healthbar_spritesheet, middle_healthbar_spritesheet, right_healthbar_spritesheet, left_healthbackground_spritesheet, middle_healthbackground_spritesheet, right_healthbackground_spritesheet, 296);
 	healthbar->SetFactors(6, 9, 18);
 	healthbar->setPosition(100, 500);
-	healthbar->SetValue(50);
+	healthbar->SetValue(0);
+	this->value = 0;
 	elements.push_back(healthbar);
 
 	cursor = new sf::Sprite();
@@ -79,9 +80,17 @@ void PlayerUI::Load() {
 	cursor->setScale(1, 1);
 	cursor->setOrigin(32, 32);
 	cursor->setPosition(2000, 2000);
+
+	
 }
 
 void PlayerUI::UpdateLogic(float dt) {
 	MenuScene::UpdateLogic(dt);
 
+	if (this->value < 100) { this->value+= dt; }
+}
+
+void PlayerUI::Draw(sf::RenderWindow& window) {
+	healthbar->UpdateCursor(window, cursor->getGlobalBounds());
+	healthbar->SetValue(value);
 }
