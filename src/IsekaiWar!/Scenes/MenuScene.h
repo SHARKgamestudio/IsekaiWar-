@@ -22,6 +22,8 @@ protected:
 public:
 	std::vector<UIComponent*> elements;
 
+	~MenuScene();
+
 	void virtual Load();
 	void virtual UpdateLogic(float dt);
 	void virtual Draw(sf::RenderWindow& window) override;

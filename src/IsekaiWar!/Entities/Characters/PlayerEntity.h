@@ -6,6 +6,7 @@
 #include "../../Rendering/Animator.h"
 #include "../../Modules/ShootModule.h"
 #include "../../Modules/ManaModule.h"
+#include "../../UI/Components/ProgressBar.h"
 
 #pragma endregion
 

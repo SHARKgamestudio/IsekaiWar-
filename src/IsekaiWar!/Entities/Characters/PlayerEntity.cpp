@@ -6,6 +6,7 @@
 #include "../../Utils/Maths.h"
 #include "../../Scenes/MenuScene.h"
 #include "../../UI/Components/ProgressBar.h"
+#include <iostream>
 
 #pragma endregion
 
@@ -38,7 +39,9 @@ void PlayerEntity::UpdateLogic(float deltaTime) {
 	LivingEntity::UpdateLogic(deltaTime);
 	ShootModule::UpdateLogic(deltaTime);
 
-	this->healthbar->SetValue((this->GetHealth() * 100) / this->GetMaxHealth());
+	this->healthbar->SetValue((this->GetHealth() * 100.0f) / this->GetMaxHealth());
+
+	std::cout << "Health: " << this->GetHealth() << std::endl;
 	
 	float horizontal = inputs->GetAxis("Horizontal");
 	float vertical = inputs->GetAxis("Vertical");
