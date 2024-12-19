@@ -26,6 +26,22 @@ SceneManager::SceneManager() :
 	levelView.move(-WINDOW_WIDTH / 4, 0);
 }
 
+SceneManager::~SceneManager() {
+
+	for (auto& pair : scenes) {
+		delete pair.second;
+	}
+	scenes.clear();
+
+	for (auto& pair : levels) {
+		delete pair.second;
+	}
+	levels.clear();
+
+	currentLevel = nullptr;
+	currentScene = nullptr;
+}
+
 void SceneManager::LoadMenu(std::string name) {
 	currentScene = scenes[name];
 	currentLevel = nullptr;

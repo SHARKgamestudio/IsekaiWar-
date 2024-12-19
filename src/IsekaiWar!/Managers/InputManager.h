@@ -65,6 +65,9 @@ private:
 	float GetJoystickValue(sf::Joystick::Axis axis);
 	bool GetKeyValue(sf::Keyboard::Key key);
 public:
+
+	~InputManager();
+
 	bool isJoystickConnected();
 
 	void UpdateInputs();

@@ -16,10 +16,12 @@
 #define RADIUS 32.f
 #define HEALTH 100.f
 #define MAGNITUDE 512.f
+#define MANA 100.f
 
 PlayerEntity::PlayerEntity()
 	: CharacterEntity(POSITION_X, POSITION_Y, TEXTURE, COLUMNS, ROWS, RADIUS, HEALTH),
-	ShootModule(this) {
+	ShootModule(this),
+	ManaModule(MANA) {
 	this->angle = 0;
 	this->inputs = Managers::GetInstance()->InputManager;
 
@@ -77,15 +79,29 @@ void PlayerEntity::UpdateLogic(float deltaTime) {
 		clockSpecial.Restart();
 	}
 
-	if (this->inputs->GetKeyDown("Ult") && canUltime) {
+	if (this->inputs->GetKeyDown("Ult") && HaveMana()) {
 		StartUltime();
 		canUltime = false;
 		clockUltime.Restart();
+		UseMana(10 * deltaTime);
 	}
-	if (this->inputs->GetKeyUp("Ult") && ultimeBullet != nullptr) {
+	if (this->inputs->GetKey("Ult") && HaveMana()) {
+		UseMana(10 * deltaTime);
+	}
+	if ((this->inputs->GetKeyUp("Ult") || !HaveMana()) && ultimeBullet != nullptr) {
 		StopUltime();
 	}
 
 	this->move(direction * deltaTime);
 	this->spritesheet.setRotation(angle);
+}
+
+void PlayerEntity::TakeDamage(float damage) {
+	LivingEntity::TakeDamage(damage);
+	// implémentes l'update des pv ici
+	// Managers::GetInstance()->SceneManager->currentScene->
+}
+
+void AddMana() {
+
 }

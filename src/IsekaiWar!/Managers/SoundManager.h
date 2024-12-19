@@ -23,6 +23,7 @@ private:
 	float musics_volume = 100.0f;
 
 	SoundManager();
+	~SoundManager();
 
 public:
 	sf::Sound* PlaySound(std::string sound, bool loop = false);
