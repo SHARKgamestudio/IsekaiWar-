@@ -8,6 +8,10 @@ float IntervalClock::GetTime() {
 	return elapseTime;
 }
 
+float IntervalClock::GetTimeInverse() {
+	return maxTime - elapseTime;
+}
+
 bool IntervalClock::UpdateLogic(float deltaTime, bool mustRestart) {
 	
 
