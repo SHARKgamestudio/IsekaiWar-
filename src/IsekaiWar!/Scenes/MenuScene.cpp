@@ -2,6 +2,15 @@
 
 #include "../UI/UIComponent.h"
 
+MenuScene::~MenuScene() {
+	for (auto element : elements) {
+		delete element;
+	}
+	elements.clear();
+
+	delete cursor;
+}
+
 void MenuScene::Load(){
 	cursor = nullptr;
 }

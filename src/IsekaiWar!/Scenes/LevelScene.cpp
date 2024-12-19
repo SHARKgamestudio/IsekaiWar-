@@ -7,6 +7,32 @@
 
 #pragma endregion
 
+LevelScene::~LevelScene() {
+	delete player;
+
+	for (auto background : backgrounds)
+		delete background;
+	backgrounds.clear();
+
+	for (auto enemy : ennemies)
+		delete enemy;
+	ennemies.clear();
+
+	for (auto entity : entities)
+		delete entity;
+	entities.clear();
+
+	for (auto bullet : bullets)
+		delete bullet;
+	bullets.clear();
+
+	for (auto effect : visualEffects)
+		delete effect;
+	visualEffects.clear();
+
+	delete comboClock;
+}
+
 void LevelScene::UpdateLogic(float deltaTime) {
 	player->UpdateLogic(deltaTime);
 
