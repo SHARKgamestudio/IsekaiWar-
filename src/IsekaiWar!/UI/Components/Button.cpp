@@ -31,7 +31,7 @@ void Button::UpdateCursor(const sf::RenderWindow& window, sf::FloatRect cursor) 
 	bool isPressed = false;
 	if (Managers::GetInstance()->InputManager->isJoystickConnected()) {
 		inBounds = bounds.intersects(cursor);
-		isPressed = Managers::GetInstance()->InputManager->GetKeyDown("Auto");
+		isPressed = Managers::GetInstance()->InputManager->GetKeyDown("Confirm");
 	}
 	else {
 		inBounds = bounds.contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)));

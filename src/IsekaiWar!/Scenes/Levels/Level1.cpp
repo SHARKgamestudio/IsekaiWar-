@@ -21,6 +21,8 @@ Level1::Level1() {
 	current = LevelState::Playing;
 	clock = new Clock();
 	highest = 0;
+	score = 0;
+	multiplicator = 1.f;
 }
 
 void Level1::Load() {
@@ -71,8 +73,8 @@ void Level1::Load() {
 void Level1::End() {
 	// EXECUTE AT THE END OF THE LEVEL //
 
-	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
-	Managers::GetInstance()->SceneManager->LoadMenuAsync("PlayerUI");
+	Managers::GetInstance()->SceneManager->LoadMenu("PlayerUI");
+	Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");
 }
 
 void Level1::UpdateLogic(float deltaTime) {

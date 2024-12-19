@@ -6,6 +6,7 @@
 #include "../../Utils/Maths.h"
 #include "../../Scenes/MenuScene.h"
 #include "../../UI/Components/ProgressBar.h"
+#include "../../UI/Components/Label.h"
 #include <iostream>
 
 #pragma endregion
@@ -33,6 +34,14 @@ PlayerEntity::PlayerEntity()
 
 	MenuScene* current = (MenuScene*)Managers::GetInstance()->SceneManager->currentScene;
 	this->healthbar = dynamic_cast<ProgressBar*>(current->elements[7]);
+	this->manabar = dynamic_cast<ProgressBar*>(current->elements[8]);
+
+	this->autobar = dynamic_cast<ProgressBar*>(current->elements[12]);
+	this->specialbar = dynamic_cast<ProgressBar*>(current->elements[14]);
+	this->burstbar = dynamic_cast<ProgressBar*>(current->elements[16]);
+
+	this->scoretext = dynamic_cast<Label*>(current->elements[3]);
+	this->multiplicatortext = dynamic_cast<Label*>(current->elements[5]);
 }
 
 void PlayerEntity::UpdateLogic(float deltaTime) {
@@ -40,8 +49,21 @@ void PlayerEntity::UpdateLogic(float deltaTime) {
 	ShootModule::UpdateLogic(deltaTime);
 
 	this->healthbar->SetValue((this->GetHealth() * 100.0f) / this->GetMaxHealth());
+	this->healthbar->SetText(std::to_string((int)this->GetHealth()));
 
-	std::cout << "Health: " << this->GetHealth() << std::endl;
+	this->manabar->SetValue((this->GetMana() * 100.0f) / this->GetMaxMana());
+	this->manabar->SetText(std::to_string((int)this->GetMana()));
+
+	this->autobar->SetValue((this->clockAuto.GetTime() * 100.0f) / this->clockAuto.maxTime);
+
+	this->specialbar->SetValue((this->clockSpecial.GetTime() * 100.0f) / this->clockSpecial.maxTime);
+
+	this->burstbar->SetValue((this->clockUltime.GetTime() * 100.0f) / this->clockUltime.maxTime);
+
+	this->scoretext->SetText(std::to_string(Managers::GetInstance()->SceneManager->currentLevel->score));
+
+	float multiplicator = Managers::GetInstance()->SceneManager->currentLevel->multiplicator;
+	this->multiplicatortext->SetText(std::to_string((int)multiplicator) + "." + std::to_string(static_cast<int>((multiplicator - static_cast<int>(multiplicator)) * 10)));
 	
 	float horizontal = inputs->GetAxis("Horizontal");
 	float vertical = inputs->GetAxis("Vertical");
@@ -92,14 +114,14 @@ void PlayerEntity::UpdateLogic(float deltaTime) {
 	if (this->inputs->GetKeyDown("Ult") && HaveMana()) {
 		StartUltime();
 		canUltime = false;
-		clockUltime.Restart();
-		UseMana(10 * deltaTime);
+		UseMana(64 * deltaTime);
 	}
 	if (this->inputs->GetKey("Ult") && HaveMana()) {
-		UseMana(10 * deltaTime);
+		UseMana(64 * deltaTime);
 	}
 	if ((this->inputs->GetKeyUp("Ult") || !HaveMana()) && ultimeBullet != nullptr) {
 		StopUltime();
+		clockUltime.Restart();
 	}
 
 	this->move(direction * deltaTime);

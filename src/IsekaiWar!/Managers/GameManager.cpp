@@ -21,7 +21,7 @@ const std::string DEBUG_PATH = "../../../src/IsekaiWar!/";
 
 GameManager::GameManager() {
 	running = false;
-	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "IsekaiWar!", sf::Style::Default);
+	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "IsekaiWar!", sf::Style::Fullscreen);
 }
 
 GameManager::~GameManager() {
