@@ -1,4 +1,4 @@
-#include "WaterPowerUp.h"
+#include "DoubleParchment.h"
 
 #pragma region Local Dependencies
 
@@ -8,7 +8,7 @@
 #pragma endregion
 
 
-#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("waterBook")
+#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("doubleParchment")
 #define COLUMNS 1
 #define ROWS 1
 #define RADIUS 30.f
@@ -17,9 +17,9 @@
 #define DIRECTION_Y  1.f
 #define SPEED 200.f
 #define SPEED_ANIMATION 2.f
-#define SCALE 0.1f
+#define SCALE 0.18f
 
-WaterPowerUp::WaterPowerUp(float x, float y)
+DoubleParchment::DoubleParchment(float x, float y)
 	: PowerUpEntity(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, sf::Vector2f(DIRECTION_X, DIRECTION_Y), SPEED),
 	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS, SPEED_ANIMATION) })
 {
@@ -29,7 +29,7 @@ WaterPowerUp::WaterPowerUp(float x, float y)
 	animator.Play("forward");
 }
 
-WaterPowerUp::WaterPowerUp(sf::Vector2f position)
+DoubleParchment::DoubleParchment(sf::Vector2f position)
 	: PowerUpEntity(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, sf::Vector2f(DIRECTION_X, DIRECTION_Y), SPEED),
 	animator(&spritesheet, { new Animation("forward", 0, COLUMNS * ROWS, SPEED_ANIMATION) })
 {
@@ -39,8 +39,7 @@ WaterPowerUp::WaterPowerUp(sf::Vector2f position)
 	animator.Play("forward");
 }
 
-void WaterPowerUp::Action() {
+void DoubleParchment::Action() {
 	PlayerEntity* player = Managers::GetInstance()->SceneManager->currentLevel->GetPlayer();
-	player->isWater = true;
-	player->UpdateBullets();
+	player->isDouble = true;
 }

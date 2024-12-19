@@ -7,12 +7,12 @@
 
 #pragma endregion
 
-class WaterPowerUp : public PowerUpEntity {
+class QuadrupleParchment : public PowerUpEntity {
 	private:
 		Animator animator;
 	public:
-		WaterPowerUp(float x, float y);
-		WaterPowerUp(sf::Vector2f position);
+		QuadrupleParchment(float x, float y);
+		QuadrupleParchment(sf::Vector2f position);
 
 		void Action();
 };

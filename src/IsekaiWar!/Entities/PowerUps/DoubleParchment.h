@@ -7,12 +7,12 @@
 
 #pragma endregion
 
-class FirePowerUp : public PowerUpEntity {
+class DoubleParchment : public PowerUpEntity {
 	private:
 		Animator animator;
 	public:
-		FirePowerUp(float x, float y);
-		FirePowerUp(sf::Vector2f position);
+		DoubleParchment(float x, float y);
+		DoubleParchment(sf::Vector2f position);
 
 		void Action();
 };
