@@ -18,10 +18,16 @@ class Sprite;
 class MenuScene : public Scene {
 protected:
 	sf::Sprite* cursor;
+<<<<<<< Updated upstream
 public:
 	std::vector<UIComponent*> elements;
 
 	~MenuScene();
+=======
+
+public:
+	std::vector<UIComponent*> elements;
+>>>>>>> Stashed changes
 
 	void virtual Load();
 	void virtual UpdateLogic(float dt);
