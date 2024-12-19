@@ -214,5 +214,5 @@ void LevelScene::UpdateScore(int score) {
 	this->score += score * multiplicator;
 
 	multiplicator += 0.1f;
-	comboClock.Restart();
+	comboClock->Restart();
 }
