@@ -9,6 +9,6 @@
 
 class WaterAuto : public AutoBullet {
 	public:
-		WaterAuto(float x, float y);
-		WaterAuto(sf::Vector2f position);
+		WaterAuto(float x, float y, sf::Vector2f direction);
+		WaterAuto(sf::Vector2f position, sf::Vector2f direction);
 };

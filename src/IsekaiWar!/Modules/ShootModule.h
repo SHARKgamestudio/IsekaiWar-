@@ -11,6 +11,7 @@ enum StateAuto {
 
 class PlayerEntity;
 class UltimeBullet;
+class AutoBullet;
 
 class ShootModule {
 protected:
@@ -29,12 +30,20 @@ protected:
 
 public:
 
+	// Elements
 	bool isFire;
 	bool isWater;
+
+	// Paterns
+	bool isDouble;
+	bool isTriple;
+	bool isQuadruple;
 
 	ShootModule(PlayerEntity* player);
 
 	void ShootAuto();
+	AutoBullet* GetAutoBullet(sf::Vector2f pos, sf::Vector2f direction);
+
 	void ShootSpecial();
 	void StartUltime();
 	void StopUltime();

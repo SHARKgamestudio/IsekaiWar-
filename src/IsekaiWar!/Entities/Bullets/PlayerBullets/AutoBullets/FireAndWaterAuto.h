@@ -9,6 +9,6 @@
 
 class FireAndWaterAuto : public AutoBullet {
 	public:
-		FireAndWaterAuto(float x, float y);
-		FireAndWaterAuto(sf::Vector2f position);
+		FireAndWaterAuto(float x, float y, sf::Vector2f direction);
+		FireAndWaterAuto(sf::Vector2f position, sf::Vector2f direction);
 };

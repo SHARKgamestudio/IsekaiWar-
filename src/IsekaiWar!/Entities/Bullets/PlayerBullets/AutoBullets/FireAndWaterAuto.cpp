@@ -19,18 +19,18 @@
 #define POSITION_Y 35
 
 
-FireAndWaterAuto::FireAndWaterAuto(float x, float y)
-	: AutoBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED, SPEED_ANIMATION) 
+FireAndWaterAuto::FireAndWaterAuto(float x, float y, sf::Vector2f direction)
+	: AutoBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, direction, SPEED, SPEED_ANIMATION) 
 {
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.setScale(SCALE, SCALE);
-	spritesheet.setRotation(-90);
+	spritesheet.rotate(90);
 }
 
-FireAndWaterAuto::FireAndWaterAuto(sf::Vector2f position)
-	: AutoBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED, SPEED_ANIMATION)
+FireAndWaterAuto::FireAndWaterAuto(sf::Vector2f position, sf::Vector2f direction)
+	: AutoBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, direction, SPEED, SPEED_ANIMATION)
 {
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.setScale(SCALE, SCALE);
-	spritesheet.setRotation(-90);
+	spritesheet.rotate(90);
 }

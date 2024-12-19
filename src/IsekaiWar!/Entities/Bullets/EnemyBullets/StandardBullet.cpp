@@ -15,16 +15,16 @@
 #define SPEED 700.f
 #define SPEED_ANIMATION 2.f
 
-StandardBullet::StandardBullet(float x, float y)
-	: EnemyBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, SPEED)
+StandardBullet::StandardBullet(float x, float y, sf::Vector2f direction)
+	: EnemyBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, direction, SPEED)
 {
 	spritesheet.setScale(0.5f, 0.5f);
 	spritesheet.setOrigin(64 / 2, 64 / 2);
 	spritesheet.setRotation(90);
 }
 
-StandardBullet::StandardBullet(sf::Vector2f position)
-	: EnemyBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, SPEED)
+StandardBullet::StandardBullet(sf::Vector2f position, sf::Vector2f direction)
+	: EnemyBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, direction, SPEED)
 {
 	spritesheet.setScale(0.5f, 0.5f);
 	spritesheet.setOrigin(64 / 2, 64 / 2);
