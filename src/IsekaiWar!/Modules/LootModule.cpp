@@ -14,7 +14,7 @@
 LootModule::LootModule() {
 }
 
-void LootModule::Loot() {
+void LootModule::Loot(sf::Vector2f pos) {
 
 	int randint = rand() % 100;
 
@@ -22,19 +22,19 @@ void LootModule::Loot() {
 		int randint = rand() % 100;
 
 		if (randint <= 30) {
-			(new FireBook(getPosition()))->Spawn();
+			(new FireBook(pos))->Spawn();
 		}
 		else if (randint <= 60) {
-			(new WaterBook(getPosition()))->Spawn();
+			(new WaterBook(pos))->Spawn();
 		}
 		else if (randint <= 73) {
-			(new DoubleParchment(getPosition()))->Spawn();
+			(new DoubleParchment(pos))->Spawn();
 		}
 		else if (randint <= 86) {
-			(new TripleParchment(getPosition()))->Spawn();
+			(new TripleParchment(pos))->Spawn();
 		}
 		else {
-			(new QuadrupleParchment(getPosition()))->Spawn();
+			(new QuadrupleParchment(pos))->Spawn();
 		}
 	}
 }

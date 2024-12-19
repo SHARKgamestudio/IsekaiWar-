@@ -26,7 +26,7 @@ void EnemyEntity::UpdateLogic(float deltaTime) {
 	if (toDestroy) {
 		(new VisualEffectEntity(getPosition(), Managers::GetInstance()->ResourceManager->GetTexture("explosion"), sf::Vector2i(6, 1), 0.8f))->Spawn();
 
-		Loot();
+		Loot(getPosition());
 		
 		Managers::GetInstance()->SceneManager->currentLevel->UpdateScore(200);
 		Managers::GetInstance()->SceneManager->currentLevel->GetPlayer()->ObtainMana(10);
