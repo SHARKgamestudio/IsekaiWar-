@@ -4,10 +4,11 @@
 
 #include "../CharacterEntity.h"
 #include "../../Rendering/Animator.h"
+#include "../../Modules/LootModule.h"
 
 #pragma endregion
 
-class EnemyEntity : public CharacterEntity {
+class EnemyEntity : public CharacterEntity, public LootModule {
 public:
 	float birth = 0;
 
