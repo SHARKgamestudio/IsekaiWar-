@@ -14,6 +14,7 @@
 #include "../../UI/Components/Button.h"
 #include "../../UI/Components/Image.h"
 #include "../../UI/Components/Label.h"
+#include "../../UI/Components/ProgressBar.h"
 
 #pragma endregion
 
@@ -59,6 +60,20 @@ void PlayerUI::Load() {
 	score_title_image->setPosition(1510, 159);
 	elements.push_back(score_title_image);
 
+	Spritesheet* left_healthbar_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("left-health-progress"), 1, 1);
+	Spritesheet* middle_healthbar_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("middle-health-progress"), 1, 1);
+	Spritesheet* right_healthbar_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("right-health-progress"), 1, 1);
+
+	Spritesheet* left_healthbackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("left-health-background"), 1, 1);
+	Spritesheet* middle_healthbackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("middle-health-background"), 1, 1);
+	Spritesheet* right_healthbackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("right-health-background"), 1, 1);
+
+	ProgressBar* healthbar = new ProgressBar(left_healthbar_spritesheet, middle_healthbar_spritesheet, right_healthbar_spritesheet, left_healthbackground_spritesheet, middle_healthbackground_spritesheet, right_healthbackground_spritesheet, 296);
+	healthbar->SetFactors(6, 9, 18);
+	healthbar->setPosition(100, 500);
+	healthbar->SetValue(50);
+	elements.push_back(healthbar);
+
 	cursor = new sf::Sprite();
 	cursor->setTexture(*Managers::GetInstance()->ResourceManager->GetTexture("cursor"));
 	cursor->setScale(1, 1);
@@ -68,4 +83,5 @@ void PlayerUI::Load() {
 
 void PlayerUI::UpdateLogic(float dt) {
 	MenuScene::UpdateLogic(dt);
+
 }
