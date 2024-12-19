@@ -229,9 +229,9 @@ void PlayerUI::UpdateLogic(float dt) {
 void PlayerUI::Draw(sf::RenderWindow& window) {
 	MenuScene::Draw(window);
 
-	healthbar->UpdateCursor(window, cursor->getGlobalBounds());
+	/*healthbar->UpdateCursor(window, cursor->getGlobalBounds());
 	healthbar->SetValue(value);
-	healthbar->SetText(std::to_string((int)value));
+	healthbar->SetText(std::to_string((int)value));*/
 
 	manabar->UpdateCursor(window, cursor->getGlobalBounds());
 	manabar->SetValue(value);

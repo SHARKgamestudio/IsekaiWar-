@@ -14,7 +14,7 @@ class UltimeBullet;
 
 class PlayerEntity : public CharacterEntity, public ShootModule, public ManaModule {
 private:
-
+	ProgressBar* healthbar;
 	Animator* animator;
 	float angle;
 	InputManager* inputs;

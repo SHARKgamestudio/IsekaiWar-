@@ -4,6 +4,8 @@
 
 #include "../../Managers.h"
 #include "../../Utils/Maths.h"
+#include "../../Scenes/MenuScene.h"
+#include "../../UI/Components/ProgressBar.h"
 
 #pragma endregion
 
@@ -27,11 +29,16 @@ PlayerEntity::PlayerEntity()
 
 	this->animator = new Animator(&spritesheet, { new Animation("idle", 0, 19, 3) });
 	this->animator->Play("idle");
+
+	MenuScene* current = (MenuScene*)Managers::GetInstance()->SceneManager->currentScene;
+	this->healthbar = (ProgressBar*)current->elements[7];
 }
 
 void PlayerEntity::UpdateLogic(float deltaTime) {
 	LivingEntity::UpdateLogic(deltaTime);
 	ShootModule::UpdateLogic(deltaTime);
+
+	this->healthbar->SetValue((this->GetHealth() * 100) / this->GetMaxHealth());
 	
 	float horizontal = inputs->GetAxis("Horizontal");
 	float vertical = inputs->GetAxis("Vertical");
@@ -99,7 +106,6 @@ void PlayerEntity::UpdateLogic(float deltaTime) {
 void PlayerEntity::TakeDamage(float damage) {
 	LivingEntity::TakeDamage(damage);
 	// implémentes l'update des pv ici
-	// Managers::GetInstance()->SceneManager->currentScene->
 }
 
 void AddMana() {

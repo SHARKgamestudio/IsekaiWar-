@@ -83,6 +83,7 @@ void MainMenu::UpdateLogic(float dt) {
 	Button* quit_button = (Button*)elements[4];
 	if (quit_button->IsPressed()) {
 		quit_button->Disable();
+		//delete Managers::GetInstance();
 		Managers::GetInstance()->GameManager->Stop();
 	}
 
