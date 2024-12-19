@@ -36,10 +36,11 @@ protected:
 
 	IntervalClock* comboClock;
 	bool comboIsBreak;
-	int score;
-	float multiplicator;
 
 public:
+	float multiplicator;
+	int score;
+
 	~LevelScene();
 
 	std::vector<CollidableEntity*>* GetEntities();

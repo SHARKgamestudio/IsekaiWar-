@@ -12,6 +12,9 @@ public:
 	float value;
 	ProgressBar* healthbar;
 	ProgressBar* manabar;
+	ProgressBar* autobar;
+	ProgressBar* specialbar;
+	ProgressBar* burstbar;
 
 	PlayerUI();
 

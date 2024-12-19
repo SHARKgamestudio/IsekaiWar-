@@ -18,9 +18,9 @@ class Sprite;
 class MenuScene : public Scene {
 protected:
 	sf::Sprite* cursor;
-	std::vector<UIComponent*> elements;
 
 public:
+	std::vector<UIComponent*> elements;
 
 	~MenuScene();
 
