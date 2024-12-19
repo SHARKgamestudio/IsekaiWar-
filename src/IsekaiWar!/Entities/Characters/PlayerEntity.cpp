@@ -32,7 +32,7 @@ PlayerEntity::PlayerEntity()
 	this->animator->Play("idle");
 
 	MenuScene* current = (MenuScene*)Managers::GetInstance()->SceneManager->currentScene;
-	this->healthbar = (ProgressBar*)current->elements[7];
+	this->healthbar = dynamic_cast<ProgressBar*>(current->elements[7]);
 }
 
 void PlayerEntity::UpdateLogic(float deltaTime) {

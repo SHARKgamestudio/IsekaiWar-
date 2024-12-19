@@ -46,7 +46,7 @@ void StandardBullet::UpdateLogic(float deltaTime) {
 			return;
 		}
 
-		Attack(castEntity, deltaTime);
+		Attack(castEntity);
 		toDisable = true;
 		return;
 	}

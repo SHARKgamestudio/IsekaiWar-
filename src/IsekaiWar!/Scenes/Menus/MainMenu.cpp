@@ -76,8 +76,8 @@ void MainMenu::UpdateLogic(float dt) {
 
 	Button* play_button = (Button*)elements[2];
 	if (play_button->IsPressed()) {
-		Managers::GetInstance()->SceneManager->LoadLevel("Level1");
-		Managers::GetInstance()->SceneManager->LoadMenuAsync("PlayerUI");
+		Managers::GetInstance()->SceneManager->LoadMenu("PlayerUI");
+		Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");
 	}
 
 	Button* quit_button = (Button*)elements[4];
