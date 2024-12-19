@@ -54,6 +54,11 @@ void PlayerUI::Load() {
 	xp_label->SetCharSize(48);
 	elements.push_back(xp_label);
 
+	Label* combo_label = new Label("combo : 4", Center);
+	combo_label->setPosition(1572, 550);
+	combo_label->SetCharSize(48);
+	elements.push_back(combo_label);
+
 	Spritesheet* score_title_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("score-title"), 1, 1);
 	score_title_spritesheet->sprite.setOrigin(0, 0);
 	Image* score_title_image = new Image(score_title_spritesheet);
