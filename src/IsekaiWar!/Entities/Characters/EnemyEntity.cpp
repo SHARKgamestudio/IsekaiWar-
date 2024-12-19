@@ -46,5 +46,6 @@ void EnemyEntity::UpdateLogic(float deltaTime) {
 			}
 		}
 		Managers::GetInstance()->SceneManager->currentLevel->UpdateScore(200);
+		Managers::GetInstance()->SceneManager->currentLevel->GetPlayer()->ObtainMana(10);
 	}
 }

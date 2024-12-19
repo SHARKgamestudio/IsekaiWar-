@@ -24,6 +24,12 @@ GameManager::GameManager() {
 	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "IsekaiWar!", sf::Style::Fullscreen);
 }
 
+GameManager::~GameManager() {
+	if (window.isOpen()) {
+		window.close();
+	}
+}
+
 void GameManager::Run() {
 	running = true;
 	DisplayLoadingScreen();
@@ -48,7 +54,16 @@ void GameManager::HandleEvents() {
 	sf::Event event;
 	while (window.pollEvent(event)) {
 		Managers::GetInstance()->InputManager->UpdateEvents(&event);
-		if (event.type == sf::Event::Closed) { Stop(); }
+
+		if (event.type == sf::Event::Closed) {
+			Stop();
+		}
+	}
+
+	if (!Managers::GetInstance()->SceneManager->currentScene) {
+		Stop();
+		window.close();
+		delete Managers::GetInstance();
 	}
 }
 

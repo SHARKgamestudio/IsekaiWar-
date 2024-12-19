@@ -15,6 +15,7 @@ private:
 	static Managers* Instance;
 public:
 	Managers();
+	~Managers();
 
 	GameManager* GameManager;
 	InputManager* InputManager;

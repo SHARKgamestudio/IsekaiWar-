@@ -13,6 +13,21 @@ ResourceManager::ResourceManager() {
 	loaded = false;
 }
 
+ResourceManager::~ResourceManager() {
+	textures.clear();
+
+	sounds.clear();
+
+	for (auto& pair : musics) {
+		delete& pair.second;
+	}
+	musics.clear();
+
+	fonts.clear();
+
+	loaded = false;
+}
+
 void ResourceManager::LoadResources() {
 	std::string root = "";
 	std::string subdir = "";

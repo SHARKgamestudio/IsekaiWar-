@@ -19,6 +19,7 @@ private:
 	std::map<std::string, sf::Font> fonts;
 
 	ResourceManager();
+	~ResourceManager();
 
 	void LoadTextures(std::string path);
 	void LoadSounds(std::string path);

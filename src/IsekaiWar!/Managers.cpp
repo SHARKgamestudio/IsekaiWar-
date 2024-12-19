@@ -14,6 +14,16 @@ Managers::Managers() {
 	this->SoundManager = new ::SoundManager();
 }
 
+Managers::~Managers() {
+	delete GameManager;
+	delete InputManager;
+	delete ResourceManager;
+	delete SceneManager;
+	delete SoundManager;
+
+	Instance = nullptr;
+}
+
 Managers* Managers::GetInstance() {
 	if (Instance == nullptr) {
 		Instance = new Managers();

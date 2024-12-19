@@ -8,6 +8,11 @@
 
 #define ACCURACY 4
 
+InputManager::~InputManager() {
+	axes.clear();
+	keys.clear();
+}
+
 Axis::Axis(std::string name, sf::Keyboard::Key negative, sf::Keyboard::Key positive, sf::Joystick::Axis joystick) {
 	this->name = name;
 	this->negative = negative;

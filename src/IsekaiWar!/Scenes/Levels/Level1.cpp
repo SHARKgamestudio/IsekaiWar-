@@ -63,7 +63,7 @@ void Level1::Load() {
 		if (ennemiesPool[i]->birth > highest) highest = ennemiesPool[i]->birth;
 	}
 
-	backgrounds.push_back(new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("forest")));
+	backgrounds.push_back(new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("forest"), sf::Vector2f(600, 800), sf::Vector2f(1400, 1200)));
 	player = new PlayerEntity();
 	current = Playing;
 }

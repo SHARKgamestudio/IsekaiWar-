@@ -19,7 +19,7 @@ public:
 	float GetMaxHealth();
 	bool IsDead();
 
-	void TakeDamage(float damage);
+	void virtual TakeDamage(float damage);
 	void Heal(float health);
 	void UpdateMaxHealth(float newMaxHealth);
 };
