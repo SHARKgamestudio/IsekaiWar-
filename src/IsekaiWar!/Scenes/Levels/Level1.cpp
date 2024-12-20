@@ -21,6 +21,8 @@ Level1::Level1() {
 	current = LevelState::Playing;
 	clock = new Clock();
 	highest = 0;
+	score = 0;
+	multiplicator = 1.f;
 }
 
 void Level1::Load() {
@@ -63,7 +65,7 @@ void Level1::Load() {
 		if (ennemiesPool[i]->birth > highest) highest = ennemiesPool[i]->birth;
 	}
 
-	backgrounds.push_back(new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("forest")));
+	backgrounds.push_back(new BackgroundEntity(Managers::GetInstance()->ResourceManager->GetTexture("forest"), sf::Vector2f(600, 800), sf::Vector2f(1400, 1200)));
 	player = new PlayerEntity();
 	current = Playing;
 }
@@ -71,8 +73,8 @@ void Level1::Load() {
 void Level1::End() {
 	// EXECUTE AT THE END OF THE LEVEL //
 
-	Managers::GetInstance()->SceneManager->LoadLevel("Level1");
-	Managers::GetInstance()->SceneManager->LoadMenuAsync("PlayerUI");
+	Managers::GetInstance()->SceneManager->LoadMenu("PlayerUI");
+	Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");
 }
 
 void Level1::UpdateLogic(float deltaTime) {

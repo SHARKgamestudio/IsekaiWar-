@@ -54,6 +54,11 @@ void PlayerUI::Load() {
 	xp_label->SetCharSize(48);
 	elements.push_back(xp_label);
 
+	Label* combo_label = new Label("combo : 4", Center);
+	combo_label->setPosition(1572, 550);
+	combo_label->SetCharSize(48);
+	elements.push_back(combo_label);
+
 	Spritesheet* score_title_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("score-title"), 1, 1);
 	score_title_spritesheet->sprite.setOrigin(0, 0);
 	Image* score_title_image = new Image(score_title_spritesheet);
@@ -105,6 +110,108 @@ void PlayerUI::Load() {
 	mana_image->setPosition(60, 390);
 	elements.push_back(mana_image);
 
+	#pragma region Auto ProgressBar
+
+	Spritesheet* auto_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("auto-icon"), 1, 1);
+	auto_spritesheet->sprite.setOrigin(0, 0);
+	Image* auto_image = new Image(auto_spritesheet);
+	auto_image->setScale(1, 1);
+	auto_image->setPosition(95, 498);
+	elements.push_back(auto_image);
+
+	Spritesheet* left_auto_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("left-spell-progress"), 1, 1);
+	left_auto_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* middle_auto_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("middle-spell-progress"), 1, 1);
+	middle_auto_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* right_auto_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("right-spell-progress"), 1, 1);
+	right_auto_spritesheet->sprite.setOrigin(0, 0);
+
+	Spritesheet* left_autobackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("left-spell-background"), 1, 1);
+	left_autobackground_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* middle_autobackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("middle-spell-background"), 1, 1);
+	middle_autobackground_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* right_autobackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("right-spell-background"), 1, 1);
+	right_autobackground_spritesheet->sprite.setOrigin(0, 0);
+
+	autobar = new ProgressBar(left_auto_spritesheet, middle_auto_spritesheet, right_auto_spritesheet, left_autobackground_spritesheet, middle_autobackground_spritesheet, right_autobackground_spritesheet, 68);
+	autobar->SetFactors(0, 0, 0);
+	autobar->setOrigin(0, 0);
+	autobar->setPosition(95, 498);
+	autobar->SetText("");
+	autobar->SetValue(0);
+	this->value = 0;
+	elements.push_back(autobar);
+
+	#pragma endregion
+
+	#pragma region Special ProgressBar
+
+	Spritesheet* special_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("special-icon"), 1, 1);
+	special_spritesheet->sprite.setOrigin(0, 0);
+	Image* special_image = new Image(special_spritesheet);
+	special_image->setScale(1, 1);
+	special_image->setPosition(200, 498);
+	elements.push_back(special_image);
+
+	Spritesheet* left_special_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("left-spell-progress"), 1, 1);
+	left_special_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* middle_special_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("middle-spell-progress"), 1, 1);
+	middle_special_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* right_special_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("right-spell-progress"), 1, 1);
+	right_special_spritesheet->sprite.setOrigin(0, 0);
+
+	Spritesheet* left_specialbackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("left-spell-background"), 1, 1);
+	left_specialbackground_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* middle_specialbackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("middle-spell-background"), 1, 1);
+	middle_specialbackground_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* right_specialbackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("right-spell-background"), 1, 1);
+	right_specialbackground_spritesheet->sprite.setOrigin(0, 0);
+
+	specialbar = new ProgressBar(left_special_spritesheet, middle_special_spritesheet, right_special_spritesheet, left_specialbackground_spritesheet, middle_specialbackground_spritesheet, right_specialbackground_spritesheet, 68);
+	specialbar->SetFactors(0, 0, 0);
+	specialbar->setOrigin(0, 0);
+	specialbar->setPosition(200, 498);
+	specialbar->SetText("");
+	specialbar->SetValue(0);
+	this->value = 0;
+	elements.push_back(specialbar);
+
+	#pragma endregion
+
+	#pragma region Burst ProgressBar
+
+	Spritesheet* burst_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("burst-icon"), 1, 1);
+	burst_spritesheet->sprite.setOrigin(0, 0);
+	Image* burst_image = new Image(burst_spritesheet);
+	burst_image->setScale(1, 1);
+	burst_image->setPosition(305, 498);
+	elements.push_back(burst_image);
+
+	Spritesheet* left_burst_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("left-spell-progress"), 1, 1);
+	left_burst_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* middle_burst_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("middle-spell-progress"), 1, 1);
+	middle_burst_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* right_burst_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("right-spell-progress"), 1, 1);
+	right_burst_spritesheet->sprite.setOrigin(0, 0);
+
+	Spritesheet* left_burstbackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("left-spell-background"), 1, 1);
+	left_burstbackground_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* middle_burstbackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("middle-spell-background"), 1, 1);
+	middle_burstbackground_spritesheet->sprite.setOrigin(0, 0);
+	Spritesheet* right_burstbackground_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("right-spell-background"), 1, 1);
+	right_burstbackground_spritesheet->sprite.setOrigin(0, 0);
+
+	burstbar = new ProgressBar(left_burst_spritesheet, middle_burst_spritesheet, right_burst_spritesheet, left_burstbackground_spritesheet, middle_burstbackground_spritesheet, right_burstbackground_spritesheet, 68);
+	burstbar->SetFactors(0, 0, 0);
+	burstbar->setOrigin(0, 0);
+	burstbar->setPosition(305, 498);
+	burstbar->SetText("");
+	burstbar->SetValue(0);
+	this->value = 0;
+	elements.push_back(burstbar);
+
+	#pragma endregion
+
 	cursor = new sf::Sprite();
 	cursor->setTexture(*Managers::GetInstance()->ResourceManager->GetTexture("cursor"));
 	cursor->setScale(1, 1);
@@ -122,11 +229,4 @@ void PlayerUI::UpdateLogic(float dt) {
 void PlayerUI::Draw(sf::RenderWindow& window) {
 	MenuScene::Draw(window);
 
-	healthbar->UpdateCursor(window, cursor->getGlobalBounds());
-	healthbar->SetValue(value);
-	healthbar->SetText(std::to_string((int)value));
-
-	manabar->UpdateCursor(window, cursor->getGlobalBounds());
-	manabar->SetValue(value);
-	manabar->SetText(std::to_string((int)value));
 }

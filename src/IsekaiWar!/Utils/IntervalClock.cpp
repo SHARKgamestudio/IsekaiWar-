@@ -3,14 +3,22 @@
 IntervalClock::IntervalClock(float maxTime) {
 	this->maxTime = maxTime;
 	elapseTime = 0;
-};
+}
+float IntervalClock::GetTime() {
+	return elapseTime;
+}
 
-bool IntervalClock::UpdateLogic(float deltaTime) {
-	elapseTime += deltaTime;
+bool IntervalClock::UpdateLogic(float deltaTime, bool mustRestart) {
+	
 
 	if (elapseTime > maxTime) {
-		elapseTime = 0;
+		if (mustRestart) {
+			elapseTime = 0;
+		}
 		return true;
+	}
+	else {
+		elapseTime += deltaTime;
 	}
 	return false;
 }

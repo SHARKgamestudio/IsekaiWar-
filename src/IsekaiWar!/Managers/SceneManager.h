@@ -29,6 +29,7 @@ public:
 	Scene* currentScene;
 
 	SceneManager();
+	~SceneManager();
 
 	void UpdateLogic(float deltaTime);
 	void Draw(sf::RenderWindow& window);

@@ -20,6 +20,7 @@ private:
 	void Render();
 
 	GameManager();
+	~GameManager();
 
 public:
 	void Run();
