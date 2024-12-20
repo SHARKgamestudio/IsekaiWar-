@@ -141,8 +141,21 @@ void Level1::Load() {
 void Level1::End() {
 	// EXECUTE AT THE END OF THE LEVEL //
 
-	Managers::GetInstance()->SceneManager->LoadMenu("PlayerUI");
-	Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");
+	if (current == Lose) {
+		Managers::GetInstance()->SoundManager->StopSound("BirdFlaps");
+		Managers::GetInstance()->SoundManager->StopSound("MidAirLoop");
+		Managers::GetInstance()->SceneManager->ResetScenes();
+		Managers::GetInstance()->SceneManager->LoadMenu("GameOver");
+	}
+	else if (current == Win) {
+		Managers::GetInstance()->SoundManager->StopSound("BirdFlaps");
+		Managers::GetInstance()->SoundManager->StopSound("MidAirLoop");
+		Managers::GetInstance()->SceneManager->currentLevel->score = score;
+		//Managers::GetInstance()->SceneManager->ResetScenes();
+		Managers::GetInstance()->SceneManager->LoadMenuAsync("Win");
+		Managers::GetInstance()->SceneManager->ResetScenes();
+		Managers::GetInstance()->SceneManager->LoadMenu("Win");
+	}
 }
 
 void Level1::UpdateLogic(float deltaTime) {

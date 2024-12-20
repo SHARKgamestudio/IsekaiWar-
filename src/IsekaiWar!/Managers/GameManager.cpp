@@ -60,10 +60,12 @@ void GameManager::HandleEvents() {
 		}
 	}
 
+	if (Managers::GetInstance()->InputManager->GetKey("quit")) {
+		Stop();
+	}
+
 	if (!Managers::GetInstance()->SceneManager->currentScene) {
 		Stop();
-		window.close();
-		delete Managers::GetInstance();
 	}
 }
 

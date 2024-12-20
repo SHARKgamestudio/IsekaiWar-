@@ -50,6 +50,8 @@ private:
 	};
 	
 	std::vector<Key> keys{
+		Key("quit", sf::Keyboard::Escape, 8),
+		Key("Confirm", sf::Keyboard::K, 0),
 		Key("Confirm", sf::Keyboard::K, 0),
 		Key("Cancel", sf::Keyboard::K, 1),
 
