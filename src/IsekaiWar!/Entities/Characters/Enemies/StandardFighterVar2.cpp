@@ -1,4 +1,4 @@
-#include "StandardFighter.h"
+#include "StandardFighterVar2.h"
 
 #include "../../../Managers.h"
 #include "../../Bullets/EnemyBullets/StandardBullet.h"
@@ -11,14 +11,14 @@
 
 // constructor
 #define INITIAL_POSITION_Y -256
-#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("enemy")
+#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("standard-fighter-var2")
 #define COLUMNS 5
 #define ROWS 4
 #define RADIUS 64
 #define HEALTH 2
 
-StandardFighter::StandardFighter(float x, float y, float birth)
-	: EnemyEntity(x, INITIAL_POSITION_Y, TEXTURE, birth, COLUMNS, ROWS, RADIUS, HEALTH), shootClock(0.5f){
+StandardFighterVar2::StandardFighterVar2(float x, float y, float birth)
+	: EnemyEntity(x, INITIAL_POSITION_Y, TEXTURE, birth, COLUMNS, ROWS, RADIUS, HEALTH), shootClock(0.2f) {
 	
 	this->time = 0;
 	this->spawned = false;
@@ -27,8 +27,8 @@ StandardFighter::StandardFighter(float x, float y, float birth)
 	this->animator->Play("idle");
 }
 
-StandardFighter::StandardFighter(sf::Vector2f position, float birth)
-	: EnemyEntity(sf::Vector2f(position.x, -256), Managers::GetInstance()->ResourceManager->GetTexture("enemy"), birth, sf::Vector2i(5, 4), 64, 2), shootClock(0.5f) {
+StandardFighterVar2::StandardFighterVar2(sf::Vector2f position, float birth)
+	: EnemyEntity(sf::Vector2f(position.x, -256), Managers::GetInstance()->ResourceManager->GetTexture("enemy"), birth, sf::Vector2i(5, 4), 64, 2), shootClock(0.2f) {
 	
 	this->time = 0;
 	this->spawned = false;
@@ -37,7 +37,7 @@ StandardFighter::StandardFighter(sf::Vector2f position, float birth)
 	this->animator->Play("idle");
 }
 
-void StandardFighter::UpdateLogic(float deltaTime) {
+void StandardFighterVar2::UpdateLogic(float deltaTime) {
 	EnemyEntity::UpdateLogic(deltaTime);
 
 	animator->UpdateLogic(deltaTime);
@@ -48,12 +48,9 @@ void StandardFighter::UpdateLogic(float deltaTime) {
 		setPosition(getPosition().x, Maths::Lerp(getPosition().y, spawn.y, deltaTime));
 		if (Maths::Equals(getPosition().y, spawn.y, START_DISTANCE)) spawned = true;
 	}
-	else {
-		setPosition(Maths::Lerp(getPosition().x, spawn.x + std::cos(time) * CIRCLE_RADIUS, deltaTime), Maths::Lerp(getPosition().y, spawn.y + std::sin(time) * CIRCLE_RADIUS, deltaTime));
 
-		if (shootClock.UpdateLogic(deltaTime)) {
-			(new StandardBullet(getPosition() + sf::Vector2f(0, 128), sf::Vector2f(0, 1)))->Spawn();
-		}
+	if (shootClock.UpdateLogic(deltaTime)) {
+		(new StandardBullet(getPosition() + sf::Vector2f(-16, 128), sf::Vector2f(0, 1)))->Spawn();
 	}
 
 	if(GetHealth() <= 0) Die();

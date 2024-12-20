@@ -11,7 +11,11 @@
 #include "../../Managers.h"
 #include "../../Entities/BackgroundEntity.h"
 #include "../../Entities/Bullets/PlayerBullets/SpecialBullet.h"
-#include "../../Entities/Characters/Enemies/StandardFighter.h"
+#include "../../Entities/Characters/Enemies/StandardFighterVar0.h"
+#include "../../Entities/Characters/Enemies/StandardFighterVar1.h"
+#include "../../Entities/Characters/Enemies/StandardFighterVar2.h"
+#include "../../Entities/Characters/Enemies/LightFighter.h"
+#include "../../Entities/Characters/Enemies/HeavyFighter.h"
 
 #include "../../Utils/Clock.h"
 
@@ -33,32 +37,38 @@ void Level1::Load() {
 	clock = new Clock(true);
 
 	ennemiesPool = {
-		// WAVE 1
-		new StandardFighter(196, 125, 0.0f),
+		//// WAVE 1
+		//new StandardFighter(196, 125, 0.0f),
 
-		// WAVE 2
-		new StandardFighter(640, 300, 2.f),
-		new StandardFighter(300, 500, 2.f),
-		new StandardFighter(196, 125, 2.f),
+		//// WAVE 2
+		//new StandardFighter(640, 300, 2.f),
+		//new StandardFighter(300, 500, 2.f),
+		//new StandardFighter(196, 125, 2.f),
 
-		// WAVE 3
-		new StandardFighter(150, 300, 4.f),
-		new StandardFighter(300, 400, 4.f),
-		new StandardFighter(450, 300, 4.f),
-		new StandardFighter(600, 400, 4.f),
-		new StandardFighter(750, 300, 4.f),
+		//// WAVE 3
+		//new StandardFighter(150, 300, 4.f),
+		//new StandardFighter(300, 400, 4.f),
+		//new StandardFighter(450, 300, 4.f),
+		//new StandardFighter(600, 400, 4.f),
+		//new StandardFighter(750, 300, 4.f),
 
-		// WAVE 3
-		new StandardFighter(150, 300, 6.f),
-		new StandardFighter(300, 400, 6.f),
-		new StandardFighter(450, 300, 6.f),
-		new StandardFighter(600, 400, 6.f),
-		new StandardFighter(750, 300, 6.f),
-		new StandardFighter(150, 500, 6.f),
-		new StandardFighter(300, 600, 6.f),
-		new StandardFighter(450, 500, 6.f),
-		new StandardFighter(600, 600, 6.f),
-		new StandardFighter(750, 500, 6.f),
+		//// WAVE 3
+		//new StandardFighter(150, 300, 6.f),
+		//new StandardFighter(300, 400, 6.f),
+		//new StandardFighter(450, 300, 6.f),
+		//new StandardFighter(600, 400, 6.f),
+		//new StandardFighter(750, 300, 6.f),
+		//new StandardFighter(150, 500, 6.f),
+		//new StandardFighter(300, 600, 6.f),
+		//new StandardFighter(450, 500, 6.f),
+		//new StandardFighter(600, 600, 6.f),
+		//new StandardFighter(750, 500, 6.f),
+
+		//new StandardFighterVar0(400, 250, 0.0f),
+		//new StandardFighterVar1(600, 500, 0.0f),
+		//new StandardFighterVar2(100, 700, 0.0f),
+		//new LightFighter(650, 700, 0.0f),
+		//new HeavyFighter(400, 250, 0.0f),
 	};
 
 	for (int i = 0; i < ennemiesPool.size(); i++) {
