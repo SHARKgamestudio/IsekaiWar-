@@ -15,10 +15,12 @@
 #define COLUMNS 5
 #define ROWS 4
 #define RADIUS 64
-#define HEALTH 2
+#define HEALTH 7
+#define RELOAD 0.7f
 
 HeavyFighter::HeavyFighter(float x, float y, float birth)
-	: EnemyEntity(x, INITIAL_POSITION_Y, TEXTURE, birth, COLUMNS, ROWS, RADIUS, HEALTH), shootClock(0.5f) {
+	: EnemyEntity(x, INITIAL_POSITION_Y, TEXTURE, birth, COLUMNS, ROWS, RADIUS, HEALTH), 
+	shootClock(0.7f) {
 	
 	this->time = 0;
 	this->spawned = false;
@@ -28,7 +30,8 @@ HeavyFighter::HeavyFighter(float x, float y, float birth)
 }
 
 HeavyFighter::HeavyFighter(sf::Vector2f position, float birth)
-	: EnemyEntity(sf::Vector2f(position.x, -256), Managers::GetInstance()->ResourceManager->GetTexture("enemy"), birth, sf::Vector2i(5, 4), 64, 2), shootClock(0.5f) {
+	: EnemyEntity(sf::Vector2f(position.x, INITIAL_POSITION_Y), TEXTURE, birth, sf::Vector2i(COLUMNS, ROWS), RADIUS, HEALTH), 
+	shootClock(0.7f) {
 	
 	this->time = 0;
 	this->spawned = false;
@@ -50,14 +53,14 @@ void HeavyFighter::UpdateLogic(float deltaTime) {
 	}
 	else {
 		setPosition(Maths::Lerp(getPosition().x, spawn.x + std::cos(time) * CIRCLE_RADIUS, deltaTime), Maths::Lerp(getPosition().y, spawn.y + std::sin(time) * CIRCLE_RADIUS, deltaTime));
+	}
 
-		if (shootClock.UpdateLogic(deltaTime)) {
-			(new StandardBullet(getPosition() + sf::Vector2f(-32-64, 110), sf::Vector2f(0, 1)))->Spawn();
-			(new StandardBullet(getPosition() + sf::Vector2f(16+64, 110), sf::Vector2f(0, 1)))->Spawn();
+	if (shootClock.UpdateLogic(deltaTime)) {
+		(new StandardBullet(getPosition() + sf::Vector2f(-32 - 64, 110), sf::Vector2f(0, 1)))->Spawn();
+		(new StandardBullet(getPosition() + sf::Vector2f(16 + 64, 110), sf::Vector2f(0, 1)))->Spawn();
 
-			(new StandardBullet(getPosition() + sf::Vector2f(-16, -25), sf::Vector2f(1, 0)))->Spawn();
-			(new StandardBullet(getPosition() + sf::Vector2f(-16, -25), sf::Vector2f(-1, 0)))->Spawn();
-		}
+		(new StandardBullet(getPosition() + sf::Vector2f(-16, -25), sf::Vector2f(1, 0)))->Spawn();
+		(new StandardBullet(getPosition() + sf::Vector2f(-16, -25), sf::Vector2f(-1, 0)))->Spawn();
 	}
 
 	if(GetHealth() <= 0) Die();

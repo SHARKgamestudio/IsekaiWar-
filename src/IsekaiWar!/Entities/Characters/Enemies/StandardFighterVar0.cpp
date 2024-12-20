@@ -16,9 +16,10 @@
 #define ROWS 4
 #define RADIUS 64
 #define HEALTH 2
+#define RELOAD 1.5f
 
-StandardFighterVar0::StandardFighterVar0(float x, float y, float birth)
-	: EnemyEntity(x, INITIAL_POSITION_Y, TEXTURE, birth, COLUMNS, ROWS, RADIUS, HEALTH), shootClock(0.5f) {
+StandardFighterVar0::StandardFighterVar0(float x, float y, float birth, bool right)
+	: EnemyEntity(x, INITIAL_POSITION_Y, TEXTURE, birth, COLUMNS, ROWS, RADIUS, HEALTH, right), shootClock(0.5f) {
 	
 	this->time = 0;
 	this->spawned = false;
@@ -27,8 +28,9 @@ StandardFighterVar0::StandardFighterVar0(float x, float y, float birth)
 	this->animator->Play("idle");
 }
 
-StandardFighterVar0::StandardFighterVar0(sf::Vector2f position, float birth)
-	: EnemyEntity(sf::Vector2f(position.x, -256), Managers::GetInstance()->ResourceManager->GetTexture("enemy"), birth, sf::Vector2i(5, 4), 64, 2), shootClock(0.5f) {
+StandardFighterVar0::StandardFighterVar0(sf::Vector2f position, float birth, bool right)
+	: EnemyEntity(sf::Vector2f(position.x, -256), TEXTURE, birth, sf::Vector2i(5, 4), 64, 2, right),
+	shootClock(0.5f) {
 	
 	this->time = 0;
 	this->spawned = false;
@@ -50,10 +52,13 @@ void StandardFighterVar0::UpdateLogic(float deltaTime) {
 	}
 	else {
 		setPosition(Maths::Lerp(getPosition().x, spawn.x + std::cos(time) * CIRCLE_RADIUS, deltaTime), Maths::Lerp(getPosition().y, spawn.y + std::sin(time) * CIRCLE_RADIUS, deltaTime));
+	}
 
-		if (shootClock.UpdateLogic(deltaTime)) {
-			(new StandardBullet(getPosition() + sf::Vector2f(-16, 128), sf::Vector2f(0, 1)))->Spawn();
-		}
+	if (shootClock.UpdateLogic(deltaTime)) {
+		(new StandardBullet(getPosition() + sf::Vector2f(16, 16), sf::Vector2f(1, 1)))->Spawn();
+		(new StandardBullet(getPosition() + sf::Vector2f(16, -16), sf::Vector2f(1, -1)))->Spawn();
+		(new StandardBullet(getPosition() + sf::Vector2f(-16, 16), sf::Vector2f(-1, 1)))->Spawn();
+		(new StandardBullet(getPosition() + sf::Vector2f(-16, -16), sf::Vector2f(-1, -1)))->Spawn();
 	}
 
 	if(GetHealth() <= 0) Die();

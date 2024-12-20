@@ -17,7 +17,7 @@
 #define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("player")
 #define COLUMNS 5
 #define ROWS 4
-#define RADIUS 32.f
+#define RADIUS 25.f
 #define HEALTH 100.f
 #define MAGNITUDE 512.f
 #define MANA 100.f

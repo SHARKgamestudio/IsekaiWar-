@@ -10,24 +10,23 @@
 #define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("laserBullet")
 #define COLUMNS 1
 #define ROWS 1
-#define RADIUS 5.f
+#define RADIUS 15.f
 #define ATTACK 5.f
-#define SPEED 700.f
+#define SPEED 400.f
 #define SPEED_ANIMATION 2.f
+#define SCALE 2.2f
 
 StandardBullet::StandardBullet(float x, float y, sf::Vector2f direction)
 	: EnemyBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, direction, SPEED)
 {
-	spritesheet.setScale(0.5f, 0.5f);
-	spritesheet.setOrigin(64 / 2, 64 / 2);
+	spritesheet.setScale(SCALE, SCALE);
 	spritesheet.setRotation(90);
 }
 
 StandardBullet::StandardBullet(sf::Vector2f position, sf::Vector2f direction)
 	: EnemyBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, direction, SPEED)
 {
-	spritesheet.setScale(0.5f, 0.5f);
-	spritesheet.setOrigin(64 / 2, 64 / 2);
+	spritesheet.setScale(SCALE, SCALE);
 	spritesheet.setRotation(90);
 
 }

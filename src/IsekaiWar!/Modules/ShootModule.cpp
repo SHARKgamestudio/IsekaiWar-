@@ -17,7 +17,7 @@
 
 // behaviour
 #define RELOAD_AUTO 0.3f
-#define RELOAD_SPECIAL 1.f
+#define RELOAD_SPECIAL 7.f
 #define RELOAD_ULTIME 1.f
 
 ShootModule::ShootModule(PlayerEntity* player)

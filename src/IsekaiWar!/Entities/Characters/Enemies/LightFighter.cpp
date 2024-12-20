@@ -4,6 +4,7 @@
 #include "../../Bullets/EnemyBullets/StandardBullet.h"
 #include "../../../Utils/Maths.h"
 #include "../../../Utils/IntervalClock.h"
+#include <iostream>
 
 // behaviour
 #define CIRCLE_RADIUS 256
@@ -18,7 +19,9 @@
 #define HEALTH 2
 
 LightFighter::LightFighter(float x, float y, float birth)
-	: EnemyEntity(0, INITIAL_POSITION_Y, TEXTURE, birth, COLUMNS, ROWS, RADIUS, HEALTH), shootClock(0.5f), AttackModule(10) {
+	: EnemyEntity(x, INITIAL_POSITION_Y, TEXTURE, birth, COLUMNS, ROWS, RADIUS, HEALTH), 
+	shootClock(0.5f), 
+	AttackModule(10) {
 	
 	this->time = 0;
 	this->spawned = false;
@@ -27,12 +30,12 @@ LightFighter::LightFighter(float x, float y, float birth)
 	this->animator->Play("idle");
 
 	this->setScale(0.5f, 0.5f);
-
-	AddToCheck(Managers::GetInstance()->SceneManager->currentLevel->GetPlayer());
 }
 
 LightFighter::LightFighter(sf::Vector2f position, float birth)
-	: EnemyEntity(sf::Vector2f(0, -256), Managers::GetInstance()->ResourceManager->GetTexture("enemy"), birth, sf::Vector2i(5, 4), 64, 2), shootClock(0.5f), AttackModule(10) {
+	: EnemyEntity(sf::Vector2f(position.x, -256), Managers::GetInstance()->ResourceManager->GetTexture("enemy"), birth, sf::Vector2i(5, 4), 64, 2), 
+	shootClock(0.5f), 
+	AttackModule(10) {
 	
 	this->time = 0;
 	this->spawned = false;
@@ -43,6 +46,13 @@ LightFighter::LightFighter(sf::Vector2f position, float birth)
 
 void LightFighter::UpdateLogic(float deltaTime) {
 	EnemyEntity::UpdateLogic(deltaTime);
+
+	if (!spawned) {
+		AddToCheck(Managers::GetInstance()->SceneManager->currentLevel->GetPlayer());
+		spawned = true;
+	}
+
+	CheckCollisions();
 
 	animator->UpdateLogic(deltaTime);
 
@@ -59,6 +69,7 @@ void LightFighter::UpdateLogic(float deltaTime) {
 
 	move(cx * deltaTime * 512, cy * deltaTime * 512);
 
+	std::cout << entitiesHit.size();
 	for (CollidableEntity* entityHit : entitiesHit) {
 		LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entityHit);
 
@@ -70,7 +81,7 @@ void LightFighter::UpdateLogic(float deltaTime) {
 			return;
 		}
 
-		Attack(castEntity);
+		Attack(castEntity, deltaTime);
 		return;
 	}
 
