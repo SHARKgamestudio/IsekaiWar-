@@ -66,9 +66,9 @@ void Level1::Load() {
 
 		new StandardFighterVar0(400, 250, 0.0f),
 		new StandardFighterVar1(600, 500, 0.0f),
-		new StandardFighterVar2(100, 700, 0.0f),
-		new LightFighter(650, 700, 0.0f),
-		new HeavyFighter(400, 250, 0.0f),
+		//new StandardFighterVar2(100, 700, 0.0f),
+		//new LightFighter(650, 700, 0.0f),
+		//new HeavyFighter(400, 250, 0.0f),
 	};
 
 	for (int i = 0; i < ennemiesPool.size(); i++) {
@@ -84,9 +84,14 @@ void Level1::End() {
 	// EXECUTE AT THE END OF THE LEVEL //
 
 	if (current == Lose) {
+		Managers::GetInstance()->SceneManager->ResetScenes();
 		Managers::GetInstance()->SceneManager->LoadMenu("GameOver");
 	}
-
+	else if (current == Win) {
+		Managers::GetInstance()->SceneManager->currentLevel->score = score;
+		//Managers::GetInstance()->SceneManager->ResetScenes();
+		Managers::GetInstance()->SceneManager->LoadMenuAsync("Win");
+	}
 	
 	//Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");
 }

@@ -34,11 +34,12 @@ public:
 	void UpdateLogic(float deltaTime);
 	void Draw(sf::RenderWindow& window);
 
+	void ResetScenes();
+
 	void LoadLevel(std::string name);
 	void LoadLevelAsync(std::string name);
 	void UnloadLevel();
 	void UnloadLevelAsync();
-
 
 	void LoadMenu(std::string name);
 	void LoadMenuAsync(std::string name);

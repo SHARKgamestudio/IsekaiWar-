@@ -1,4 +1,4 @@
-#include "GameOver.h"
+#include "Win.h"
 
 #pragma region External Dependencies
 
@@ -17,26 +17,26 @@
 
 #pragma endregion
 
-GameOver::GameOver() {
+Win::Win() {
 	resetCursor = true;
 }
 
-void GameOver::Load() {
+void Win::Load() {
 	Spritesheet* background_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("background"), 1, 1);
 	Image* background_image = new Image(background_spritesheet);
 	background_image->setScale(1, 1);
 	background_image->setPosition(1920/2, 1080/2);
 	elements.push_back(background_image);
 
-	Label* gameover_label = new Label("GAME OVER");
+	Label* gameover_label = new Label("YOU WON, SCORE : " + std::to_string((int)Managers::GetInstance()->SceneManager->currentLevel->score));
 	gameover_label->SetCharSize(128);
-	gameover_label->setPosition(576, 1080 / 8);
+	gameover_label->setPosition(150, 1080 / 8);
 	elements.push_back(gameover_label);
 
 	Spritesheet* again_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
 	sf::Text* again_text = new sf::Text();
 	again_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
-	again_text->setString("TRY AGAIN");
+	again_text->setString("NEXT LEVEL");
 	again_text->setCharacterSize(30);
 	Button* again_button = new Button(again_text, again_spritesheet);
 	again_button->SetScale(1, 1);
@@ -65,7 +65,7 @@ void GameOver::Load() {
 	resetCursor = true;
 }
 
-void GameOver::UpdateLogic(float dt) {
+void Win::UpdateLogic(float dt) {
 	MenuScene::UpdateLogic(dt);
 
 	Button* again_button = (Button*)elements[2];
