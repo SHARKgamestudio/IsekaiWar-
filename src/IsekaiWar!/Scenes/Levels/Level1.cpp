@@ -33,6 +33,8 @@ void Level1::Load() {
 	LevelScene::Load();
 
 	Managers::GetInstance()->SoundManager->PlayMusic("soundtrack");
+	Managers::GetInstance()->SoundManager->PlaySound("BirdFlaps", true);
+	Managers::GetInstance()->SoundManager->PlaySound("MidAirLoop", true);
 
 	clock = new Clock(true);
 
