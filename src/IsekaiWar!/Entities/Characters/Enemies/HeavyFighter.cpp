@@ -1,4 +1,4 @@
-#include "StandardFighter.h"
+#include "HeavyFighter.h"
 
 #include "../../../Managers.h"
 #include "../../Bullets/EnemyBullets/StandardBullet.h"
@@ -6,19 +6,19 @@
 #include "../../../Utils/IntervalClock.h"
 
 // behaviour
-#define CIRCLE_RADIUS 256
+#define CIRCLE_RADIUS 64
 #define START_DISTANCE 25
 
 // constructor
 #define INITIAL_POSITION_Y -256
-#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("enemy")
+#define TEXTURE Managers::GetInstance()->ResourceManager->GetTexture("heavy-fighter")
 #define COLUMNS 5
 #define ROWS 4
 #define RADIUS 64
 #define HEALTH 2
 
-StandardFighter::StandardFighter(float x, float y, float birth)
-	: EnemyEntity(x, INITIAL_POSITION_Y, TEXTURE, birth, COLUMNS, ROWS, RADIUS, HEALTH), shootClock(0.5f){
+HeavyFighter::HeavyFighter(float x, float y, float birth)
+	: EnemyEntity(x, INITIAL_POSITION_Y, TEXTURE, birth, COLUMNS, ROWS, RADIUS, HEALTH), shootClock(0.5f) {
 	
 	this->time = 0;
 	this->spawned = false;
@@ -27,7 +27,7 @@ StandardFighter::StandardFighter(float x, float y, float birth)
 	this->animator->Play("idle");
 }
 
-StandardFighter::StandardFighter(sf::Vector2f position, float birth)
+HeavyFighter::HeavyFighter(sf::Vector2f position, float birth)
 	: EnemyEntity(sf::Vector2f(position.x, -256), Managers::GetInstance()->ResourceManager->GetTexture("enemy"), birth, sf::Vector2i(5, 4), 64, 2), shootClock(0.5f) {
 	
 	this->time = 0;
@@ -37,7 +37,7 @@ StandardFighter::StandardFighter(sf::Vector2f position, float birth)
 	this->animator->Play("idle");
 }
 
-void StandardFighter::UpdateLogic(float deltaTime) {
+void HeavyFighter::UpdateLogic(float deltaTime) {
 	EnemyEntity::UpdateLogic(deltaTime);
 
 	animator->UpdateLogic(deltaTime);
@@ -52,7 +52,11 @@ void StandardFighter::UpdateLogic(float deltaTime) {
 		setPosition(Maths::Lerp(getPosition().x, spawn.x + std::cos(time) * CIRCLE_RADIUS, deltaTime), Maths::Lerp(getPosition().y, spawn.y + std::sin(time) * CIRCLE_RADIUS, deltaTime));
 
 		if (shootClock.UpdateLogic(deltaTime)) {
-			(new StandardBullet(getPosition() + sf::Vector2f(0, 128), sf::Vector2f(0, 1)))->Spawn();
+			(new StandardBullet(getPosition() + sf::Vector2f(-32-64, 110), sf::Vector2f(0, 1)))->Spawn();
+			(new StandardBullet(getPosition() + sf::Vector2f(16+64, 110), sf::Vector2f(0, 1)))->Spawn();
+
+			(new StandardBullet(getPosition() + sf::Vector2f(-16, -25), sf::Vector2f(1, 0)))->Spawn();
+			(new StandardBullet(getPosition() + sf::Vector2f(-16, -25), sf::Vector2f(-1, 0)))->Spawn();
 		}
 	}
 

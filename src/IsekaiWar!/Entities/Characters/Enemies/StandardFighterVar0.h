@@ -3,7 +3,7 @@
 #include "../EnemyEntity.h"
 #include "../../../Modules/ShootModule.h"
 
-class StandardFighter : public EnemyEntity {
+class StandardFighterVar0 : public EnemyEntity {
 private:
 	IntervalClock shootClock;
 	sf::Vector2f spawn;
@@ -12,8 +12,8 @@ private:
 
 	Animator* animator;
 public:
-	StandardFighter(float x, float y, float birth = 0);
-	StandardFighter(sf::Vector2f position, float birth = 0);
+	StandardFighterVar0(float x, float y, float birth = 0);
+	StandardFighterVar0(sf::Vector2f position, float birth = 0);
 
 	void UpdateLogic(float deltaTime) override;
 };
