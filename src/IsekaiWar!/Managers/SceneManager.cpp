@@ -5,6 +5,7 @@
 #include "../Managers.h"
 #include "../Scenes/Levels/Level1.h"
 #include "../Scenes/Menus/MainMenu.h"
+#include "../Scenes/Menus/GameOver.h"
 #include "../Scenes/Menus/PlayerUI.h"
 #include "../Scenes/MenuScene.h"
 
@@ -19,6 +20,7 @@ SceneManager::SceneManager() :
 	currentLevel = nullptr;
 	currentScene = nullptr;
 
+	scenes["GameOver"] = new GameOver();
 	scenes["MainMenu"] = new MainMenu();
 	scenes["PlayerUI"] = new PlayerUI();
 	levels["Level1"] = new Level1();

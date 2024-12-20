@@ -64,11 +64,11 @@ void Level1::Load() {
 		//new StandardFighter(600, 600, 6.f),
 		//new StandardFighter(750, 500, 6.f),
 
-		//new StandardFighterVar0(400, 250, 0.0f),
-		//new StandardFighterVar1(600, 500, 0.0f),
-		//new StandardFighterVar2(100, 700, 0.0f),
-		//new LightFighter(650, 700, 0.0f),
-		//new HeavyFighter(400, 250, 0.0f),
+		new StandardFighterVar0(400, 250, 0.0f),
+		new StandardFighterVar1(600, 500, 0.0f),
+		new StandardFighterVar2(100, 700, 0.0f),
+		new LightFighter(650, 700, 0.0f),
+		new HeavyFighter(400, 250, 0.0f),
 	};
 
 	for (int i = 0; i < ennemiesPool.size(); i++) {
@@ -83,8 +83,12 @@ void Level1::Load() {
 void Level1::End() {
 	// EXECUTE AT THE END OF THE LEVEL //
 
-	Managers::GetInstance()->SceneManager->LoadMenu("PlayerUI");
-	Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");
+	if (current == Lose) {
+		Managers::GetInstance()->SceneManager->LoadMenu("GameOver");
+	}
+
+	
+	//Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");
 }
 
 void Level1::UpdateLogic(float deltaTime) {
