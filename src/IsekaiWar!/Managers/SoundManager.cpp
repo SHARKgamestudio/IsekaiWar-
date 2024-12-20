@@ -18,6 +18,10 @@ sf::Sound* SoundManager::PlaySound(std::string sound, bool loop) {
 	return &resources->sounds[sound];
 }
 
+void SoundManager::StopSound(std::string sound) {
+	resources->sounds[sound].stop();
+}
+
 sf::Music* SoundManager::PlayMusic(std::string music, bool loop) {
 	for (auto& element : resources->musics) {
 		element.second.stop();

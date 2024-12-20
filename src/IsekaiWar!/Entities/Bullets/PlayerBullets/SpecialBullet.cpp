@@ -36,8 +36,10 @@ void SpecialBullet::UpdateLogic(float deltaTime) {
 
 	spritesheet.rotate(deltaTime * SPEED_ROTATION);
 
+
 	for (CollidableEntity* entityHit : entitiesHit) {
 		if (LivingEntity* castEntity = dynamic_cast<LivingEntity*>(entityHit)) {
+			Managers::GetInstance()->SoundManager->PlaySound("explosion");
 			Attack(castEntity, deltaTime);
 		}
 	}

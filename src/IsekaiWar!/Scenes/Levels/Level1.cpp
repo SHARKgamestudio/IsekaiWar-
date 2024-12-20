@@ -86,13 +86,17 @@ void Level1::End() {
 	// EXECUTE AT THE END OF THE LEVEL //
 
 	if (current == Lose) {
+		Managers::GetInstance()->SoundManager->StopSound("BirdFlaps");
+		Managers::GetInstance()->SoundManager->StopSound("MidAirLoop");
 		Managers::GetInstance()->SceneManager->ResetScenes();
 		Managers::GetInstance()->SceneManager->LoadMenu("GameOver");
 	}
 	else if (current == Win) {
+		Managers::GetInstance()->SoundManager->StopSound("BirdFlaps");
+		Managers::GetInstance()->SoundManager->StopSound("MidAirLoop");
 		Managers::GetInstance()->SceneManager->currentLevel->score = score;
-		//Managers::GetInstance()->SceneManager->ResetScenes();
-		Managers::GetInstance()->SceneManager->LoadMenuAsync("Win");
+		Managers::GetInstance()->SceneManager->ResetScenes();
+		Managers::GetInstance()->SceneManager->LoadMenu("Win");
 	}
 	
 	//Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");

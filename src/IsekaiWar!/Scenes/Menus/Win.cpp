@@ -28,7 +28,7 @@ void Win::Load() {
 	background_image->setPosition(1920/2, 1080/2);
 	elements.push_back(background_image);
 
-	Label* gameover_label = new Label("YOU WON, SCORE : " + std::to_string((int)Managers::GetInstance()->SceneManager->currentLevel->score));
+	Label* gameover_label = new Label("YOU WON");
 	gameover_label->SetCharSize(128);
 	gameover_label->setPosition(150, 1080 / 8);
 	elements.push_back(gameover_label);
