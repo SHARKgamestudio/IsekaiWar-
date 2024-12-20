@@ -21,6 +21,8 @@ MainMenu::MainMenu() {
 }
 
 void MainMenu::Load() {
+	Managers::GetInstance()->SoundManager->PlayMusic("menu");
+
 	Spritesheet* background_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("background"), 1, 1);
 	Image* background_image = new Image(background_spritesheet);
 	background_image->setScale(1, 1);

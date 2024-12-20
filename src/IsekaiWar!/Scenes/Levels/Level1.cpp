@@ -32,7 +32,7 @@ Level1::Level1() {
 void Level1::Load() {
 	LevelScene::Load();
 
-	Managers::GetInstance()->SoundManager->PlayMusic("music");
+	Managers::GetInstance()->SoundManager->PlayMusic("soundtrack");
 
 	clock = new Clock(true);
 
