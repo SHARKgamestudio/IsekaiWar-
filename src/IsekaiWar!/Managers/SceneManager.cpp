@@ -5,7 +5,9 @@
 #include "../Managers.h"
 #include "../Scenes/Levels/Level1.h"
 #include "../Scenes/Menus/MainMenu.h"
+#include "../Scenes/Menus/GameOver.h"
 #include "../Scenes/Menus/PlayerUI.h"
+#include "../Scenes/Menus/Win.h"
 #include "../Scenes/MenuScene.h"
 
 #pragma endregion
@@ -19,6 +21,8 @@ SceneManager::SceneManager() :
 	currentLevel = nullptr;
 	currentScene = nullptr;
 
+	scenes["GameOver"] = new GameOver();
+	scenes["Win"] = new Win();
 	scenes["MainMenu"] = new MainMenu();
 	scenes["PlayerUI"] = new PlayerUI();
 	levels["Level1"] = new Level1();
@@ -62,6 +66,7 @@ void SceneManager::UnloadMenuAsync() {
 }
 
 void SceneManager::LoadLevel(std::string name) {
+
 	currentLevel = levels[name];
 	currentScene = nullptr;
 
@@ -100,4 +105,12 @@ void SceneManager::Draw(sf::RenderWindow& window) {
 		Managers::GetInstance()->GameManager->window.setView(menuView);
 		currentScene->Draw(window);
 	}
+}
+
+void SceneManager::ResetScenes() {
+	scenes["GameOver"] = new GameOver();
+	scenes["Win"] = new Win();
+	scenes["MainMenu"] = new MainMenu();
+	scenes["PlayerUI"] = new PlayerUI();
+	levels["Level1"] = new Level1();
 }

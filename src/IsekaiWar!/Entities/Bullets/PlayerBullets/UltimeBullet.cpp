@@ -112,6 +112,7 @@ void UltimeBullet::CheckCollisions() {
 		}
 		
 		if (otherEntity->getPosition().y > entitiesHit[0]->getPosition().y) {
+			Managers::GetInstance()->SoundManager->PlaySound("explosion");
 			entitiesHit[0] = otherEntity;
 			continue;
 		}

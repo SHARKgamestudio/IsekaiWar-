@@ -22,6 +22,7 @@
 WaterAuto::WaterAuto(float x, float y, sf::Vector2f direction)
 	: AutoBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, direction, SPEED, SPEED_ANIMATION) 
 {
+	Managers::GetInstance()->SoundManager->PlaySound("WaterBulletLoop", true);
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.setScale(SCALE, SCALE);
 	spritesheet.rotate(-90);
@@ -30,6 +31,7 @@ WaterAuto::WaterAuto(float x, float y, sf::Vector2f direction)
 WaterAuto::WaterAuto(sf::Vector2f position, sf::Vector2f direction)
 	: AutoBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, direction, SPEED, SPEED_ANIMATION)
 {
+	Managers::GetInstance()->SoundManager->PlaySound("WaterBulletLoop", true);
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.setScale(SCALE, SCALE);
 	spritesheet.rotate(-90);

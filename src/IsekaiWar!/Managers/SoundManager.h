@@ -27,6 +27,7 @@ private:
 
 public:
 	sf::Sound* PlaySound(std::string sound, bool loop = false);
+	void StopSound(std::string sound);
 	sf::Music* PlayMusic(std::string music, bool loop = false);
 
 	void RefreshVolume();

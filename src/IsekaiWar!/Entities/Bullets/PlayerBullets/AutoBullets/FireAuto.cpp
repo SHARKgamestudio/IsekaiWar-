@@ -21,6 +21,8 @@
 FireAuto::FireAuto(float x, float y, sf::Vector2f direction)
 	: AutoBullet(x, y, TEXTURE, COLUMNS, ROWS, RADIUS, ATTACK, direction, SPEED, SPEED_ANIMATION)
 {
+
+	Managers::GetInstance()->SoundManager->PlaySound("FireBulletLoop", true);
 	spritesheet.setScale(SCALE, SCALE);
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.rotate(90);
@@ -29,6 +31,8 @@ FireAuto::FireAuto(float x, float y, sf::Vector2f direction)
 FireAuto::FireAuto(sf::Vector2f position, sf::Vector2f direction)
 	: AutoBullet(position, TEXTURE, sf::Vector2i(COLUMNS, ROWS), RADIUS, ATTACK, direction, SPEED, SPEED_ANIMATION)
 {
+
+	Managers::GetInstance()->SoundManager->PlaySound("FireBulletLoop", true);
 	spritesheet.setScale(SCALE, SCALE);
 	spritesheet.setPosition(POSITION_X, POSITION_Y);
 	spritesheet.rotate(90);

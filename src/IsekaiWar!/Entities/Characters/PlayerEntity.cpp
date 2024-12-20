@@ -100,23 +100,27 @@ void PlayerEntity::UpdateLogic(float deltaTime) {
 	animator->UpdateLogic(deltaTime);
 
 	if (this->inputs->GetKey("Auto") && canAuto) {
+		Managers::GetInstance()->SoundManager->PlaySound("ShootingSpell");
 		ShootAuto();
 		canAuto = false;
 		clockAuto.Restart();
 	}
 
 	if (this->inputs->GetKeyDown("Special") && canSpecial) {
+		Managers::GetInstance()->SoundManager->PlaySound("ShootingSpell");
 		ShootSpecial();
 		canSpecial = false;
 		clockSpecial.Restart();
 	}
 
 	if (this->inputs->GetKeyDown("Ult") && HaveMana()) {
+		Managers::GetInstance()->SoundManager->PlaySound("ShootingSpell");
 		StartUltime();
 		canUltime = false;
 		UseMana(64 * deltaTime);
 	}
 	if (this->inputs->GetKey("Ult") && HaveMana()) {
+		Managers::GetInstance()->SoundManager->PlaySound("ShootingSpell");
 		UseMana(64 * deltaTime);
 	}
 	if ((this->inputs->GetKeyUp("Ult") || !HaveMana()) && ultimeBullet != nullptr) {

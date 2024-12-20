@@ -21,6 +21,8 @@ MainMenu::MainMenu() {
 }
 
 void MainMenu::Load() {
+	Managers::GetInstance()->SoundManager->PlayMusic("menu");
+
 	Spritesheet* background_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("background"), 1, 1);
 	Image* background_image = new Image(background_spritesheet);
 	background_image->setScale(1, 1);
@@ -76,6 +78,7 @@ void MainMenu::UpdateLogic(float dt) {
 
 	Button* play_button = (Button*)elements[2];
 	if (play_button->IsPressed()) {
+		Managers::GetInstance()->SceneManager->ResetScenes();
 		Managers::GetInstance()->SceneManager->LoadMenu("PlayerUI");
 		Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");
 	}
