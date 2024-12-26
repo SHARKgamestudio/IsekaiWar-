@@ -97,7 +97,7 @@ void ResourceManager::AddTexture(std::string name, std::string path) {
 }
 sf::Texture* ResourceManager::GetTexture(std::string name) {
 	bool success = textures.contains(name);
-	Debug::Assert(success, "Could not retreive requested resource");
+	Debug::Assert(success, "Could not retreive " + name + " from resources.");
 	return &textures[name];
 }
 
@@ -111,7 +111,8 @@ void ResourceManager::AddSound(std::string name, std::string path) {
 }
 sf::Sound* ResourceManager::GetSound(std::string name) {
 	bool success = sounds.contains(name);
-	Debug::Assert(success, "Could not retreive requested resource");
+	Debug::Assert(success, "Could not retreive " + name + " from resources.");
+
 	return &sounds[name];
 }
 
@@ -121,7 +122,7 @@ void ResourceManager::AddMusic(std::string name, std::string path) {
 }
 sf::Music* ResourceManager::GetMusic(std::string name) {
 	bool success = musics.contains(name);
-	Debug::Assert(success, "Could not retreive requested resource");
+	Debug::Assert(success, "Could not retreive " + name + " from resources.");
 	return &musics[name];
 }
 
@@ -131,7 +132,7 @@ void ResourceManager::AddFont(std::string name, std::string path) {
 }
 sf::Font* ResourceManager::GetFont(std::string name) {
 	bool success = fonts.contains(name);
-	Debug::Assert(success, "Could not retreive requested resource");
+	Debug::Assert(success, "Could not retreive " + name + " from resources.");
 	return &fonts[name];
 }
 

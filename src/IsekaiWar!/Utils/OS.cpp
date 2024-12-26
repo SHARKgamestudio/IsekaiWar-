@@ -10,6 +10,7 @@
 #include <filesystem>
 #include <string>
 #include <vector>
+#include <iostream>
 
 #pragma endregion
 
@@ -49,15 +50,30 @@ std::string OS::GetAbsolutePath(std::string path) {
    return fs::absolute(path).generic_string(); 
 }
 
+std::string OS::GetStandardPath(std::string path) {
+    std::replace(path.begin(), path.end(), '\\', '/');
+    return path;
+}
+
 std::vector<std::string> OS::GetFilesInDirectory(std::string path, std::string extension) {
     std::vector<std::string> files;
-
     fs::path directoryPath(path);
 
-    for (const auto& entry : fs::recursive_directory_iterator(directoryPath)) {
-        if (fs::is_regular_file(entry) && entry.path().extension() == extension) {
-            files.push_back(entry.path().string());
+    try {
+        for (const auto& entry : fs::recursive_directory_iterator(directoryPath, fs::directory_options::skip_permission_denied)) {
+            if (fs::is_regular_file(entry) && entry.path().extension() == extension) {
+                // Normalize the path to use forward slashes
+                files.push_back(GetStandardPath(entry.path().string()));
+            }
         }
+    }
+    catch (const std::filesystem::filesystem_error& e) {
+        std::cerr << "Error getting files in directory : " << e.what() << '\n';
+    }
+
+    for (int i = 0; i < files.size(); i++)
+    {
+        std::cout << files[i] << std::endl;
     }
 
     return files;

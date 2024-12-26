@@ -11,7 +11,6 @@
 #include "../../Managers.h"
 #include "../../Entities/BackgroundEntity.h"
 #include "../../Entities/Bullets/PlayerBullets/SpecialBullet.h"
-#include "../../Entities/Characters/Enemies/StandardFighter.h"
 #include "../../Entities/Characters/Enemies/StandardFighterVar0.h"
 #include "../../Entities/Characters/Enemies/StandardFighterVar1.h"
 #include "../../Entities/Characters/Enemies/StandardFighterVar2.h"
@@ -39,33 +38,33 @@ void Level1::Load() {
 
 	ennemiesPool = {
 		// WAVE 1
-		new StandardFighter(736, 125, 0.0f),
+		new StandardFighterVar0(736, 125, 0.0f),
 		new StandardFighterVar1(471, 345, 0.0f),
 		new StandardFighterVar1(142, 248, 0.0f),
 
 		// WAVE 2
-		new StandardFighter(640, 300, 1.f),
-		new StandardFighter(300, 500, 1.f),
+		new StandardFighterVar0(640, 300, 1.f),
+		new StandardFighterVar0(300, 500, 1.f),
 		new StandardFighterVar1(550, 500, 1.0f),
-		new StandardFighter(236, 125, 1.f),
+		new StandardFighterVar0(236, 125, 1.f),
 
 		// WAVE 3
-		new StandardFighter(150, 300, 2.f),
-		new StandardFighter(300, 400, 2.f),
+		new StandardFighterVar0(150, 300, 2.f),
+		new StandardFighterVar0(300, 400, 2.f),
 		new HeavyFighter(450, 300, 2.f),
-		new StandardFighter(600, 400, 2.f),
-		new StandardFighter(750, 300, 2.f),
+		new StandardFighterVar0(600, 400, 2.f),
+		new StandardFighterVar0(750, 300, 2.f),
 
 		// WAVE 4
-		new StandardFighter(150, 300, 3.f),
+		new StandardFighterVar0(150, 300, 3.f),
 		new StandardFighterVar0(300, 400, 3.f),
-		new StandardFighter(450, 300, 3.f),
+		new StandardFighterVar0(450, 300, 3.f),
 		new StandardFighterVar0(600, 400, 3.f),
-		new StandardFighter(750, 300, 3.f),
+		new StandardFighterVar0(750, 300, 3.f),
 		new StandardFighterVar1(150, 500, 3.f),
-		new StandardFighter(300, 600, 3.f),
+		new StandardFighterVar0(300, 600, 3.f),
 		new StandardFighterVar1(450, 500, 3.f),
-		new StandardFighter(600, 600, 3.f),
+		new StandardFighterVar0(600, 600, 3.f),
 		new StandardFighterVar1(750, 500, 3.f),
 
 		// WAVE 5

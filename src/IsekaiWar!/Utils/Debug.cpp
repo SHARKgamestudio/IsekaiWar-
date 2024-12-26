@@ -6,7 +6,7 @@
 
 #pragma endregion
 
-void Debug::Assert(bool condition, const char* message, bool quit) {
+void Debug::Assert(bool condition, std::string message, bool quit) {
 	if (condition) return;
 
 	std::cout << "Assertion failed ";

@@ -11,5 +11,6 @@ class OS {
 public:
 	static std::string GetExecutablePath();
 	static std::string GetAbsolutePath(std::string path);
+	static std::string GetStandardPath(std::string path);
 	static std::vector<std::string> GetFilesInDirectory(std::string path, std::string extension = ".png");
 };
