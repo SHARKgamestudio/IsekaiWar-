@@ -7,7 +7,7 @@
 
 #pragma endregion
 
-const std::string DEBUG_PATH = "../../../src/IsekaiWar!/";
+const std::string DEBUG_PATH = "../../../";
 
 ResourceManager::ResourceManager() {
 	loaded = false;
@@ -35,7 +35,7 @@ void ResourceManager::LoadEngineResources(sf::RenderWindow& window) {
 	std::string path = "";
 
 #ifdef _DEBUG
-	path = OS::GetAbsolutePath(DEBUG_PATH) + "Assets/_engine/";
+	path = OS::GetAbsolutePath(DEBUG_PATH) + "res/_engine/";
 #else
 	path = OS::GetExecutablePath() + "/resourcepacks/_engine/";
 #endif
@@ -74,7 +74,7 @@ void ResourceManager::LoadGameResources() {
 
 #ifdef _DEBUG
 	root = OS::GetAbsolutePath(DEBUG_PATH);
-	subdir = "Assets/";
+	subdir = "res/";
 #else
 	root = OS::GetExecutablePath();
 	subdir = "/resourcepacks/";
