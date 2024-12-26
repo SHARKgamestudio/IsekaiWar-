@@ -2,15 +2,13 @@
 
 #pragma region External Dependencies
 
+#include <filesystem>
 #include <windows.h>
+#include <iostream>
+#include <codecvt>
 #include <string>
 #include <locale>
-#include <codecvt>
-
-#include <filesystem>
-#include <string>
 #include <vector>
-#include <iostream>
 
 #pragma endregion
 
@@ -32,15 +30,11 @@ std::string OS::GetExecutablePath() {
     std::string result(bufferSize - 1, '\0');
     WideCharToMultiByte(CP_UTF8, 0, path, -1, &result[0], bufferSize, NULL, NULL);
 
-    for (char& ch : result) {
-        if (ch == '\\') {
-            ch = '/';
-        }
-    }
+    result = GetStandardPath(result);
 
-    size_t pos = result.find_last_of("/");
-    if (pos != std::string::npos) {
-        result = result.substr(0, pos);
+    size_t position = result.find_last_of("/");
+    if (position != std::string::npos) {
+        result = result.substr(0, position);
     }
 
     return result;
@@ -59,16 +53,10 @@ std::vector<std::string> OS::GetFilesInDirectory(std::string path, std::string e
     std::vector<std::string> files;
     fs::path directoryPath(path);
 
-    try {
-        for (const auto& entry : fs::recursive_directory_iterator(directoryPath, fs::directory_options::skip_permission_denied)) {
-            if (fs::is_regular_file(entry) && entry.path().extension() == extension) {
-                // Normalize the path to use forward slashes
-                files.push_back(GetStandardPath(entry.path().string()));
-            }
+    for (const auto& entry : fs::recursive_directory_iterator(directoryPath, fs::directory_options::skip_permission_denied)) {
+        if (fs::is_regular_file(entry) && entry.path().extension() == extension) {
+            files.push_back(GetStandardPath(entry.path().string()));
         }
-    }
-    catch (const std::filesystem::filesystem_error& e) {
-        std::cerr << "Error getting files in directory : " << e.what() << '\n';
     }
 
     return files;
