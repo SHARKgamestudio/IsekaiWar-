@@ -46,11 +46,12 @@
             "precompiled_header_file": "pch.h",
             "preprocessor_definitions": "NDEBUG;_CONSOLE;%(PreprocessorDefinitions)",
             "sdl_check": "true",
-            "subsystem": "Console",
+            "subsystem": "Windows",
             "type": "Application",
             "use_debug_libraries": "false",
             "vcpkg_configuration": "Release",
-            "warning_level": "Level3"
+            "warning_level": "Level3",
+            "additional_options": "/ENTRY:mainCRTStartup"
         }
     ]
 }
