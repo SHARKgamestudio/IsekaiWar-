@@ -12,7 +12,6 @@ const std::string DEBUG_PATH = "../../../src/IsekaiWar!/";
 ResourceManager::ResourceManager() {
 	loaded = false;
 }
-
 ResourceManager::~ResourceManager() {
 	textures.clear();
 
@@ -32,7 +31,44 @@ ResourceManager::~ResourceManager() {
 	loaded = false;
 }
 
-void ResourceManager::LoadResources() {
+void ResourceManager::LoadEngineResources(sf::RenderWindow& window) {
+	std::string path = "";
+
+#ifdef _DEBUG
+	path = OS::GetAbsolutePath(DEBUG_PATH) + "Assets/_engine/";
+#else
+	path = OS::GetExecutablePath() + "/resourcepacks/_engine/";
+#endif
+
+	sf::Vector2f windowSize = window.getDefaultView().getSize();
+
+	sf::Texture engineLogoTexture;
+	engineLogoTexture.loadFromFile(path + "engine-logo.png");
+
+	sf::Sprite engineLogo;
+	engineLogo.setTexture(engineLogoTexture);
+	engineLogo.setOrigin(engineLogo.getLocalBounds().width / 2, engineLogo.getLocalBounds().height / 2);
+	engineLogo.setPosition(windowSize.x / 2, windowSize.y / 2);
+
+	sf::Font font;
+	font.loadFromFile(path + "font.ttf");
+
+	sf::Text loadingText;
+	loadingText.setFont(font);
+	loadingText.setString("loading resources..");
+	loadingText.setCharacterSize(48);
+	loadingText.setFillColor(sf::Color::White);
+	loadingText.setOrigin(loadingText.getLocalBounds().width / 2, loadingText.getLocalBounds().height / 2);
+	loadingText.setPosition(windowSize.x / 2, windowSize.y / 1.2f);
+
+	window.clear();
+
+	window.draw(engineLogo);
+	window.draw(loadingText);
+
+	window.display();
+}
+void ResourceManager::LoadGameResources() {
 	std::string root = "";
 	std::string subdir = "";
 
@@ -93,11 +129,11 @@ void ResourceManager::LoadFonts(std::string path) {
 
 void ResourceManager::AddTexture(std::string name, std::string path) {
 	bool success = textures[name].loadFromFile(path);
-	Debug::Assert(success, "Could not add the texture to the resources");
+	Debug::Assert(success, "Could not add " + name + "(texture) to resources.");
 }
 sf::Texture* ResourceManager::GetTexture(std::string name) {
 	bool success = textures.contains(name);
-	Debug::Assert(success, "Could not retreive " + name + " from resources.");
+	Debug::Assert(success, "Could not retreive " + name + "(texture) from resources.");
 	return &textures[name];
 }
 
@@ -107,32 +143,32 @@ void ResourceManager::AddSound(std::string name, std::string path) {
 
 	sounds[name] = sf::Sound(*buffer);
 	bool success = sounds.contains(name);
-	Debug::Assert(success, "Could not add the sound to the resources");
+	Debug::Assert(success, "Could not add " + name + "(sound) to resources.");
 }
 sf::Sound* ResourceManager::GetSound(std::string name) {
 	bool success = sounds.contains(name);
-	Debug::Assert(success, "Could not retreive " + name + " from resources.");
+	Debug::Assert(success, "Could not retreive " + name + "(sound) from resources.");
 
 	return &sounds[name];
 }
 
 void ResourceManager::AddMusic(std::string name, std::string path) {
 	bool success = musics[name].openFromFile(path);
-	Debug::Assert(success, "Could not add the music to the resources");
+	Debug::Assert(success, "Could not add " + name + "(music) to resources.");
 }
 sf::Music* ResourceManager::GetMusic(std::string name) {
 	bool success = musics.contains(name);
-	Debug::Assert(success, "Could not retreive " + name + " from resources.");
+	Debug::Assert(success, "Could not retreive " + name + "(music) from resources.");
 	return &musics[name];
 }
 
 void ResourceManager::AddFont(std::string name, std::string path) {
 	bool success = fonts[name].loadFromFile(path);
-	Debug::Assert(success, "Could not add the font to the resources");
+	Debug::Assert(success, "Could not add " + name + "(font) to resources.");
 }
 sf::Font* ResourceManager::GetFont(std::string name) {
 	bool success = fonts.contains(name);
-	Debug::Assert(success, "Could not retreive " + name + " from resources.");
+	Debug::Assert(success, "Could not retreive " + name + "(font) from resources.");
 	return &fonts[name];
 }
 

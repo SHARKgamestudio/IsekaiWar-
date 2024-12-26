@@ -26,7 +26,8 @@ private:
 	void LoadMusics(std::string path);
 	void LoadFonts(std::string path);
 public:
-	void LoadResources();
+	void LoadEngineResources(sf::RenderWindow& window);
+	void LoadGameResources();
 
 	void AddTexture(std::string name, std::string path);
 	sf::Texture* GetTexture(std::string name);

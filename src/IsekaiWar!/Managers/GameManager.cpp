@@ -14,8 +14,6 @@
 
 #pragma endregion
 
-const std::string DEBUG_PATH = "../../../src/IsekaiWar!/";
-
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
 
@@ -32,7 +30,10 @@ GameManager::~GameManager() {
 
 void GameManager::Run() {
 	running = true;
-	DisplayLoadingScreen();
+
+	Managers::GetInstance()->ResourceManager->LoadEngineResources(window);
+
+	Managers::GetInstance()->ResourceManager->LoadGameResources();
 
 	Managers::GetInstance()->SceneManager->LoadMenu("MainMenu");
 
@@ -69,44 +70,6 @@ void GameManager::HandleEvents() {
 	}
 }
 
-void GameManager::DisplayLoadingScreen() {
-	std::string path = "";
-
-	#ifdef _DEBUG
-		path = OS::GetAbsolutePath(DEBUG_PATH) + "Assets/_engine/";
-	#else
-		path = OS::GetExecutablePath() + "/resourcepacks/_engine/";
-	#endif
-
-	sf::Texture engineLogoTexture;
-	engineLogoTexture.loadFromFile(path + "engine-logo.png");
-
-	sf::Sprite engineLogo;
-	engineLogo.setTexture(engineLogoTexture);
-	engineLogo.setOrigin(engineLogo.getLocalBounds().width / 2, engineLogo.getLocalBounds().height / 2);
-	engineLogo.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-
-
-	sf::Font font;
-	font.loadFromFile(path + "font.ttf");
-
-	sf::Text loadingText;
-	loadingText.setFont(font);
-	loadingText.setString("loading resources..");
-	loadingText.setCharacterSize(48);
-	loadingText.setFillColor(sf::Color::White);
-	loadingText.setOrigin(loadingText.getLocalBounds().width / 2, loadingText.getLocalBounds().height / 2);
-	loadingText.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 1.2f);
-	
-	window.clear();
-
-	window.draw(engineLogo);
-	window.draw(loadingText);
-
-	window.display();
-
-	Managers::GetInstance()->ResourceManager->LoadResources();
-}
 
 void GameManager::UpdateLogic(float deltaTime) {
 	// LOGIC GOES HERE //
