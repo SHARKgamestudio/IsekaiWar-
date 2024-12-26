@@ -6,6 +6,7 @@
 
 #pragma endregion
 
+#ifdef _DEBUG
 void Debug::Assert(bool condition, std::string message, bool quit) {
 	if (condition) return;
 
@@ -14,3 +15,8 @@ void Debug::Assert(bool condition, std::string message, bool quit) {
 
 	if (quit) exit(1);
 }
+#else
+void Debug::Assert(bool condition, std::string message, bool quit) {
+	return;
+}
+#endif
