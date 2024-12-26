@@ -73,9 +73,9 @@ void GameManager::DisplayLoadingScreen() {
 	std::string path = "";
 
 	#ifdef _DEBUG
-		path = OS::GetAbsolutePath(DEBUG_PATH) + "Assets/";
+		path = OS::GetAbsolutePath(DEBUG_PATH) + "Assets/_engine/";
 	#else
-		path = OS::GetExecutablePath() + "/resourcepacks/";
+		path = OS::GetExecutablePath() + "/resourcepacks/_engine/";
 	#endif
 
 	sf::Texture engineLogoTexture;
