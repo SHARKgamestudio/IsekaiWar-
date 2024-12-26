@@ -71,10 +71,5 @@ std::vector<std::string> OS::GetFilesInDirectory(std::string path, std::string e
         std::cerr << "Error getting files in directory : " << e.what() << '\n';
     }
 
-    for (int i = 0; i < files.size(); i++)
-    {
-        std::cout << files[i] << std::endl;
-    }
-
     return files;
 }
