@@ -1,6 +1,8 @@
 #pragma once
 
+#include <string>
+
 class Debug {
 public:
-	[[noreturn]] static void Assert(bool condition, const char* message, bool quit = true);
+	[[noreturn]] static void Assert(bool condition, std::string message, bool quit = true);
 };
