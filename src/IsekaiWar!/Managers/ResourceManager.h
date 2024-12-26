@@ -26,7 +26,15 @@ private:
 	void LoadMusics(std::string path);
 	void LoadFonts(std::string path);
 public:
+	/// <summary>
+	/// Manually loading and displaying engine startup resources.
+	/// </summary>
+	/// <param name="window"></param>
 	void LoadEngineResources(sf::RenderWindow& window);
+
+	/// <summary>
+	/// Dynamically loading game resources from the specified directory and its subdirectories.
+	/// </summary>
 	void LoadGameResources();
 
 	void AddTexture(std::string name, std::string path);
@@ -41,6 +49,10 @@ public:
 	void AddFont(std::string name, std::string path);
 	sf::Font* GetFont(std::string name);
 
+	/// <summary>
+	/// Returns true once all the dynamic resources have been successfully loaded.
+	/// </summary>
+	/// <returns></returns>
 	bool ResourcesLoaded();
 
 	friend class Managers;
