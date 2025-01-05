@@ -5,6 +5,7 @@
 #include "../Managers.h"
 #include "../Scenes/Levels/Level1.h"
 #include "../Scenes/Menus/MainMenu.h"
+#include "../Scenes/Menus/SettingsMenu.h"
 #include "../Scenes/Menus/GameOver.h"
 #include "../Scenes/Menus/PlayerUI.h"
 #include "../Scenes/Menus/Win.h"
@@ -25,6 +26,7 @@ SceneManager::SceneManager() :
 	scenes["Win"] = new Win();
 	scenes["MainMenu"] = new MainMenu();
 	scenes["PlayerUI"] = new PlayerUI();
+	scenes["SettingsMenu"] = new SettingsMenu();
 	levels["Level1"] = new Level1();
 
 	levelView.move(-WINDOW_WIDTH / 4, 0);

@@ -21,8 +21,6 @@ MainMenu::MainMenu() {
 }
 
 void MainMenu::Load() {
-	Managers::GetInstance()->SoundManager->PlayMusic("menu");
-
 	Spritesheet* background_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("background"), 1, 1);
 	Image* background_image = new Image(background_spritesheet);
 	background_image->setScale(1, 1);
@@ -83,6 +81,12 @@ void MainMenu::UpdateLogic(float dt) {
 		Managers::GetInstance()->SceneManager->LoadLevelAsync("Level1");
 	}
 
+	Button* settings_button = (Button*)elements[3];
+	if (settings_button->IsPressed()) {
+		Managers::GetInstance()->SceneManager->ResetScenes();
+		Managers::GetInstance()->SceneManager->LoadMenu("SettingsMenu");
+	}
+
 	Button* quit_button = (Button*)elements[4];
 	if (quit_button->IsPressed()) {
 		quit_button->Disable();
@@ -91,7 +95,7 @@ void MainMenu::UpdateLogic(float dt) {
 	}
 
 	if (Managers::GetInstance()->InputManager->isJoystickConnected()) {
-		if (resetCursor) { cursor->setPosition(1920 / 2, 1080 / 2); resetCursor = false; }
+		if (resetCursor) { cursor->setPosition(1920 / 2, 598); resetCursor = false; }
 		cursor->move(Managers::GetInstance()->InputManager->GetAxis("Horizontal") * dt * 512, Managers::GetInstance()->InputManager->GetAxis("Vertical") * dt * 512);
 	}
 	else {

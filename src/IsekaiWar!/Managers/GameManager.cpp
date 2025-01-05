@@ -37,6 +37,8 @@ void GameManager::Run() {
 
 	Managers::GetInstance()->SceneManager->LoadMenu("MainMenu");
 
+	Managers::GetInstance()->SoundManager->PlayMusic("menu");
+
 	while (window.isOpen() && running) {
 		sf::Time deltaTime = clock.restart();
 		HandleEvents();
