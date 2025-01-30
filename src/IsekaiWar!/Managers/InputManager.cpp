@@ -3,6 +3,7 @@
 #pragma region Local Dependencies
 
 #include "../Utils/Maths.h"
+#include <chrono>
 
 #pragma endregion
 
@@ -107,6 +108,8 @@ void InputManager::UpdateEvents(sf::Event* event) {
 		joystickConnected = true;
 	if (event->type == sf::Event::JoystickDisconnected)
 		joystickConnected = false;
+
+	this->event = event;
 }
 
 float InputManager::GetAxis(std::string name) {
@@ -123,4 +126,32 @@ bool InputManager::GetKey(std::string name) {
 
 bool InputManager::GetKeyUp(std::string name) {
 	return GetRawKey(name) == Released;
+}
+
+void InputManager::MapAxisNegativeKeyboard(std::string name) {
+	int index = 0;
+	for (int i = 0; i < axes.size(); i++) {
+		if (axes[i].name == name) {
+			index = i;
+			break;
+		}
+	}
+
+	bool aled = false;
+
+	while (!aled) {
+		if (this->event->type == sf::Event::KeyPressed) {
+			axes[index].negative = this->event->key.code;
+			aled = true;
+			break;
+		}
+	}
+}
+
+std::string InputManager::KeyToString(sf::Keyboard::Key key) {
+	return std::string(magic_enum::enum_name(key));
+}
+
+std::string InputManager::JoystickToString(sf::Joystick::Axis axis) {
+	return std::string(magic_enum::enum_name(axis));
 }

@@ -69,60 +69,204 @@ void SettingsMenu::Load() {
 	elements.push_back(back_button);
 	back_text->setOrigin(back_text->getLocalBounds().width / 2, back_text->getLocalBounds().height / 1.1f);
 
+	#pragma region Horizontal
 
-
-
+	int horizontal_height = 320 + 120;
 
 	Label* horizontal_label = new Label("Horizontal");
 	horizontal_label->SetCharSize(28);
-	horizontal_label->setPosition(570, 735);
+	horizontal_label->setPosition(570, 735 - horizontal_height);
 	elements.push_back(horizontal_label);
 
 	Spritesheet* neg_kbrd_horizontal_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
 	sf::Text* neg_kbrd_horizontal_text = new sf::Text();
 	neg_kbrd_horizontal_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
-	neg_kbrd_horizontal_text->setString("Q");
+	neg_kbrd_horizontal_text->setString(Managers::GetInstance()->InputManager->KeyToString(Managers::GetInstance()->InputManager->axes[0].negative));
 	neg_kbrd_horizontal_text->setCharacterSize(8);
 	neg_kbrd_horizontal_text->setScale(0.55f, 0.55f);
 	Button* neg_kbrd_horizontal_button = new Button(neg_kbrd_horizontal_text, neg_kbrd_horizontal_spritesheet);
 	neg_kbrd_horizontal_button->SetScale(0.75f, 0.75f);
-	neg_kbrd_horizontal_button->setPosition(910, 752);
+	neg_kbrd_horizontal_button->setPosition(910, 752 - horizontal_height);
 	elements.push_back(neg_kbrd_horizontal_button);
 	neg_kbrd_horizontal_text->setOrigin(neg_kbrd_horizontal_text->getLocalBounds().width / 2, neg_kbrd_horizontal_text->getLocalBounds().height / 1.1f);
 
 	Spritesheet* pos_kbrd_horizontal_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
 	sf::Text* pos_kbrd_horizontal_text = new sf::Text();
 	pos_kbrd_horizontal_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
-	pos_kbrd_horizontal_text->setString("D");
+	pos_kbrd_horizontal_text->setString(Managers::GetInstance()->InputManager->KeyToString(Managers::GetInstance()->InputManager->axes[0].positive));
 	pos_kbrd_horizontal_text->setCharacterSize(8);
 	pos_kbrd_horizontal_text->setScale(0.55f, 0.55f);
 	Button* pos_kbrd_horizontal_button = new Button(pos_kbrd_horizontal_text, pos_kbrd_horizontal_spritesheet);
 	pos_kbrd_horizontal_button->SetScale(0.75f, 0.75f);
-	pos_kbrd_horizontal_button->setPosition(1280, 752);
+	pos_kbrd_horizontal_button->setPosition(1280, 752 - horizontal_height);
 	elements.push_back(pos_kbrd_horizontal_button);
 	pos_kbrd_horizontal_text->setOrigin(pos_kbrd_horizontal_text->getLocalBounds().width / 2, pos_kbrd_horizontal_text->getLocalBounds().height / 1.1f);
 
 	Spritesheet* gmpd_horizontal_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
 	sf::Text* gmpd_horizontal_text = new sf::Text();
 	gmpd_horizontal_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
-	gmpd_horizontal_text->setString("D");
+	gmpd_horizontal_text->setString(Managers::GetInstance()->InputManager->JoystickToString(Managers::GetInstance()->InputManager->axes[0].joystick) + " Axis");
 	gmpd_horizontal_text->setCharacterSize(8);
 	gmpd_horizontal_text->setScale(0.55f, 0.55f);
 	Button* gmpd_horizontal_button = new Button(gmpd_horizontal_text, gmpd_horizontal_spritesheet);
 	gmpd_horizontal_button->SetScale(0.75f, 0.75f);
-	gmpd_horizontal_button->setPosition(1650, 752);
+	gmpd_horizontal_button->setPosition(1650, 752 - horizontal_height);
 	elements.push_back(gmpd_horizontal_button);
 	gmpd_horizontal_text->setOrigin(gmpd_horizontal_text->getLocalBounds().width / 2, gmpd_horizontal_text->getLocalBounds().height / 1.1f);
 
+	#pragma endregion
 
+	#pragma region Vertical
 
+	int vertical_height = 200 + 120;
 
+	Label* vertical_label = new Label("Vertical");
+	vertical_label->SetCharSize(28);
+	vertical_label->setPosition(570, 735 - vertical_height);
+	elements.push_back(vertical_label);
 
+	Spritesheet* neg_kbrd_vertical_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
+	sf::Text* neg_kbrd_vertical_text = new sf::Text();
+	neg_kbrd_vertical_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
+	neg_kbrd_vertical_text->setString(Managers::GetInstance()->InputManager->KeyToString(Managers::GetInstance()->InputManager->axes[1].negative));
+	neg_kbrd_vertical_text->setCharacterSize(8);
+	neg_kbrd_vertical_text->setScale(0.55f, 0.55f);
+	Button* neg_kbrd_vertical_button = new Button(neg_kbrd_vertical_text, neg_kbrd_vertical_spritesheet);
+	neg_kbrd_vertical_button->SetScale(0.75f, 0.75f);
+	neg_kbrd_vertical_button->setPosition(910, 752 - vertical_height);
+	elements.push_back(neg_kbrd_vertical_button);
+	neg_kbrd_vertical_text->setOrigin(neg_kbrd_vertical_text->getLocalBounds().width / 2, neg_kbrd_vertical_text->getLocalBounds().height / 1.1f);
 
+	Spritesheet* pos_kbrd_vertical_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
+	sf::Text* pos_kbrd_vertical_text = new sf::Text();
+	pos_kbrd_vertical_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
+	pos_kbrd_vertical_text->setString(Managers::GetInstance()->InputManager->KeyToString(Managers::GetInstance()->InputManager->axes[1].positive));
+	pos_kbrd_vertical_text->setCharacterSize(8);
+	pos_kbrd_vertical_text->setScale(0.55f, 0.55f);
+	Button* pos_kbrd_vertical_button = new Button(pos_kbrd_vertical_text, pos_kbrd_vertical_spritesheet);
+	pos_kbrd_vertical_button->SetScale(0.75f, 0.75f);
+	pos_kbrd_vertical_button->setPosition(1280, 752 - vertical_height);
+	elements.push_back(pos_kbrd_vertical_button);
+	pos_kbrd_vertical_text->setOrigin(pos_kbrd_vertical_text->getLocalBounds().width / 2, pos_kbrd_vertical_text->getLocalBounds().height / 1.1f);
 
+	Spritesheet* gmpd_vertical_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
+	sf::Text* gmpd_vertical_text = new sf::Text();
+	gmpd_vertical_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
+	gmpd_vertical_text->setString(Managers::GetInstance()->InputManager->JoystickToString(Managers::GetInstance()->InputManager->axes[1].joystick) + " Axis");
+	gmpd_vertical_text->setCharacterSize(8);
+	gmpd_vertical_text->setScale(0.55f, 0.55f);
+	Button* gmpd_vertical_button = new Button(gmpd_vertical_text, gmpd_vertical_spritesheet);
+	gmpd_vertical_button->SetScale(0.75f, 0.75f);
+	gmpd_vertical_button->setPosition(1650, 752 - vertical_height);
+	elements.push_back(gmpd_vertical_button);
+	gmpd_vertical_text->setOrigin(gmpd_vertical_text->getLocalBounds().width / 2, gmpd_vertical_text->getLocalBounds().height / 1.1f);
 
+	#pragma endregion
 
+	#pragma region Auto
 
+	int auto_height = 80 + 120;
+
+	Label* auto_label = new Label("Auto");
+	auto_label->SetCharSize(28);
+	auto_label->setPosition(570, 735 - auto_height);
+	elements.push_back(auto_label);
+
+	Spritesheet* auto_kbrd_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
+	sf::Text* auto_kbrd_text = new sf::Text();
+	auto_kbrd_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
+	auto_kbrd_text->setString("K");
+	auto_kbrd_text->setCharacterSize(8);
+	auto_kbrd_text->setScale(0.55f, 0.55f);
+	Button* auto_kbrd_button = new Button(auto_kbrd_text, auto_kbrd_spritesheet);
+	auto_kbrd_button->SetScale(0.75f, 0.75f);
+	auto_kbrd_button->setPosition(910, 752 - auto_height);
+	elements.push_back(auto_kbrd_button);
+	auto_kbrd_text->setOrigin(auto_kbrd_text->getLocalBounds().width / 2, auto_kbrd_text->getLocalBounds().height / 1.1f);
+
+	Spritesheet* auto_gmpd_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
+	sf::Text* auto_gmpd_text = new sf::Text();
+	auto_gmpd_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
+	auto_gmpd_text->setString("A");
+	auto_gmpd_text->setCharacterSize(8);
+	auto_gmpd_text->setScale(0.55f, 0.55f);
+	Button* auto_gmpd_button = new Button(auto_gmpd_text, auto_gmpd_spritesheet);
+	auto_gmpd_button->SetScale(0.75f, 0.75f);
+	auto_gmpd_button->setPosition(1280, 752 - auto_height);
+	elements.push_back(auto_gmpd_button);
+	auto_gmpd_text->setOrigin(auto_gmpd_text->getLocalBounds().width / 2, auto_gmpd_text->getLocalBounds().height / 1.1f);
+
+	#pragma endregion
+
+	#pragma region Special
+
+	int spe_height = -40 + 120;
+
+	Label* spe_label = new Label("Special");
+	spe_label->SetCharSize(28);
+	spe_label->setPosition(570, 735 - spe_height);
+	elements.push_back(spe_label);
+
+	Spritesheet* spe_kbrd_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
+	sf::Text* spe_kbrd_text = new sf::Text();
+	spe_kbrd_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
+	spe_kbrd_text->setString("L");
+	spe_kbrd_text->setCharacterSize(8);
+	spe_kbrd_text->setScale(0.55f, 0.55f);
+	Button* spe_kbrd_button = new Button(spe_kbrd_text, spe_kbrd_spritesheet);
+	spe_kbrd_button->SetScale(0.75f, 0.75f);
+	spe_kbrd_button->setPosition(910, 752 - spe_height);
+	elements.push_back(spe_kbrd_button);
+	spe_kbrd_text->setOrigin(spe_kbrd_text->getLocalBounds().width / 2, spe_kbrd_text->getLocalBounds().height / 1.1f);
+
+	Spritesheet* spe_gmpd_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
+	sf::Text* spe_gmpd_text = new sf::Text();
+	spe_gmpd_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
+	spe_gmpd_text->setString("X");
+	spe_gmpd_text->setCharacterSize(8);
+	spe_gmpd_text->setScale(0.55f, 0.55f);
+	Button* spe_gmpd_button = new Button(spe_gmpd_text, spe_gmpd_spritesheet);
+	spe_gmpd_button->SetScale(0.75f, 0.75f);
+	spe_gmpd_button->setPosition(1280, 752 - spe_height);
+	elements.push_back(spe_gmpd_button);
+	spe_gmpd_text->setOrigin(spe_gmpd_text->getLocalBounds().width / 2, spe_gmpd_text->getLocalBounds().height / 1.1f);
+
+	#pragma endregion
+
+	#pragma region Ult
+
+	int ult_height = -160 + 120;
+
+	Label* ult_label = new Label("Ult");
+	ult_label->SetCharSize(28);
+	ult_label->setPosition(570, 735 - ult_height);
+	elements.push_back(ult_label);
+
+	Spritesheet* ult_kbrd_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
+	sf::Text* ult_kbrd_text = new sf::Text();
+	ult_kbrd_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
+	ult_kbrd_text->setString("M");
+	ult_kbrd_text->setCharacterSize(8);
+	ult_kbrd_text->setScale(0.55f, 0.55f);
+	Button* ult_kbrd_button = new Button(ult_kbrd_text, ult_kbrd_spritesheet);
+	ult_kbrd_button->SetScale(0.75f, 0.75f);
+	ult_kbrd_button->setPosition(910, 752 - ult_height);
+	elements.push_back(ult_kbrd_button);
+	ult_kbrd_text->setOrigin(ult_kbrd_text->getLocalBounds().width / 2, ult_kbrd_text->getLocalBounds().height / 1.1f);
+
+	Spritesheet* ult_gmpd_spritesheet = new Spritesheet(Managers::GetInstance()->ResourceManager->GetTexture("generic-button"), 1, 4);
+	sf::Text* ult_gmpd_text = new sf::Text();
+	ult_gmpd_text->setFont(*Managers::GetInstance()->ResourceManager->GetFont("barkentina"));
+	ult_gmpd_text->setString("R Trigger");
+	ult_gmpd_text->setCharacterSize(8);
+	ult_gmpd_text->setScale(0.55f, 0.55f);
+	Button* ult_gmpd_button = new Button(ult_gmpd_text, ult_gmpd_spritesheet);
+	ult_gmpd_button->SetScale(0.75f, 0.75f);
+	ult_gmpd_button->setPosition(1280, 752 - ult_height);
+	elements.push_back(ult_gmpd_button);
+	ult_gmpd_text->setOrigin(ult_gmpd_text->getLocalBounds().width / 2, ult_gmpd_text->getLocalBounds().height / 1.1f);
+
+	#pragma endregion
 
 	cursor = new sf::Sprite();
 	cursor->setTexture(*Managers::GetInstance()->ResourceManager->GetTexture("cursor"));
@@ -140,6 +284,18 @@ void SettingsMenu::UpdateLogic(float dt) {
 		Managers::GetInstance()->SceneManager->ResetScenes();
 		Managers::GetInstance()->SceneManager->LoadMenu("MainMenu");
 	}
+
+
+
+
+	Button* keyboard_negative_horizontal_button = (Button*)elements[6];
+	if (keyboard_negative_horizontal_button->IsPressed()) {
+		Managers::GetInstance()->InputManager->MapAxisNegativeKeyboard("Horizontal");
+	}
+
+
+
+
 
 	if (Managers::GetInstance()->InputManager->isJoystickConnected()) {
 		if (resetCursor) { cursor->setPosition(256 + 32, 752); resetCursor = false; }
